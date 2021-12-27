@@ -5,18 +5,18 @@ module.exports = {
   username: process.env._DB_USER_,
   password: process.env._DB_PASSWORD_,
   database: process.env._DB_NAME_,
+  synchronize: true,
+  logging: true,
   extra: {
     ssl: {
       rejectUnauthorized: false,
     },
   },
-  synchronize: true,
-  logging: false,
-  entities: ['src/**/*.entity.ts'],
-  migrations: ['src/migration/**/*.ts'],
-  subscribers: ['src/subscriber/**/*.ts'],
+  entities: ['server/**/*.entity.ts'],
+  migrations: ['server/migration/**/*.ts'],
+  subscribers: ['server/subscriber/**/*.ts'],
   cli: {
-    migrationsDir: 'src/migration',
-    subscribersDir: 'src/subscriber',
+    migrationsDir: 'server/migration',
+    subscribersDir: 'server/subscriber',
   },
 };
