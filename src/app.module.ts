@@ -13,19 +13,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.__DB_HOST__,
-      port: parseInt(process.env.__DB_PORT__),
-      username: process.env.__DB_USER__,
-      password: process.env.__DB_PASSWORD__,
-      database: process.env.__DB_NAME__,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
-      // url: "process.env.DATABASE_URL",
+      // host: process.env.__DB_HOST__,
+      // port: parseInt(process.env.__DB_PORT__),
+      // username: process.env.__DB_USER__,
+      // password: process.env.__DB_PASSWORD__,
+      // database: process.env.__DB_NAME__,
+      // extra: {
+      //   ssl: {
+      //     rejectUnauthorized: false,
+      //   },
+      // },
+      url: 'process.env.DATABASE_URL',
       synchronize: true, // In Prod use Migration
       entities: ['dist/**/*/entity{.ts,.js}'],
+      ssl: true,
     }),
     PetsModule,
   ],
