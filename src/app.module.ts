@@ -23,6 +23,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           rejectUnauthorized: false,
         },
       },
+      // url: "process.env.DATABASE_URL",
       synchronize: true, // In Prod use Migration
       entities: ['dist/**/*/entity{.ts,.js}'],
     }),

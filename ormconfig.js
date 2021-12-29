@@ -12,11 +12,11 @@ module.exports = {
       rejectUnauthorized: false,
     },
   },
-  entities: ['server/**/*.entity.ts'],
-  migrations: ['server/migration/**/*.ts'],
-  subscribers: ['server/subscriber/**/*.ts'],
+  entities: ['src/**/*.entity.ts'],
+  migrations: ['src/migration/**/*.ts'],
+  subscribers: ['src/subscriber/**/*.ts'],
   cli: {
-    migrationsDir: 'server/migration',
-    subscribersDir: 'server/subscriber',
+    migrationsDir: 'src/migration',
+    subscribersDir: 'src/subscriber',
   },
 };
