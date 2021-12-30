@@ -21,8 +21,3 @@ ENV PGDATABASE="postgres"
 # PostgreSQL server is running, and if not starts it.
 RUN printf "\n# Auto-start PostgreSQL server.\n[[ \$(pg_ctl status | grep PID) ]] || pg_start > /dev/null\n" >> ~/.bashrc
 
-### Gitpod user ###
-# '-l': see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
-RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
-    # passwordless sudo for users in the 'sudo' group
-    && sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
