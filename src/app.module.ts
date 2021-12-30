@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { PetsModule } from './pets/pets.module';
 import { join } from 'node:path/win32';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OwnersModule } from './owners/owners.module';
 
 console.log(process.env.DATABASE_URL);
 
@@ -23,6 +24,7 @@ console.log(process.env.DATABASE_URL);
       entities: ['dist/**/*.entity{.ts,.js}'],
     }),
     PetsModule,
+    OwnersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
