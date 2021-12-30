@@ -4,7 +4,7 @@ image:
 tasks:
   - name: config Database and npm install
   - init: npm install
-  - command: sudo -u postgres createuser user && sudo -u postgres createdb mydb
+  - command: createuser user && createdb mydb
 
 ports:
   - port: 8000
