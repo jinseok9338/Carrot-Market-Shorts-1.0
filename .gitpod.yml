@@ -2,8 +2,7 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: pg_start
-    command: psql
+  - init: npm install
 
 ports:
   - port: 5432
