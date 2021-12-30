@@ -3,9 +3,7 @@ image:
 
 ports:
   - port: 8000
-    onOpen: open-browser
 
 tasks:
-  - name: config Database and npm install
   - init: npm install
   - command: createuser user && createdb mydb
