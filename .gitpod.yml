@@ -1,0 +1,10 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: pg_start
+    command: psql
+
+ports:
+  - port: 5432
+    onOpen: open-browser
