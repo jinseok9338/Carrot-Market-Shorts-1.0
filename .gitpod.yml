@@ -2,8 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
+  - name: config Database and npm install
   - init: npm install
+  - command: sudo -u postgres createuser user && sudo -u postgres createdb mydb
 
 ports:
-  - port: 5432
+  - port: 8000
     onOpen: open-browser
