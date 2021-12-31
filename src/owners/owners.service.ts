@@ -4,6 +4,9 @@ import { UpdateOwnerInput } from './dto/update-owner.input';
 
 @Injectable()
 export class OwnersService {
+  constructor(
+    @injectRepository(Owner) private ownersRepository: Repository<Owner>,
+  ) {}
   create(createOwnerInput: CreateOwnerInput) {
     return 'This action adds a new owner';
   }
