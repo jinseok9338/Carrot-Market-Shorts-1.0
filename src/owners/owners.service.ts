@@ -11,15 +11,17 @@ export class OwnersService {
     @InjectRepository(Owner) private ownersRepository: Repository<Owner>,
   ) {}
   create(createOwnerInput: CreateOwnerInput) {
-    return 'This action adds a new owner';
+    const newOwner = this.ownersRepository.create(createOwnerInput);
+
+    return this.ownersRepository.save(newOwner);
   }
 
   findAll() {
-    return `This action returns all owners`;
+    return this.ownersRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} owner`;
+    return this.ownersRepository.findOneOrFail(id);
   }
 
   update(id: number, updateOwnerInput: UpdateOwnerInput) {

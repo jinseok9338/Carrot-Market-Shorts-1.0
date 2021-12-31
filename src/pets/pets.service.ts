@@ -4,9 +4,15 @@ import { Repository } from 'typeorm';
 import { Pet } from './pet.entity';
 import { CreatePetInput } from './dto/createPet.input';
 
+import { OwnersService } from 'src/owners/owners.service';
+import { Owner } from 'src/owners/entities/owner.entity';
+
 @Injectable()
 export class PetsService {
-  constructor(@InjectRepository(Pet) private petsRepository: Repository<Pet>) {}
+  constructor(
+    @InjectRepository(Pet) private petsRepository: Repository<Pet>,
+    private ownersService: OwnersService,
+  ) {}
 
   createPet(createPetInput: CreatePetInput): Promise<Pet> {
     const newPet = this.petsRepository.create(createPetInput); // newPet = new Pet();
@@ -20,5 +26,9 @@ export class PetsService {
 
   async findOne(id: number): Promise<Pet> {
     return this.petsRepository.findOneOrFail(id);
+  }
+
+  getOwner(ownerId: number): Promise<Owner> {
+    return this.ownersService.findOne(ownerId);
   }
 }
