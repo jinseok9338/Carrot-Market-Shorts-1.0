@@ -2,15 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Owner {
+  id: Int!
+  name: String!
+  pets: [Pet!]
+}
+
 type Pet {
   id: Int!
   name: String!
   type: String
-}
-
-type Owner {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  ownerId: Int!
+  owner: Owner!
 }
 
 type Query {
@@ -33,12 +36,10 @@ input CreatePetInput {
 }
 
 input CreateOwnerInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 input UpdateOwnerInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  name: String
   id: Int!
 }

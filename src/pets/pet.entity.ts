@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Owner } from 'src/owners/entities/owner.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -15,4 +16,12 @@ export class Pet {
   @Column({ nullable: true }) // For TypeOrm
   @Field({ nullable: true }) // For graphQl
   type?: string;
+
+  @Column()
+  @Field((type) => Int)
+  ownerId: number;
+
+  @ManyToOne(() => Owner, (owner) => owner.pets)
+  @Field((type) => Owner)
+  owner: Owner;
 }
