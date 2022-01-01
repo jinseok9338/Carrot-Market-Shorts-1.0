@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { OwnersModule } from './owners/owners.module';
 import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
