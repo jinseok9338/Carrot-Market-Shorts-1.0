@@ -12,9 +12,13 @@ export class UsersService {
   async createUser({
     userId,
     password,
+    passwordConfirm,
   }: CreateUserInput): Promise<{ ok: boolean; error?: string }> {
     try {
       const is_userId_exist = await this.users.findOne({ userId });
+      if (passwordConfirm != password) {
+        return { ok: false, error: 'Confirm Password again' };
+      }
       if (is_userId_exist) {
         return { ok: false, error: 'User already exists' };
       }

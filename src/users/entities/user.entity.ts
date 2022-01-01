@@ -1,11 +1,12 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { BeforeInsert, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 
 // What other user Info should I do ....
 
 @ObjectType()
+@Entity()
 export class User {
   @PrimaryGeneratedColumn()
   @Field((type) => Int)
@@ -28,4 +29,13 @@ export class User {
       throw new InternalServerErrorException();
     }
   }
+}
+
+@ObjectType()
+export class ReturnType {
+  @Field()
+  ok: boolean;
+
+  @Field({ nullable: true })
+  error?: string;
 }

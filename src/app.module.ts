@@ -6,8 +6,6 @@ import { PetsModule } from './pets/pets.module';
 import { join } from 'node:path/win32';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OwnersModule } from './owners/owners.module';
-import { UsersController } from './users/users.controller';
-import { UsersModule } from './users/users.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -28,7 +26,7 @@ import { UsersModule } from './users/users.module';
     OwnersModule,
     UsersModule,
   ],
-  controllers: [AppController, UsersController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

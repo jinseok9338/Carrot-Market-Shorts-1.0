@@ -16,11 +16,24 @@ type Pet {
   owner: Owner!
 }
 
+type User {
+  id: Int!
+  userId: String!
+  password: String!
+}
+
+type ReturnType {
+  ok: Boolean!
+  error: String
+}
+
 type Query {
   pet(id: Int!): Pet!
   pets: [Pet!]!
   owners: [Owner!]!
   owner(id: Int!): Owner!
+  users: [User!]!
+  user(id: Int!): User!
 }
 
 type Mutation {
@@ -28,6 +41,9 @@ type Mutation {
   createOwner(createOwnerInput: CreateOwnerInput!): Owner!
   updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
   removeOwner(id: Int!): Owner!
+  createUser(createUserInput: CreateUserInput!): ReturnType!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
 }
 
 input CreatePetInput {
@@ -42,5 +58,18 @@ input CreateOwnerInput {
 
 input UpdateOwnerInput {
   name: String
+  id: Int!
+}
+
+input CreateUserInput {
+  userId: String!
+  password: String!
+  passwordConfirm: String!
+}
+
+input UpdateUserInput {
+  userId: String
+  password: String
+  passwordConfirm: String
   id: Int!
 }
