@@ -7,8 +7,6 @@ import { join } from 'node:path/win32';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OwnersModule } from './owners/owners.module';
 
-console.log(process.env.DATABASE_URL);
-
 @Module({
   imports: [
     GraphQLModule.forRoot({

@@ -5,6 +5,6 @@ ports:
   - port: 8000
 
 tasks:
-  - init: npm install -g @nestjs/cli && npm install
-  - command: createuser user && createdb mydb
+  - before: npm install -g @nestjs/cli && npm install
+  - init: createuser user && createdb mydb
   - command: npm start
