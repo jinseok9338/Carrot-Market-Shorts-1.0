@@ -9,4 +9,3 @@ ports:
 tasks:
   - before: npm install -g @nestjs/cli && npm install
   - init: createuser user && createdb mydb
-  - command: npm start

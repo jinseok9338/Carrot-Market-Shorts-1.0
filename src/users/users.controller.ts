@@ -18,4 +18,9 @@ export class UserController {
   getProfile(@Request() req) {
     return req.user;
   }
+
+  @Get('hello')
+  getHello(): string {
+    return this.authService.getHello();
+  }
 }
