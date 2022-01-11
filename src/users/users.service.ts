@@ -52,23 +52,8 @@ export class UsersService {
     return this.usersRepository.findOne({ email });
   }
 
-  async login(email:string, password:string):Promise<User> {
-
-    let user = this.usersRepository.findOne({email});
-
-    try{
-
-    }
-    
-
+  async login(email: string, password: string): Promise<User> {
+    // I need to return token and do authentication here
     return this.usersRepository.findOne({ email });
-  }
-
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
   }
 }
