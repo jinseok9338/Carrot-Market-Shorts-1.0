@@ -16,8 +16,24 @@ export class User {
   @Field((type) => String)
   userId: string;
 
-  @Column()
+  @Column({ nullable: true })
   @Field((type) => String)
+  email?: string;
+
+  @Column({ nullable: true })
+  @Field((type) => String)
+  firstName?: string;
+
+  @Column({ nullable: true })
+  @Field((type) => String)
+  lastName?: string;
+
+  @Column({ nullable: true }) // Make it not nullable later
+  @Field((type) => Boolean)
+  confirmEmail?: boolean;
+
+  @Column()
+  // @Field((type) => String) // You are not supposed to query the password
   password: string;
 
   @BeforeInsert()
@@ -38,4 +54,7 @@ export class ReturnType {
 
   @Field({ nullable: true })
   error?: string;
+
+  @Field({ nullable: true })
+  user?: User;
 }

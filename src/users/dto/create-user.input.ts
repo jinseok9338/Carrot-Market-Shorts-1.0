@@ -1,5 +1,12 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { InputType, Field } from '@nestjs/graphql';
+import {
+  IsBoolean,
+  IsEmail,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 import { Match } from './match.decorator';
 
 @InputType()
@@ -26,4 +33,22 @@ export class CreateUserInput {
   @Match('password')
   @Field()
   passwordConfirm: string;
+
+  @IsEmail()
+  @Field()
+  email: string;
+
+  @IsString()
+  @MaxLength(20)
+  @Field()
+  firstName: string;
+
+  @IsString()
+  @MaxLength(20)
+  @Field()
+  lastName: string;
+
+  @IsBoolean()
+  @Field()
+  confirmEmail: boolean;
 }
