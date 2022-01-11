@@ -23,8 +23,6 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true, // In Prod use Migration
       entities: ['dist/**/*.entity{.ts,.js}'],
     }),
-    PetsModule,
-    OwnersModule,
     UsersModule,
     AuthModule,
   ],

@@ -17,12 +17,6 @@ type ReturnType {
   user: User
 }
 
-type Owner {
-  id: Int!
-  name: String!
-  pets: [Pet!]
-}
-
 type Pet {
   id: Int!
   name: String!
@@ -31,36 +25,19 @@ type Pet {
   owner: Owner!
 }
 
+type Owner {
+  id: Int!
+  name: String!
+  pets: [Pet!]
+}
+
 type Query {
-  pet(id: Int!): Pet!
-  pets: [Pet!]!
-  owners: [Owner!]!
-  owner(id: Int!): Owner!
   users: [User!]!
   user(userId: String!): User!
 }
 
 type Mutation {
-  createPet(createPetInput: CreatePetInput!): Pet!
-  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
-  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
-  removeOwner(id: Int!): Owner!
   createUser(createUserInput: CreateUserInput!): ReturnType!
-}
-
-input CreatePetInput {
-  name: String!
-  type: String
-  ownerId: Int!
-}
-
-input CreateOwnerInput {
-  name: String!
-}
-
-input UpdateOwnerInput {
-  name: String
-  id: Int!
 }
 
 input CreateUserInput {
