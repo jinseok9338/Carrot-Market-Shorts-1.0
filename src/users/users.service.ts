@@ -15,7 +15,6 @@ export class UsersService {
     userId,
     password,
     passwordConfirm,
-    confirmEmail,
     email,
     firstName,
     lastName,
@@ -32,7 +31,7 @@ export class UsersService {
         this.usersRepository.create({
           userId,
           password,
-          confirmEmail,
+          confirmEmail:false,
           email,
           firstName,
           lastName,

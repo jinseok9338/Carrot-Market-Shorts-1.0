@@ -4,14 +4,21 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { AppService } from './app.service';
 
-@Controller('users')
+//TODO Complete SignUp and Login Process 
+
+@Controller()
 export class AppController {
   constructor(private authService: AuthService, private appService: AppService) {}
 
-  @Post('auth/login')
+  @Post('login')
   @UseGuards(LocalAuthGuard)
   async login(@Request() req) {
-    return this.authService.login(req.user);
+    return this.authService.login(req.body.user);
+  }
+
+  @Post('signUp')
+  async signUp(@Request() req) {
+    return this.authService.signUp(req.body.signUpUser);
   }
 
   @UseGuards(JwtAuthGuard)
