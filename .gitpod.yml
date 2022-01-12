@@ -7,5 +7,4 @@ ports:
     visibility: public
 
 tasks:
-  - before: npm install -g @nestjs/cli && npm install
-  - init: createuser user && createdb mydb
+  - before: npm install -g @nestjs/cli && npm install && createuser user && createdb mydb

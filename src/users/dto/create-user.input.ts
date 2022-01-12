@@ -48,4 +48,7 @@ export class CreateUserInput {
   @Field()
   lastName: string;
 
+  @IsBoolean()
+  @Field()
+  confirmEmail: boolean;
 }

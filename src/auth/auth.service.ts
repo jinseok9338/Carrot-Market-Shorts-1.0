@@ -10,18 +10,21 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, password: string): Promise< {
+  async validateUser(
+    email: string,
+    password: string,
+  ): Promise<{
     id: number;
     userId: string;
     email?: string;
     firstName?: string;
     lastName?: string;
     confirmEmail?: boolean;
-} |null> {
+  } | null> {
     const user = await this.usersService.findOne(email);
-    // if user is not present return null ... or ... error...
-    if (!user) return null;
-    // Bcrypt the password
+    if (!user) {
+      return null;
+    }
     const auth = await bcrypt.compare(password, user.password);
     if (auth) {
       const { password, ...result } = user;
@@ -30,16 +33,21 @@ export class AuthService {
     return null;
   }
 
-  async login(user: {email:string, password:string}){
-    const userProfile = await this.validateUser(user.email, user.password)
-    const payload = {...userProfile};
+  async login(user: {
+    id: number;
+    userId: string;
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+    confirmEmail?: boolean;
+  }) {
+    const payload = user;
     return {
       access_token: this.jwtService.sign(payload),
     };
   }
 
   async signUp(signUpUser: {
-    id: number;
     userId: string;
     email: string;
     firstName: string;
@@ -47,29 +55,29 @@ export class AuthService {
     confirmEmail: boolean;
     password: string;
     passwordConfirm: string;
-}) { // I need to mark it types 
-    
-    const { password, passwordConfirm ,...result } = signUpUser;
+  }) {
+    // I need to mark it types
 
-       // Create User in the dataBase then return access_token
-    
-       try{
-        const user = await this.usersService.createUser(signUpUser);
+    signUpUser.confirmEmail = false;
 
-        if(user.user){
-          user.user.password = ""
-        }
+    const { password, passwordConfirm, ...result } = signUpUser;
 
-        return {...user,
-          access_token: this.jwtService.sign(result),
-        };
-       }
-       catch(e){
-         return {ok:false, error:e.message}
-       }
-   
+    // Create User in the dataBase then return access_token
+
+    try {
+      const user = await this.usersService.createUser(signUpUser);
+
+      if (user.user) {
+        user.user.password = '';
+      }
+
+      return user.error
+        ? { ...user }
+        : { ...user, access_token: this.jwtService.sign(result) };
+    } catch (e) {
+      return { ok: false, error: e.message };
+    }
   }
-
 
   getHello(): string {
     return 'Hello 3!';

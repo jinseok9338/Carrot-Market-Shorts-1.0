@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -18,20 +17,25 @@ export class UsersService {
     email,
     firstName,
     lastName,
+    confirmEmail,
   }: CreateUserInput): Promise<{ ok: boolean; error?: string; user?: User }> {
     try {
       const is_userId_exist = await this.usersRepository.findOne({ userId });
+      const is_email_exist = await this.usersRepository.findOne({ email });
       if (passwordConfirm != password) {
         return { ok: false, error: 'Confirm Password again' };
       }
       if (is_userId_exist) {
         return { ok: false, error: 'User already exists' };
       }
+      if (is_email_exist) {
+        return { ok: false, error: 'Email already exists' };
+      }
       await this.usersRepository.save(
         this.usersRepository.create({
           userId,
           password,
-          confirmEmail:false,
+          confirmEmail,
           email,
           firstName,
           lastName,
@@ -48,11 +52,6 @@ export class UsersService {
   }
 
   async findOne(email: string): Promise<User> {
-    return this.usersRepository.findOne({ email });
-  }
-
-  async login(email: string, password: string): Promise<User> {
-    // I need to return token and do authentication here
     return this.usersRepository.findOne({ email });
   }
 }
