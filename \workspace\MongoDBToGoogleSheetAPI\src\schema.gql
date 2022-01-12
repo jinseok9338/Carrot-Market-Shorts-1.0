@@ -17,20 +17,6 @@ type ReturnType {
   user: User
 }
 
-type Pet {
-  id: Int!
-  name: String!
-  type: String
-  ownerId: Int!
-  owner: Owner!
-}
-
-type Owner {
-  id: Int!
-  name: String!
-  pets: [Pet!]
-}
-
 type Query {
   users: [User!]!
   user(userId: String!): User!

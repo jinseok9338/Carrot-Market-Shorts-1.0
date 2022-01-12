@@ -2,10 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
-import { PetsModule } from './pets/pets.module';
+
 import { join } from 'node:path/win32';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { OwnersModule } from './owners/owners.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 
