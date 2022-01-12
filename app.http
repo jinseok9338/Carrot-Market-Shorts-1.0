@@ -26,11 +26,11 @@ content-type: application/json
 {
    "user":{
        "password":"Lazctlazct93!@",
-       "email":"@jinseok9338@gmail.com"
+       "email":"jinseok9338@gmail.com"
    }
 }
 
 ###
 GET http://127.0.0.1:3000/profile 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImppbnNlb2s5MzM4QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiTGF6Y3RsYXpjdDkzIUAiLCJpYXQiOjE2NDE5ODQ5NDMsImV4cCI6MTY0MTk4NTAwM30.fZYUE8fqyDPBnVsR2WbAIQa9vTaBqq6eyGeTi5KRLO4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW5zZW9rOTMiLCJlbWFpbCI6ImppbnNlb2s5MzM4QGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6ImppbnNlb2s5MyIsImxhc3ROYW1lIjoiU2VvIiwiaWF0IjoxNjQxOTkyMTg2LCJleHAiOjE2NDE5OTIyNDZ9.pswifJSTwtbTqpxV_MUyNWIa5WruySIzC-9uafUnJTg
