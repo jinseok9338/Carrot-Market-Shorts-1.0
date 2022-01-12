@@ -1,8 +1,36 @@
 
 
 
-GET http://127.0.0.1:3000/users/hello
+GET http://127.0.0.1:3000/hello
 
 ###
 
+POST http://127.0.0.1:3000/signUp 
+content-type: application/json
 
+{
+   "signUpUser":{
+       "userId":"jinseok93",
+       "password":"Lazctlazct93!@",
+       "passwordConfirm":"Lazctlazct93!@",
+       "email":"jinseok9338@gmail.com",
+       "firstName":"jinseok93",
+       "lastName":"Seo"
+   }
+}
+
+###
+POST http://127.0.0.1:3000/login 
+content-type: application/json
+
+{
+   "user":{
+       "password":"Lazctlazct93!@",
+       "email":"@jinseok9338@gmail.com"
+   }
+}
+
+###
+GET http://127.0.0.1:3000/profile 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImppbnNlb2s5MzM4QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiTGF6Y3RsYXpjdDkzIUAiLCJpYXQiOjE2NDE5ODQ5NDMsImV4cCI6MTY0MTk4NTAwM30.fZYUE8fqyDPBnVsR2WbAIQa9vTaBqq6eyGeTi5KRLO4
