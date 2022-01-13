@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
+import { Mockdata } from './mockData/Users';
 
 @Injectable()
 export class UsersService {
@@ -53,5 +54,18 @@ export class UsersService {
 
   async findOne(email: string): Promise<User> {
     return this.usersRepository.findOne({ email });
+  }
+
+  async addMockUsers(): Promise<User[] | Error> {
+    try {
+      Mockdata.forEach(async (user) => {
+        await this.usersRepository.save(this.usersRepository.create(user));
+      });
+
+      return await this.usersRepository.find();
+    } catch (e) {
+      console.log(e);
+      throw new Error(e.message);
+    }
   }
 }
