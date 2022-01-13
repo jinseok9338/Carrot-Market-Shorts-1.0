@@ -26,3 +26,7 @@ curl -X POST http://127.0.0.1:3000/login -d '{"email": "jinseok981222@gmail.com"
 GET http://127.0.0.1:3000/profile 
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcklkIjoiamluc2VvazkxODExMSIsImVtYWlsIjoiamluc2Vvazk4MTIyMkBnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJqaW5zZW9rOTMiLCJsYXN0TmFtZSI6IlNlbyIsImNvbmZpcm1FbWFpbCI6ZmFsc2UsImlhdCI6MTY0MTk5NzUyNCwiZXhwIjoxNjQyMDAzNTI0fQ.Op2GH0rbcXezVfY5CwbrP0sofdmZTk3l3pfLZRB7-v0
+
+
+###
+curl "https://api.mockaroo.com/api/6b655b70?count=1000&key=4c733d70" > "Users.json"
