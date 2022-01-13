@@ -33,6 +33,7 @@ export class AuthService {
     return null;
   }
 
+  // TODO Tweak Login that if the user.confirmEmail is not true throw error
   async login(user: {
     id: number;
     userId: string;
