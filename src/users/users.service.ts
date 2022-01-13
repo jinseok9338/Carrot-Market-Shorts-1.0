@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { makeUserData } from 'src/data/userData';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
@@ -57,12 +58,16 @@ export class UsersService {
   }
 
   async addMockUsers(): Promise<User[] | Error> {
+    // TODO Type Error I will fix it tomorrow
     try {
-      Mockdata.forEach(async (user) => {
+      const usersMockData = makeUserData();
+
+      usersMockData.forEach(async (user) => {
         await this.usersRepository.save(this.usersRepository.create(user));
       });
 
-      return await this.usersRepository.find();
+      let users = await this.usersRepository.find();
+      return users;
     } catch (e) {
       console.log(e);
       return new Error(e.message);
