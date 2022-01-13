@@ -65,7 +65,7 @@ export class UsersService {
       return await this.usersRepository.find();
     } catch (e) {
       console.log(e);
-      throw new Error(e.message);
+      return new Error(e.message);
     }
   }
 }

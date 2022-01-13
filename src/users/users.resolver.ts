@@ -23,7 +23,7 @@ export class UsersResolver {
   }
 
   @Mutation(() => [User], { name: 'addMockData' })
-  AddMockData() {
+  AddMockData(): Promise<User[] | Error> {
     return this.usersService.addMockUsers();
   }
 }
