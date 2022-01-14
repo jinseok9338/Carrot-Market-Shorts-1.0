@@ -2,6 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Product {
+  id: Int!
+  userId: String!
+  productId: String!
+  productName: String!
+  sold: Boolean!
+  images: [String!]!
+  video: String!
+}
+
 type User {
   id: Int!
   userId: String!
@@ -9,6 +19,7 @@ type User {
   firstName: String!
   lastName: String!
   confirmEmail: Boolean!
+  products: [Product!]!
 }
 
 type ReturnType {

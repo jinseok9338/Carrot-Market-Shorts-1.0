@@ -1,5 +1,11 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Product } from './product.entity';
@@ -38,9 +44,10 @@ export class User {
   // @Field((type) => String) // You are not supposed to query the password
   password: string;
 
-  @Column({ array: true })
-  @Field((type) => [Product]) // You are not supposed to query the password
-  products: ProductData;
+  @Column(() => Product, { array: true })
+  @Field((type) => [Product])
+  @OneToMany(() => Product, (product) => product.userId)
+  products: ProductData[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

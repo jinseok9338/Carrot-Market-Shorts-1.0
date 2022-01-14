@@ -1,3 +1,5 @@
+import { userData } from 'src/data/userDataType';
+
 export const Mockdata = [
   {
     userId: 'tolagene0',

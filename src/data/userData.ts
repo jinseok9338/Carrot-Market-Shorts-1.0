@@ -1,24 +1,38 @@
 import faker from 'faker';
-import { userData } from './userDataType';
+import { ProductData, userData } from './userDataType';
 import { Mockdata } from '../users/mockData/Users';
+import { DeepPartial } from 'typeorm';
 
-export const makeUserData = () => {
-  const usersData: userData[] = Mockdata.map((user) => {
-    return {
-      ...user,
-      products: [
-        {
-          userId: user.userId,
-          productId: faker.lorem.word as unknown as string,
-          productName: faker.commerce.product as unknown as string,
-          sold: Math.random() < 0.5,
-          images: [faker.image.imageUrl as unknown as string],
-          //TODO need to make video url ... but I have none. Make video scraper
-          video: faker.image.imageUrl as unknown as string, // I need to make it as a video url later
-        },
-      ],
-    };
-  });
+const makeRandomProducts = (): ProductData[] => {
+  const max = 10;
+  const min = 0;
+  const imageMax = 5;
+  const imageMin = 1;
+  const randomArray = [
+    ...Array(Math.floor(Math.random() * (max - min + 1)) + min).keys(),
+  ]; // use it for map()
 
-  return usersData;
+  const products = randomArray.map(() => ({
+    images: [
+      ...Array(
+        Math.floor(Math.random() * (imageMax - imageMin + 1)) + imageMin,
+      ).keys(),
+    ].map(() => ''),
+    productId: '',
+    productName: '',
+    sold: Math.random() < 0.5,
+    userId: '',
+    video: '',
+  }));
+  return products;
+};
+
+export const makeUserData = (): userData[] => {
+  let products = makeRandomProducts();
+  const UsersData = Mockdata.map((user) => ({
+    ...user,
+    products: products,
+  }));
+
+  return UsersData;
 };
