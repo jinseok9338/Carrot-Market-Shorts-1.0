@@ -26,8 +26,8 @@ export class Product {
   @Field((type) => Boolean)
   sold?: boolean;
 
-  @Column({ array: true })
-  @Field((type) => [String])
+  @Column(() => String, { array: true })
+  @Field(() => [String])
   images?: string;
 
   @Column()

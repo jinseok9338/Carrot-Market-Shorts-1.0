@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { makeUserData } from 'src/data/userData';
+import { makeUserData } from 'src/users/type/userData';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
@@ -58,7 +58,7 @@ export class UsersService {
   }
 
   async addMockUsers(): Promise<User[] | Error> {
-    // TODO Type Error I will fix it tomorrow
+    // This is wrong approach make relation and add the data in Repository instead... Later
     try {
       const usersMockData = makeUserData();
 

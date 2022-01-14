@@ -9,7 +9,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Product } from './product.entity';
-import { ProductData } from 'src/data/userDataType';
+import { ProductData } from 'src/users/type/userDataType';
 
 // What other user Info should I do ....
 
@@ -45,7 +45,7 @@ export class User {
   password: string;
 
   @Column(() => Product, { array: true })
-  @Field((type) => [Product])
+  @Field(() => [Product])
   @OneToMany(() => Product, (product) => product.userId)
   products: ProductData[];
 
