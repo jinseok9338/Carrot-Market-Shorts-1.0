@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/entities/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 // What other user Info should I do ....
 
@@ -10,7 +11,11 @@ export class Product {
   @Field((type) => Int)
   id: number;
 
-  @Column({ unique: true })
+  @ManyToOne(() => User, (user) => user.products)
+  @Field((type) => User)
+  user: User;
+
+  @Column()
   @Field((type) => String)
   userId: string;
 
@@ -28,7 +33,7 @@ export class Product {
 
   @Column(() => String, { array: true })
   @Field(() => [String])
-  images?: string;
+  images?: string[];
 
   @Column()
   @Field((type) => String)

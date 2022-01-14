@@ -1,4 +1,4 @@
-import { userData } from 'src/users/type/userDataType';
+
 
 export const Mockdata = [
   {

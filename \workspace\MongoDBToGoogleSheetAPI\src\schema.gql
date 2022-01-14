@@ -4,6 +4,7 @@
 
 type Product {
   id: Int!
+  user: User!
   userId: String!
   productId: String!
   productName: String!
@@ -19,7 +20,7 @@ type User {
   firstName: String!
   lastName: String!
   confirmEmail: Boolean!
-  products: [Product!]!
+  products: [Product!]
 }
 
 type ReturnType {

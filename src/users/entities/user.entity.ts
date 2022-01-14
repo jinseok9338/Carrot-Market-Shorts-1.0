@@ -3,13 +3,14 @@ import {
   BeforeInsert,
   Column,
   Entity,
+  JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
-import { Product } from './product.entity';
-import { ProductData } from 'src/users/type/userDataType';
+import { ProductData } from 'src/users/type/DataType';
+import { Product } from 'src/products/entities/product.entity';
 
 // What other user Info should I do ....
 
@@ -44,9 +45,8 @@ export class User {
   // @Field((type) => String) // You are not supposed to query the password
   password: string;
 
-  @Column(() => Product, { array: true })
-  @Field(() => [Product])
-  @OneToMany(() => Product, (product) => product.userId)
+  @Field(() => [Product], { nullable: true })
+  @OneToMany(() => Product, (product) => product.user, { eager: true })
   products: ProductData[];
 
   @BeforeInsert()

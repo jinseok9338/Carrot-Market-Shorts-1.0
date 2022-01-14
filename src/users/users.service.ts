@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { makeUserData } from 'src/users/type/userData';
+import { MockProductData } from 'src/users/mockData/ProductUserData';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
@@ -60,10 +60,13 @@ export class UsersService {
   async addMockUsers(): Promise<User[] | Error> {
     // This is wrong approach make relation and add the data in Repository instead... Later
     try {
-      const usersMockData = makeUserData();
-
-      usersMockData.forEach(async (user) => {
+      Mockdata.forEach(async (user, i) => {
         await this.usersRepository.save(this.usersRepository.create(user));
+        MockProductData[i].userId = user.userId;
+      });
+
+      MockProductData.forEach(async (product, i) => {
+        await this.usersRepository.save(this.usersRepository.create(product));
       });
 
       let users = await this.usersRepository.find();
