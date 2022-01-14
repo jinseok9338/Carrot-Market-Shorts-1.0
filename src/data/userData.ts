@@ -1,6 +1,6 @@
 import faker from 'faker';
 import { ProductData, userData } from './userDataType';
-import { Mockdata } from '../users/mockData/Users';
+import { Mockdata } from '../users/mockData/UsersMockData';
 import { DeepPartial } from 'typeorm';
 
 const makeRandomProducts = (): ProductData[] => {

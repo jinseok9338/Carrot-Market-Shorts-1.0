@@ -4,7 +4,7 @@ import { makeUserData } from 'src/data/userData';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
-import { Mockdata } from './mockData/Users';
+import { Mockdata } from './mockData/UsersMockData';
 
 @Injectable()
 export class UsersService {
