@@ -1,22 +1,29 @@
 import { InputType, Field } from '@nestjs/graphql';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 
 @InputType()
 export class CreateProductInput {
-  @Field((type) => String)
+  @IsNotEmpty()
+  @IsString()
+  @Field()
   userId: string;
 
-  @Field((type) => String)
+  @Field()
+  @IsString()
   productId: string;
 
-  @Field((type) => String)
+  @Field()
+  @IsString()
   productName: string;
 
-  @Field((type) => Boolean)
+  @Field(() => Boolean)
+  @IsBoolean()
   sold: boolean;
 
   @Field(() => [String], { nullable: true })
   images?: string[];
 
-  @Field((type) => String)
+  @Field()
+  @IsString()
   video: string;
 }
