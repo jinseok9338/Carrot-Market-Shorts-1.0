@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
 import { Mockdata } from './mockData/UsersMockData';
-
+import { ReturnType } from './entities/user.entity';
 @Injectable()
 export class UsersService {
   constructor(
@@ -20,7 +20,7 @@ export class UsersService {
     firstName,
     lastName,
     confirmEmail,
-  }: CreateUserInput): Promise<{ ok: boolean; error?: string; user?: User }> {
+  }: CreateUserInput): Promise<ReturnType> {
     try {
       const is_userId_exist = await this.usersRepository.findOne({ userId });
       const is_email_exist = await this.usersRepository.findOne({ email });

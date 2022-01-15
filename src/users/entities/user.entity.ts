@@ -46,7 +46,7 @@ export class User {
   password: string;
 
   @Field(() => [Product], { nullable: true })
-  @OneToMany(() => Product, (product) => product.user, { eager: true })
+  @OneToMany(() => Product, (product) => product.user)
   products?: ProductData[];
 
   @BeforeInsert()

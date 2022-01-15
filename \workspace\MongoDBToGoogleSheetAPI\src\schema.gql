@@ -4,8 +4,8 @@
 
 type Product {
   id: Int!
-  user: User!
   userId: String!
+  user: User!
   productId: String!
   productName: String!
   sold: Boolean!

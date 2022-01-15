@@ -14,10 +14,12 @@ export class ProductsService {
     private usersService: UsersService,
   ) {}
 
-  createProduct(createProductInput: CreateProductInput): Promise<Product> {
+  async createProduct(
+    createProductInput: CreateProductInput,
+  ): Promise<Product> {
     const newProduct = this.productRepository.create(createProductInput);
     console.log(newProduct);
-    return this.productRepository.save(newProduct);
+    return await this.productRepository.save(newProduct);
   }
 
   findOwnerOfProduct(userId: string): Promise<User> {
