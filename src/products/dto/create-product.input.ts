@@ -1,5 +1,4 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { User } from 'src/users/entities/user.entity';
+import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
 export class CreateProductInput {
@@ -7,17 +6,17 @@ export class CreateProductInput {
   userId: string;
 
   @Field((type) => String)
-  productId?: string;
+  productId: string;
 
   @Field((type) => String)
-  productName?: string;
+  productName: string;
 
   @Field((type) => Boolean)
-  sold?: boolean;
+  sold: boolean;
 
-  @Field(() => [String])
+  @Field(() => [String], { nullable: true })
   images?: string[];
 
   @Field((type) => String)
-  video?: string;
+  video: string;
 }

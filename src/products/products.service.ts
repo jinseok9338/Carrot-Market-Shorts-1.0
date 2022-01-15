@@ -4,16 +4,23 @@ import { UpdateProductInput } from './dto/update-product.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
+import { UsersService } from 'src/users/users.service';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectRepository(Product) private usersRepository: Repository<Product>,
+    @InjectRepository(Product) private productRepository: Repository<Product>,
+    private usersService: UsersService,
   ) {}
 
-  create(createProductInput: CreateProductInput) {
-    const newProduct = this.usersRepository.create(createProductInput);
-    return this.usersRepository.save(newProduct);
+  createProduct(createProductInput: CreateProductInput) {
+    const newProduct = this.productRepository.create(createProductInput);
+    return this.productRepository.save(newProduct);
+  }
+
+  findOwnerOfProduct(userId: string): Promise<User> {
+    return this.usersService.findByUserId(userId); // Find it by the userId
   }
 
   findAll() {

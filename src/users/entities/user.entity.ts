@@ -47,7 +47,7 @@ export class User {
 
   @Field(() => [Product], { nullable: true })
   @OneToMany(() => Product, (product) => product.user, { eager: true })
-  products: ProductData[];
+  products?: ProductData[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

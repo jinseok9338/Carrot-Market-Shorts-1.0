@@ -32,11 +32,16 @@ type ReturnType {
 type Query {
   users: [User!]!
   user(userId: String!): User!
+  products: [Product!]!
+  product(id: Int!): Product!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): ReturnType!
   addMockData: [User!]!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(id: Int!): Product!
 }
 
 input CreateUserInput {
@@ -47,4 +52,23 @@ input CreateUserInput {
   firstName: String!
   lastName: String!
   confirmEmail: Boolean!
+}
+
+input CreateProductInput {
+  userId: String!
+  productId: String!
+  productName: String!
+  sold: Boolean!
+  images: [String!]
+  video: String!
+}
+
+input UpdateProductInput {
+  userId: String
+  productId: String
+  productName: String
+  sold: Boolean
+  images: [String!]
+  video: String
+  id: Int!
 }

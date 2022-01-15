@@ -8,34 +8,34 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
-  @Field((type) => Int)
+  @Field(() => Int)
   id: number;
 
   @ManyToOne(() => User, (user) => user.products)
-  @Field((type) => User)
+  @Field(() => User)
   user: User;
 
   @Column()
-  @Field((type) => String)
+  @Field(() => String)
   userId: string;
 
   @Column({ unique: true })
-  @Field((type) => String)
-  productId?: string;
+  @Field(() => String)
+  productId: string;
 
   @Column()
-  @Field((type) => String)
-  productName?: string;
+  @Field(() => String)
+  productName: string;
 
   @Column()
-  @Field((type) => Boolean)
-  sold?: boolean;
+  @Field(() => Boolean)
+  sold: boolean;
 
   @Column(() => String, { array: true })
   @Field(() => [String])
   images?: string[];
 
   @Column()
-  @Field((type) => String)
-  video?: string;
+  @Field(() => String)
+  video: string;
 }

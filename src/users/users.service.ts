@@ -54,7 +54,11 @@ export class UsersService {
   }
 
   async findOne(email: string): Promise<User> {
-    return this.usersRepository.findOne({ email });
+    return this.usersRepository.findOneOrFail({ email });
+  }
+
+  async findByUserId(userId: string): Promise<User> {
+    return this.usersRepository.findOneOrFail({ userId });
   }
 
   async addMockUsers(): Promise<User[] | Error> {
