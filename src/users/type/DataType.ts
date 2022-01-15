@@ -1,7 +1,5 @@
-import { DeepPartial } from 'typeorm';
-
 export interface ProductData {
-  userId: string; //It's better to use uuid but.... It's just a prototype
+  userId: string;
   productId: string;
   productName: string;
   sold: boolean;
@@ -13,7 +11,7 @@ export interface userData {
   userId: string;
   password: string;
   email: string;
-  confirmEmail: DeepPartial<boolean>;
+  confirmEmail: boolean;
   firstName: string;
   lastName: string;
   products: ProductData[];

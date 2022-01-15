@@ -10,7 +10,7 @@ import {
 import { ProductsService } from './products.service';
 import { Product } from './entities/product.entity';
 import { CreateProductInput } from './dto/create-product.input';
-import { UpdateProductInput } from './dto/update-product.input';
+
 import { User } from 'src/users/entities/user.entity';
 
 @Resolver((of) => Product)
@@ -30,27 +30,12 @@ export class ProductsResolver {
   }
 
   @Query(() => Product, { name: 'product' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.productsService.findOne(id);
+  findOne(@Args('id', { type: () => Int }) productId: string) {
+    return this.productsService.findOne(productId);
   }
 
   @ResolveField((returns) => User)
   user(@Parent() user: User): Promise<User> {
     return this.productsService.findOwnerOfProduct(user.userId);
-  }
-
-  @Mutation(() => Product)
-  updateProduct(
-    @Args('updateProductInput') updateProductInput: UpdateProductInput,
-  ) {
-    return this.productsService.update(
-      updateProductInput.id,
-      updateProductInput,
-    );
-  }
-
-  @Mutation(() => Product)
-  removeProduct(@Args('id', { type: () => Int }) id: number) {
-    return this.productsService.remove(id);
   }
 }

@@ -9,10 +9,6 @@ export class Product {
   @Field(() => Int)
   id: number;
 
-  @Column()
-  @Field()
-  userId: string;
-
   @ManyToOne(() => User, (user) => user.products)
   @Field(() => User)
   user: User;
@@ -29,8 +25,8 @@ export class Product {
   @Field(() => Boolean)
   sold: boolean;
 
-  @Column(() => String)
-  @Field(() => [String])
+  @Column('simple-array')
+  @Field(() => [String], { nullable: true })
   images?: string[];
 
   @Column()

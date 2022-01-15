@@ -4,12 +4,11 @@
 
 type Product {
   id: Int!
-  userId: String!
   user: User!
   productId: String!
   productName: String!
   sold: Boolean!
-  images: [String!]!
+  images: [String!]
   video: String!
 }
 
@@ -40,8 +39,6 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): ReturnType!
   addMockData: [User!]!
   createProduct(createProductInput: CreateProductInput!): Product!
-  updateProduct(updateProductInput: UpdateProductInput!): Product!
-  removeProduct(id: Int!): Product!
 }
 
 input CreateUserInput {
@@ -55,20 +52,10 @@ input CreateUserInput {
 }
 
 input CreateProductInput {
-  userId: String!
+  id: Float!
   productId: String!
   productName: String!
   sold: Boolean!
   images: [String!]
   video: String!
-}
-
-input UpdateProductInput {
-  userId: String
-  productId: String
-  productName: String
-  sold: Boolean
-  images: [String!]
-  video: String
-  id: Int!
 }
