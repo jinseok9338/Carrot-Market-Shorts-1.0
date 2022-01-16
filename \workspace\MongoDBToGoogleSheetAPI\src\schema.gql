@@ -15,7 +15,6 @@ type Product {
 }
 
 type User {
-  id: Int!
   userId: String!
   email: String!
   firstName: String!

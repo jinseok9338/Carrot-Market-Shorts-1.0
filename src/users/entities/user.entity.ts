@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -17,11 +18,7 @@ import { Product } from 'src/products/entities/product.entity';
 @ObjectType()
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  @Field((type) => Int)
-  id: number;
-
-  @Column({ unique: true })
+  @Column({ unique: true, name: 'userId', primary: true })
   @Field((type) => String)
   userId: string;
 

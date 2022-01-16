@@ -14,7 +14,6 @@ export class AuthService {
     email: string,
     password: string,
   ): Promise<{
-    id: number;
     userId: string;
     email?: string;
     firstName?: string;

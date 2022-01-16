@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -20,6 +21,7 @@ export class Product {
   userId: string;
 
   @ManyToOne((type) => User, (user) => user.products)
+  @JoinColumn({ referencedColumnName: 'userId' })
   @Field(() => User)
   user: User;
 
