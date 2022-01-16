@@ -45,8 +45,8 @@ export class User {
   // @Field((type) => String) // You are not supposed to query the password
   password: string;
 
+  @OneToMany(() => Product, (product) => product.user, { nullable: true })
   @Field(() => [Product], { nullable: true })
-  @OneToMany(() => Product, (product) => product.user)
   products?: Product[];
 
   @BeforeInsert()

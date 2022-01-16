@@ -4,12 +4,14 @@
 
 type Product {
   id: Int!
+  userId: String!
   user: User!
   productId: String!
   productName: String!
   sold: Boolean!
   images: [String!]
   video: String!
+  userOfProduct: User!
 }
 
 type User {
@@ -52,7 +54,7 @@ input CreateUserInput {
 }
 
 input CreateProductInput {
-  id: Float!
+  userId: String!
   productId: String!
   productName: String!
   sold: Boolean!

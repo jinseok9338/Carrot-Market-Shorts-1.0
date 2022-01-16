@@ -1,10 +1,10 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, Int } from '@nestjs/graphql';
 import { IsBoolean, IsString, MaxLength, MinLength } from 'class-validator';
 
 @InputType()
 export class CreateProductInput {
-  @Field()
-  id: number;
+  @Field((Type) => String)
+  userId: string;
 
   @IsString()
   @Field()
