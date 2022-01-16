@@ -6,5 +6,9 @@ ports:
     onOpen: ignore
     visibility: public
 
+  - port: 5432
+    onOpen: ignore
+    visibility: public
+
 tasks:
   - before: npm install -g @nestjs/cli && npm install && createuser user && createdb mydb
