@@ -18,7 +18,11 @@ import { Product } from 'src/products/entities/product.entity';
 @ObjectType()
 @Entity()
 export class User {
-  @Column({ unique: true, name: 'user_id', primary: true })
+  @PrimaryGeneratedColumn('uuid')
+  @Field(() => String)
+  id: string;
+
+  @Column({ unique: true })
   @Field((type) => String)
   user_id: string;
 
