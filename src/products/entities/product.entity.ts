@@ -12,20 +12,11 @@ import {
 @ObjectType()
 @Entity()
 export class Product {
-  @PrimaryGeneratedColumn()
-  @Field(() => Int)
-  id: number;
-
-  @Column()
-  @Field(() => String)
-  userId: string;
-
   @ManyToOne((type) => User, (user) => user.products)
-  @JoinColumn({ referencedColumnName: 'userId' })
   @Field(() => User)
   user: User;
 
-  @Column({ unique: true })
+  @Column({ unique: true, primary: true })
   @Field(() => String)
   productId: string;
 
