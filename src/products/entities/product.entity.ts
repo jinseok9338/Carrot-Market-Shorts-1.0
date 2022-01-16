@@ -1,28 +1,21 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { User } from 'src/users/entities/user.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  JoinTable,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
 @ObjectType()
 @Entity()
 export class Product {
-  @ManyToOne((type) => User, (user) => user.products)
+  @ManyToOne((type) => User, (user) => user.products, { onDelete: 'CASCADE' })
   @Field(() => User)
   user: User;
 
-  @Column({ unique: true, primary: true })
+  @Column({ unique: true, primary: true, name: 'product_id' })
   @Field(() => String)
-  productId: string;
+  product_id: string;
 
   @Column()
   @Field(() => String)
-  productName: string;
+  product_name: string;
 
   @Column()
   @Field(() => Boolean)

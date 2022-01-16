@@ -16,24 +16,20 @@ export class ProductsService {
   async createProduct(
     createProductInput: CreateProductInput,
   ): Promise<Product> {
-    const userOfProd = this.usersService.findByUserId(
-      createProductInput.userId,
-    );
     const newProduct = this.productRepository.create(createProductInput);
-    newProduct.user = await userOfProd;
-    console.log(newProduct);
+
     return await this.productRepository.save(newProduct);
   }
 
-  findOwnerOfProduct(userId: string): Promise<User> {
-    return this.usersService.findByUserId(userId); // Find it by the userId
+  findOwnerOfProduct(user_id: string): Promise<User> {
+    return this.usersService.findOne(user_id); // Find it by the userId
   }
 
   findAll() {
     return this.productRepository.find();
   }
 
-  findOne(productId: string) {
-    return this.productRepository.find({ productId });
+  findOne(product_id: string) {
+    return this.productRepository.find({ product_id });
   }
 }

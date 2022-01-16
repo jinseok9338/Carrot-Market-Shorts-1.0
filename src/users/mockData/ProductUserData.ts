@@ -10,10 +10,10 @@ const RandomArray = Array.from(
 );
 
 export const MockProductData: ProductData[] = Mockdata.map(() => ({
-  productName: commerce.product(),
-  productId: lorem.word(),
+  product_name: commerce.product(),
+  product_id: lorem.word(),
   images: RandomArray.map(() => image.imageUrl()),
   video: image.imageUrl(),
-  userId: '',
+  user_id: '',
   sold: Math.random() < 0.5,
 }));

@@ -15,7 +15,7 @@ export class CreateUserInput {
   @MinLength(4)
   @MaxLength(20)
   @Field()
-  userId: string;
+  user_id: string;
 
   @IsString()
   @MinLength(4)
@@ -32,7 +32,7 @@ export class CreateUserInput {
   @MaxLength(20)
   @Match('password')
   @Field()
-  passwordConfirm: string;
+  password_confirm: string;
 
   @IsEmail()
   @Field()
@@ -41,14 +41,14 @@ export class CreateUserInput {
   @IsString()
   @MaxLength(20)
   @Field()
-  firstName: string;
+  first_name: string;
 
   @IsString()
   @MaxLength(20)
   @Field()
-  lastName: string;
+  last_name: string;
 
   @IsBoolean()
   @Field()
-  confirmEmail: boolean;
+  confirm_email: boolean;
 }

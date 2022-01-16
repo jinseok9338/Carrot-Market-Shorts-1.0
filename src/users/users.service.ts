@@ -13,18 +13,18 @@ export class UsersService {
   ) {}
 
   async createUser({
-    userId,
+    user_id,
     password,
-    passwordConfirm,
+    password_confirm,
     email,
-    firstName,
-    lastName,
-    confirmEmail,
+    first_name,
+    last_name,
+    confirm_email,
   }: CreateUserInput): Promise<ReturnType> {
     try {
-      const is_userId_exist = await this.usersRepository.findOne({ userId });
+      const is_userId_exist = await this.usersRepository.findOne({ user_id });
       const is_email_exist = await this.usersRepository.findOne({ email });
-      if (passwordConfirm != password) {
+      if (password_confirm != password) {
         return { ok: false, error: 'Confirm Password again' };
       }
       if (is_userId_exist) {
@@ -35,15 +35,18 @@ export class UsersService {
       }
       await this.usersRepository.save(
         this.usersRepository.create({
-          userId,
+          user_id,
           password,
-          confirmEmail,
+          confirm_email,
           email,
-          firstName,
-          lastName,
+          first_name,
+          last_name,
         }),
       );
-      return { ok: true, user: await this.usersRepository.findOne({ userId }) };
+      return {
+        ok: true,
+        user: await this.usersRepository.findOne({ user_id }),
+      };
     } catch (error) {
       return { ok: false, error: error.message };
     }
@@ -53,12 +56,12 @@ export class UsersService {
     return this.usersRepository.find(); // SELECT * pet
   }
 
-  async findOne(email: string): Promise<User> {
-    return this.usersRepository.findOneOrFail({ email });
+  async findOne(user_id: string): Promise<User> {
+    return this.usersRepository.findOneOrFail({ user_id });
   }
 
-  async findByUserId(userId: string): Promise<User> {
-    return this.usersRepository.findOneOrFail({ userId });
+  async findByUserId(user_id: string): Promise<User> {
+    return this.usersRepository.findOneOrFail({ user_id });
   }
 
   async addMockUsers(): Promise<User[] | Error> {
@@ -66,7 +69,7 @@ export class UsersService {
     try {
       Mockdata.forEach(async (user, i) => {
         await this.usersRepository.save(this.usersRepository.create(user));
-        MockProductData[i].userId = user.userId;
+        MockProductData[i].user_id = user.user_id;
       });
 
       MockProductData.forEach(async (product, i) => {

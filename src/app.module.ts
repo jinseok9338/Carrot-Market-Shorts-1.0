@@ -22,6 +22,7 @@ import { ProductsModule } from './products/products.module';
       database: 'mydb',
       synchronize: true, // In Prod use Migration
       entities: ['dist/**/*.entity{.ts,.js}'],
+      logging: true,
     }),
     UsersModule,
     AuthModule,

@@ -18,9 +18,9 @@ import { Product } from 'src/products/entities/product.entity';
 @ObjectType()
 @Entity()
 export class User {
-  @Column({ unique: true, name: 'userId', primary: true })
+  @Column({ unique: true, name: 'user_id', primary: true })
   @Field((type) => String)
-  userId: string;
+  user_id: string;
 
   @Column({ unique: true })
   @Field((type) => String)
@@ -28,15 +28,15 @@ export class User {
 
   @Column()
   @Field((type) => String)
-  firstName?: string;
+  first_name?: string;
 
   @Column()
   @Field((type) => String)
-  lastName?: string;
+  last_name?: string;
 
   @Column() // Make it not nullable later
   @Field((type) => Boolean)
-  confirmEmail?: boolean;
+  confirm_email?: boolean;
 
   @Column()
   // @Field((type) => String) // You are not supposed to query the password

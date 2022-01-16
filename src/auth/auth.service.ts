@@ -14,11 +14,11 @@ export class AuthService {
     email: string,
     password: string,
   ): Promise<{
-    userId: string;
+    user_id: string;
     email?: string;
-    firstName?: string;
-    lastName?: string;
-    confirmEmail?: boolean;
+    first_name?: string;
+    last_name?: string;
+    confirm_email?: boolean;
   } | null> {
     const user = await this.usersService.findOne(email);
     if (!user) {
@@ -35,11 +35,11 @@ export class AuthService {
   // TODO Tweak Login that if the user.confirmEmail is not true throw error
   async login(user: {
     id: number;
-    userId: string;
+    user_id: string;
     email?: string;
-    firstName?: string;
-    lastName?: string;
-    confirmEmail?: boolean;
+    first_name?: string;
+    last_name?: string;
+    confirm_email?: boolean;
   }) {
     const payload = user;
     return {
@@ -48,19 +48,19 @@ export class AuthService {
   }
 
   async signUp(signUpUser: {
-    userId: string;
+    user_id: string;
     email: string;
-    firstName: string;
-    lastName: string;
-    confirmEmail: boolean;
+    first_name: string;
+    last_name: string;
+    confirm_email: boolean;
     password: string;
-    passwordConfirm: string;
+    password_confirm: string;
   }) {
     // I need to mark it types
 
-    signUpUser.confirmEmail = false;
+    signUpUser.confirm_email = false;
 
-    const { password, passwordConfirm, ...result } = signUpUser;
+    const { password, password_confirm, ...result } = signUpUser;
 
     // Create User in the dataBase then return access_token
 
