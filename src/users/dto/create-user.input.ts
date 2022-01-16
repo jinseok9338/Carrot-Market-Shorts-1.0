@@ -15,7 +15,7 @@ export class CreateUserInput {
   @MinLength(4)
   @MaxLength(20)
   @Field()
-  user_id: string;
+  user_name: string;
 
   @IsString()
   @MinLength(4)

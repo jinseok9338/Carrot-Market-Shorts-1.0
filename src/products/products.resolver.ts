@@ -36,6 +36,6 @@ export class ProductsResolver {
 
   @ResolveField((returns) => User)
   user(@Parent() user: User): Promise<User> {
-    return this.productsService.findOwnerOfProduct(user.user_id);
+    return this.productsService.findOwnerOfProduct(user.user_name);
   }
 }

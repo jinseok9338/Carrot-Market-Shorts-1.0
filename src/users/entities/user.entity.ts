@@ -3,14 +3,11 @@ import {
   BeforeInsert,
   Column,
   Entity,
-  JoinColumn,
-  JoinTable,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
-import { ProductData } from 'src/users/type/DataType';
 import { Product } from 'src/products/entities/product.entity';
 
 // What other user Info should I do ....
@@ -18,13 +15,13 @@ import { Product } from 'src/products/entities/product.entity';
 @ObjectType()
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  @Field(() => String)
-  id: string;
+  @PrimaryGeneratedColumn()
+  @Field(() => Int)
+  user_id: number;
 
   @Column({ unique: true })
   @Field((type) => String)
-  user_id: string;
+  user_name: string;
 
   @Column({ unique: true })
   @Field((type) => String)

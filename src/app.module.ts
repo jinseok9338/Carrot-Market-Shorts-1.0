@@ -23,6 +23,11 @@ import { ProductsModule } from './products/products.module';
       synchronize: true, // In Prod use Migration
       entities: ['dist/**/*.entity{.ts,.js}'],
       logging: true,
+      dropSchema: true,
+      uuidExtension: 'uuid-ossp',
+      installExtensions: true,
+      cache: true,
+      migrationsRun: true,
     }),
     UsersModule,
     AuthModule,

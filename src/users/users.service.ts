@@ -13,7 +13,7 @@ export class UsersService {
   ) {}
 
   async createUser({
-    user_id,
+    user_name,
     password,
     password_confirm,
     email,
@@ -22,7 +22,7 @@ export class UsersService {
     confirm_email,
   }: CreateUserInput): Promise<ReturnType> {
     try {
-      const is_userId_exist = await this.usersRepository.findOne({ user_id });
+      const is_userId_exist = await this.usersRepository.findOne({ user_name });
       const is_email_exist = await this.usersRepository.findOne({ email });
       if (password_confirm != password) {
         return { ok: false, error: 'Confirm Password again' };
@@ -35,7 +35,7 @@ export class UsersService {
       }
       await this.usersRepository.save(
         this.usersRepository.create({
-          user_id,
+          user_name,
           password,
           confirm_email,
           email,
@@ -45,7 +45,7 @@ export class UsersService {
       );
       return {
         ok: true,
-        user: await this.usersRepository.findOne({ user_id }),
+        user: await this.usersRepository.findOne({ user_name }),
       };
     } catch (error) {
       return { ok: false, error: error.message };
@@ -56,26 +56,13 @@ export class UsersService {
     return this.usersRepository.find(); // SELECT * pet
   }
 
-  async findOne(user_id: string): Promise<User> {
-    return this.usersRepository.findOneOrFail({ user_id });
-  }
-
-  async findByUserId(user_id: string): Promise<User> {
-    return this.usersRepository.findOneOrFail({ user_id });
+  async findOne(user_name: string): Promise<User> {
+    return this.usersRepository.findOneOrFail({ user_name });
   }
 
   async addMockUsers(): Promise<User[] | Error> {
     // This is wrong approach make relation and add the data in Repository instead... Later
     try {
-      Mockdata.forEach(async (user, i) => {
-        await this.usersRepository.save(this.usersRepository.create(user));
-        MockProductData[i].user_id = user.user_id;
-      });
-
-      MockProductData.forEach(async (product, i) => {
-        await this.usersRepository.save(this.usersRepository.create(product));
-      });
-
       let users = await this.usersRepository.find();
       return users;
     } catch (e) {

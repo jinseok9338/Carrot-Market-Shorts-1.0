@@ -3,6 +3,8 @@
 # ------------------------------------------------------
 
 type Product {
+  id: Int!
+  user_id: Int!
   user: User!
   product_id: String!
   product_name: String!
@@ -12,7 +14,8 @@ type Product {
 }
 
 type User {
-  user_id: String!
+  user_id: Int!
+  user_name: String!
   email: String!
   first_name: String!
   last_name: String!
@@ -28,7 +31,7 @@ type ReturnType {
 
 type Query {
   users: [User!]!
-  user(email: String!): User!
+  user(user_name: String!): User!
   products: [Product!]!
   product(id: Int!): Product!
 }
@@ -40,7 +43,7 @@ type Mutation {
 }
 
 input CreateUserInput {
-  user_id: String!
+  user_name: String!
   password: String!
   password_confirm: String!
   email: String!
@@ -50,7 +53,7 @@ input CreateUserInput {
 }
 
 input CreateProductInput {
-  user_id: String!
+  user_id: Int!
   product_id: String!
   product_name: String!
   sold: Boolean!

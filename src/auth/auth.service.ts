@@ -14,7 +14,7 @@ export class AuthService {
     email: string,
     password: string,
   ): Promise<{
-    user_id: string;
+    user_name: string;
     email?: string;
     first_name?: string;
     last_name?: string;
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   async signUp(signUpUser: {
-    user_id: string;
+    user_name: string;
     email: string;
     first_name: string;
     last_name: string;
