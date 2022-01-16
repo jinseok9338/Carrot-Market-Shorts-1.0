@@ -4,7 +4,6 @@
 
 type Product {
   id: Int!
-  user_id: Int!
   user: User!
   product_id: String!
   product_name: String!
@@ -53,7 +52,7 @@ input CreateUserInput {
 }
 
 input CreateProductInput {
-  user_id: Int!
+  user_name: String!
   product_id: String!
   product_name: String!
   sold: Boolean!

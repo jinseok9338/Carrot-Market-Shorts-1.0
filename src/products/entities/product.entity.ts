@@ -10,10 +10,6 @@ export class Product {
   @Field(() => Int)
   id: number;
 
-  @Column()
-  @Field(() => Int)
-  user_id: number;
-
   @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
   @Field(() => User)
   user: User;
