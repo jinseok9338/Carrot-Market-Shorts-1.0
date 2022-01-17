@@ -3,8 +3,8 @@ import { IsBoolean, IsString, MaxLength, MinLength } from 'class-validator';
 
 @InputType()
 export class CreateProductInput {
-  @Field(() => String)
-  user_name: string;
+  @Field(() => Int)
+  user_id: number;
 
   @Field()
   @IsString()

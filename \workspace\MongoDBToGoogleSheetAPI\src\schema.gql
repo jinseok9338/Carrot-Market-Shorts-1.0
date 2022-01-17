@@ -28,17 +28,41 @@ type ReturnType {
   user: User
 }
 
+type Pet {
+  id: Int!
+  name: String!
+  owner_id: Int!
+  type: String
+  owner: Owner!
+}
+
+type Owner {
+  id: Int!
+  name: String!
+  pets: Pet
+}
+
 type Query {
   users: [User!]!
-  user(user_name: String!): User!
+  user(user_id: String!): User!
   products: [Product!]!
   product(id: Int!): Product!
+  pets: [Pet!]!
+  pet(id: Int!): Pet!
+  owners: [Owner!]!
+  owner(id: Int!): Owner!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): ReturnType!
   addMockData: [User!]!
   createProduct(createProductInput: CreateProductInput!): Product!
+  createPet(createPetInput: CreatePetInput!): Pet!
+  updatePet(updatePetInput: UpdatePetInput!): Pet!
+  removePet(id: Int!): Pet!
+  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
+  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+  removeOwner(id: Int!): Owner!
 }
 
 input CreateUserInput {
@@ -52,10 +76,32 @@ input CreateUserInput {
 }
 
 input CreateProductInput {
-  user_name: String!
+  user_id: Int!
   product_id: String!
   product_name: String!
   sold: Boolean!
   images: [String!]
   video: String!
+}
+
+input CreatePetInput {
+  name: String!
+  type: String
+  owner_id: Int!
+}
+
+input UpdatePetInput {
+  name: String
+  type: String
+  owner_id: Int
+  id: Int!
+}
+
+input CreateOwnerInput {
+  name: String!
+}
+
+input UpdateOwnerInput {
+  name: String
+  id: Int!
 }

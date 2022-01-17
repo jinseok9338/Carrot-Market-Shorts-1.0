@@ -12,10 +12,14 @@ import { Product } from './entities/product.entity';
 import { CreateProductInput } from './dto/create-product.input';
 
 import { User } from 'src/users/entities/user.entity';
+import { UsersService } from 'src/users/users.service';
 
 @Resolver((of) => Product)
 export class ProductsResolver {
-  constructor(private readonly productsService: ProductsService) {}
+  constructor(
+    private readonly productsService: ProductsService,
+    private usersService: UsersService,
+  ) {}
 
   @Mutation(() => Product)
   createProduct(
@@ -36,6 +40,6 @@ export class ProductsResolver {
 
   @ResolveField((returns) => User)
   user(@Parent() user: User): Promise<User> {
-    return this.productsService.findOwnerOfProduct(user.user_name);
+    return this.usersService.findOne(user.user_id);
   }
 }

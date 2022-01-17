@@ -21,7 +21,7 @@ export class ProductsService {
     return await this.productRepository.save(newProduct);
   }
 
-  findOwnerOfProduct(user_id: string): Promise<User> {
+  findOwnerOfProduct(user_id: number): Promise<User> {
     return this.usersService.findOne(user_id); // Find it by the userId
   }
 

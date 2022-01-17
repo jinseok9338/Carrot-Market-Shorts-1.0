@@ -20,8 +20,8 @@ export class UsersResolver {
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('user_name', { type: () => String }) user_name: string) {
-    return this.usersService.findOne(user_name);
+  findOne(@Args('user_id', { type: () => String }) user_id: number) {
+    return this.usersService.findOne(user_id);
   }
 
   @Mutation(() => [User], { name: 'addMockData' })

@@ -56,8 +56,11 @@ export class UsersService {
     return this.usersRepository.find(); // SELECT * pet
   }
 
-  async findOne(user_name: string): Promise<User> {
-    return this.usersRepository.findOneOrFail({ user_name });
+  async findOne(user_id: number): Promise<User> {
+    return this.usersRepository.findOneOrFail(user_id);
+  }
+  async findByEmail(email: string): Promise<User> {
+    return this.usersRepository.findOneOrFail({ email });
   }
 
   async addMockUsers(): Promise<User[] | Error> {

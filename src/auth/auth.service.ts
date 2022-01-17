@@ -20,7 +20,7 @@ export class AuthService {
     last_name?: string;
     confirm_email?: boolean;
   } | null> {
-    const user = await this.usersService.findOne(email);
+    const user = await this.usersService.findByEmail(email);
     if (!user) {
       return null;
     }

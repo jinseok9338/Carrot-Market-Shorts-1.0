@@ -16,6 +16,6 @@ export const MockProductData: CreateProductInput[] = Mockdata.map(() => ({
   product_id: lorem.word(),
   images: RandomArray.map(() => image.imageUrl()),
   video: image.imageUrl(),
-  user_name: '123123',
+  user_id: 123,
   sold: Math.random() < 0.5,
 }));
