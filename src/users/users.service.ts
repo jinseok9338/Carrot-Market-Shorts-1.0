@@ -86,3 +86,16 @@ export class UsersService {
     }
   }
 }
+
+// TODO Tomorrow job
+// import {getConnection} from "typeorm";
+
+// await getConnection()
+//    .createQueryBuilder()
+//     .insert()
+//     .into(User)
+//    .values([
+//        { firstName: "Timber", lastName: "Saw" },
+//        { firstName: "Phantom", lastName: "Lancer" }
+//      ])
+//    .execute();
