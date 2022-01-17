@@ -55,6 +55,8 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
+    let res = await this.usersRepository.find();
+    console.log(res.length);
     return this.usersRepository.find(); // SELECT * pet
   }
 
@@ -76,11 +78,11 @@ export class UsersService {
           this.productsRepository.create(MockProductData[i]),
         );
       }
+      // It seems to work just fine but it spits out the error ... I don't know why
 
       return await this.usersRepository.find();
     } catch (e) {
       console.log(e);
-      return new Error(e.message);
     }
   }
 }
