@@ -9,13 +9,15 @@ const min = 0;
 const RandomArray = Array.from(
   { length: Math.random() * (max - min) + min },
   (x, i) => i,
-);
+).map(() => image.imageUrl() + Math.random());
 
-export const MockProductData: CreateProductInput[] = Mockdata.map(() => ({
+console.log(RandomArray);
+
+export const MockProductData: CreateProductInput[] = Mockdata.map((user) => ({
   product_name: commerce.product(),
-  product_id: lorem.word(),
-  images: RandomArray.map(() => image.imageUrl()),
+  product_id: lorem.word() + Math.random(),
+  images: RandomArray,
   video: image.imageUrl(),
-  user_id: 123,
+  user_id: 0, // this is placeholder
   sold: Math.random() < 0.5,
 }));
