@@ -5,6 +5,7 @@
 type Product {
   id: Int!
   user: User!
+  user_id: Int!
   product_id: String!
   product_name: String!
   sold: Boolean!

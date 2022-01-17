@@ -14,6 +14,10 @@ export class Product {
   @Field(() => User)
   user: User;
 
+  @Column()
+  @Field(() => Int)
+  user_id: number;
+
   @Column({ unique: true })
   @Field(() => String)
   product_id: string;

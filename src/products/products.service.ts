@@ -25,6 +25,16 @@ export class ProductsService {
     return this.usersService.findOne(user_id); // Find it by the userId
   }
 
+  async findUserProducts(user_id: number): Promise<Product[]> {
+    // FInd the user based on the prodId... Shit.. This is ,uch harder thatn I anticipated
+    let res = await this.productRepository
+      .createQueryBuilder()
+      .where('user_id IN (:user_id)', { user_id })
+      .getMany();
+    console.log(res);
+    return res;
+  }
+
   findAll() {
     return this.productRepository.find();
   }

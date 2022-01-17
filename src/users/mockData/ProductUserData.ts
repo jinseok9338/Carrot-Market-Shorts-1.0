@@ -11,8 +11,6 @@ const RandomArray = Array.from(
   (x, i) => i,
 ).map(() => image.imageUrl() + Math.random());
 
-console.log(RandomArray);
-
 export const MockProductData: CreateProductInput[] = Mockdata.map((user) => ({
   product_name: commerce.product(),
   product_id: lorem.word() + Math.random(),
