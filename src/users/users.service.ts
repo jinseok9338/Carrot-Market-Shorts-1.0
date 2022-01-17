@@ -6,10 +6,12 @@ import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
 import { Mockdata } from './mockData/UsersMockData';
 import { ReturnType } from './entities/user.entity';
+import { Product } from 'src/products/entities/product.entity';
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
+    @InjectRepository(Product) private productsRepository: Repository<Product>,
   ) {}
 
   async createUser({
@@ -64,10 +66,18 @@ export class UsersService {
   }
 
   async addMockUsers(): Promise<User[] | Error> {
-    // This is wrong approach make relation and add the data in Repository instead... Later
     try {
-      let users = await this.usersRepository.find();
-      return users;
+      for (let i = 0; i < Mockdata.length + 1; i++) {
+        let newUser = await this.usersRepository.save(
+          this.usersRepository.create(Mockdata[i]),
+        );
+        MockProductData[i].user_id = newUser.user_id;
+        let newProduct = await this.productsRepository.save(
+          this.productsRepository.create(MockProductData[i]),
+        );
+      }
+
+      return await this.usersRepository.find();
     } catch (e) {
       console.log(e);
       return new Error(e.message);
