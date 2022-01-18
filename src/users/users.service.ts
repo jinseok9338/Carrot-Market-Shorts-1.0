@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {getConnection, InsertResult} from "typeorm";
+import { getConnection, InsertResult } from 'typeorm';
 import { MockProductData } from 'src/users/mockData/ProductUserData';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
@@ -8,6 +8,7 @@ import { User } from './entities/user.entity';
 import { Mockdata } from './mockData/UsersMockData';
 import { ReturnType } from './entities/user.entity';
 import { Product } from 'src/products/entities/product.entity';
+import { UserUpdateInfo } from './type/DataType';
 @Injectable()
 export class UsersService {
   constructor(
@@ -23,6 +24,7 @@ export class UsersService {
     first_name,
     last_name,
     confirm_email,
+    expiration_email_time,
   }: CreateUserInput): Promise<ReturnType> {
     try {
       const is_userId_exist = await this.usersRepository.findOne({ user_name });
@@ -44,6 +46,7 @@ export class UsersService {
           email,
           first_name,
           last_name,
+          expiration_email_time,
         }),
       );
       return {
@@ -71,36 +74,37 @@ export class UsersService {
   async addMockUsers(): Promise<User[]> {
     try {
       let UserRes = await getConnection()
-      .createQueryBuilder()
-       .insert()
-       .into(User)
-      .values(Mockdata)
-      .execute()
-      
-      let Productres = await getConnection()
-      .createQueryBuilder()
-       .insert()
-       .into(Product)
-      .values(MockProductData)
-      .execute()
+        .createQueryBuilder()
+        .insert()
+        .into(User)
+        .values(Mockdata)
+        .execute();
 
-      return this.usersRepository.find()
+      let Productres = await getConnection()
+        .createQueryBuilder()
+        .insert()
+        .into(Product)
+        .values(MockProductData)
+        .execute();
+
+      return this.usersRepository.find();
     } catch (e) {
       console.log(e);
     }
   }
 
-  async updateUserInfo(user:User, updateInfo:any): Promise<string>{
+  async updateUserInfo(
+    user: User,
+    updateInfo: UserUpdateInfo,
+  ): Promise<string> {
+    //update info should be an opject
     await getConnection()
-    .createQueryBuilder()
-    .update(User)
-    .set(updateInfo)
-    .where("user_id = :user_id", { user_id: user.user_id })
-    .execute();
+      .createQueryBuilder()
+      .update(User)
+      .set(updateInfo)
+      .where('user_id = :user_id', { user_id: user.user_id })
+      .execute();
 
-    return "Successfully updated the userInfo"
+    return 'Successfully updated the userInfo';
   }
 }
-
-
-

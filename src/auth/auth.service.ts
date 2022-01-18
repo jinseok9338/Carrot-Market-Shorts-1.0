@@ -3,6 +3,7 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { LoginReturn, UserInfo } from './type';
+import { CreateUserInput } from 'src/users/dto/create-user.input';
 
 @Injectable()
 export class AuthService {
@@ -34,10 +35,9 @@ export class AuthService {
   }
 
   // TODO Tweak Login that if the user.confirmEmail is not true throw error
-  async login(userInfo:UserInfo): Promise<LoginReturn|Error> {
-  
-    if (!userInfo.confirm_email){
-      return new Error("Your Email is not verified yet")
+  async login(userInfo: UserInfo): Promise<LoginReturn | Error> {
+    if (!userInfo.confirm_email) {
+      return new Error('Your Email is not verified yet');
     }
 
     const payload = userInfo;
@@ -46,18 +46,11 @@ export class AuthService {
     };
   }
 
-  async signUp(signUpUser: {
-    user_name: string;
-    email: string;
-    first_name: string;
-    last_name: string;
-    confirm_email: boolean;
-    password: string;
-    password_confirm: string;
-  }) {
+  async signUp(signUpUser: CreateUserInput) {
     // I need to mark it types
 
     signUpUser.confirm_email = false;
+    signUpUser.expiration_email_time = new Date();
 
     const { password, password_confirm, ...result } = signUpUser;
 
@@ -69,7 +62,7 @@ export class AuthService {
       if (user.user) {
         user.user.password = '';
       }
- // Add to send the confirm Email Later ... 
+      // Add to send the confirm Email Later ...
       return user.error
         ? { ...user }
         : { ...user, access_token: this.jwtService.sign(result) };
@@ -78,10 +71,19 @@ export class AuthService {
     }
   }
 
- async confirmEmail(email:string): Promise<string> {
-   const user = await this.usersService.findByEmail(email)
-   // Do logic if certain amount of time has passed return Not valid Link
-  let res  = await this.usersService.updateUserInfo(user,{confirm_email: true, expiration_email_time:null})
-    return res
+  async confirmEmail(email: string): Promise<string> {
+    const user = await this.usersService.findByEmail(email);
+    // Do logic if certain amount of time has passed return Not valid Link
+    const start = user.expiration_email_time;
+    const end = new Date();
+    let elapsed = end.getTime() - start.getTime(); // In milliseconds
+    if (elapsed > 1000 * 60 * 60 * 24) {
+      throw new Error('The Link is no longer valid');
+    }
+    let res = await this.usersService.updateUserInfo(user, {
+      confirm_email: true,
+      expiration_email_time: null,
+    });
+    return res;
   }
 }

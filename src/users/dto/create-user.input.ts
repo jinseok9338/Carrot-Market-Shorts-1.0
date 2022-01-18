@@ -1,6 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import {
   IsBoolean,
+  IsDate,
   IsEmail,
   IsString,
   Matches,
@@ -51,4 +52,8 @@ export class CreateUserInput {
   @IsBoolean()
   @Field()
   confirm_email: boolean;
+
+  @IsDate()
+  @Field({ nullable: true })
+  expiration_email_time?: Date;
 }

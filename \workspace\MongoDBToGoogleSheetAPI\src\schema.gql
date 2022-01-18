@@ -63,6 +63,7 @@ type Query {
 type Mutation {
   createUser(createUserInput: CreateUserInput!): ReturnType!
   addMockData: [User!]!
+  updateUserInfo(updateUserInfo: UpdateUserInput!): String!
   createProduct(createProductInput: CreateProductInput!): Product!
   createPet(createPetInput: CreatePetInput!): Pet!
   updatePet(updatePetInput: UpdatePetInput!): Pet!
@@ -80,6 +81,19 @@ input CreateUserInput {
   first_name: String!
   last_name: String!
   confirm_email: Boolean!
+  expiration_email_time: DateTime
+}
+
+input UpdateUserInput {
+  user_name: String
+  password: String
+  password_confirm: String
+  email: String
+  first_name: String
+  last_name: String
+  confirm_email: Boolean
+  expiration_email_time: DateTime
+  user_id: Int!
 }
 
 input CreateProductInput {

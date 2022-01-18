@@ -1,5 +1,5 @@
 export interface ProductData {
-  user_id: string;
+  user_id: number;
   product_id: string;
   product_name: string;
   sold: boolean;
@@ -8,11 +8,22 @@ export interface ProductData {
 }
 
 export interface userData {
-  user_id: string;
+  user_name: string;
   password: string;
   email: string;
   confirm_email: boolean;
   first_name: string;
   last_name: string;
+  expiration_email_time: Date;
   products: ProductData[];
+}
+
+export interface UserUpdateInfo {
+  user_name?: string;
+  password?: string;
+  email?: string;
+  confirm_email?: boolean;
+  first_name?: string;
+  last_name?: string;
+  expiration_email_time?: Date;
 }

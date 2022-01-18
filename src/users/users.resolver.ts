@@ -12,6 +12,7 @@ import { ReturnType, User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
+import { UpdateUserInput } from './dto/update-user.input';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -45,5 +46,14 @@ export class UsersResolver {
   @Mutation(() => [User], { name: 'addMockData' })
   async AddMockData(): Promise<User[] | Error> {
     return await this.usersService.addMockUsers();
+  }
+
+  @Mutation(() => String)
+  async updateUserInfo(
+    @Args('updateUserInfo') updateUserInput: UpdateUserInput,
+  ): Promise<string> {
+    const user = await this.usersService.findOne(updateUserInput.user_id);
+    await this.usersService.updateUserInfo(user, updateUserInput);
+    return 'Successfully Updated';
   }
 }
