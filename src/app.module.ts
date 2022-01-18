@@ -24,7 +24,7 @@ import { OwnersModule } from './owners/owners.module';
       database: 'mydb',
       synchronize: true, // In Prod use Migration
       entities: ['dist/**/*.entity{.ts,.js}'],
-      logging: true,
+      // logging: true, // Use it when we have problem with query or mutation
       dropSchema: true,
       uuidExtension: 'uuid-ossp',
       installExtensions: true,

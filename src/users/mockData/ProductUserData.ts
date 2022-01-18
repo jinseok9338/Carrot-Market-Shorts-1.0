@@ -1,7 +1,5 @@
 import { commerce, lorem, image } from 'faker';
 import { CreateProductInput } from 'src/products/dto/create-product.input';
-import { Product } from 'src/products/entities/product.entity';
-import { ProductData } from '../type/DataType';
 import { Mockdata } from './UsersMockData';
 
 const max = 10;

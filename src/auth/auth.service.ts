@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { LoginReturn, UserInfo } from './type';
 
 @Injectable()
 export class AuthService {
@@ -33,15 +34,13 @@ export class AuthService {
   }
 
   // TODO Tweak Login that if the user.confirmEmail is not true throw error
-  async login(user: {
-    id: number;
-    user_id: string;
-    email?: string;
-    first_name?: string;
-    last_name?: string;
-    confirm_email?: boolean;
-  }) {
-    const payload = user;
+  async login(userInfo:UserInfo): Promise<LoginReturn|Error> {
+  
+    if (!userInfo.confirm_email){
+      return new Error("Your Email is not verified yet")
+    }
+
+    const payload = userInfo;
     return {
       access_token: this.jwtService.sign(payload),
     };
