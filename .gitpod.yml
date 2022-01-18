@@ -11,4 +11,6 @@ ports:
     visibility: public
 
 tasks:
+  - init: > 
+      psql -h localhost -d postgres --file=support/docker/gitpod/setup_postgres.sql
   - before: npm install -g @nestjs/cli && npm install && createuser user && createdb mydb

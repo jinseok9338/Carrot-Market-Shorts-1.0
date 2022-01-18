@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import {getConnection, InsertResult} from "typeorm";
 import { MockProductData } from 'src/users/mockData/ProductUserData';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
@@ -67,20 +68,23 @@ export class UsersService {
     return this.usersRepository.findOneOrFail({ email });
   }
 
-  async addMockUsers(): Promise<User[] | Error> {
+  async addMockUsers(): Promise<User[]> {
     try {
-      for (let i = 0; i < Mockdata.length + 1; i++) {
-        let newUser = await this.usersRepository.save(
-          this.usersRepository.create(Mockdata[i]),
-        );
-        MockProductData[i].user_id = newUser.user_id;
-        let newProduct = await this.productsRepository.save(
-          this.productsRepository.create(MockProductData[i]),
-        );
-      }
-      // It seems to work just fine but it spits out the error ... I don't know why
+      let UserRes = await getConnection()
+      .createQueryBuilder()
+       .insert()
+       .into(User)
+      .values(Mockdata)
+      .execute()
+      
+      let Productres = await getConnection()
+      .createQueryBuilder()
+       .insert()
+       .into(Product)
+      .values(MockProductData)
+      .execute()
 
-      return await this.usersRepository.find();
+      return this.usersRepository.find()
     } catch (e) {
       console.log(e);
     }
@@ -88,14 +92,6 @@ export class UsersService {
 }
 
 // TODO Tomorrow job
-// import {getConnection} from "typeorm";
+// 
 
-// await getConnection()
-//    .createQueryBuilder()
-//     .insert()
-//     .into(User)
-//    .values([
-//        { firstName: "Timber", lastName: "Saw" },
-//        { firstName: "Phantom", lastName: "Lancer" }
-//      ])
-//    .execute();
+;
