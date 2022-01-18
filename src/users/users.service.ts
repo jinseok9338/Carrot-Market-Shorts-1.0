@@ -89,9 +89,18 @@ export class UsersService {
       console.log(e);
     }
   }
+
+  async updateUserInfo(user:User, updateInfo:any): Promise<string>{
+    await getConnection()
+    .createQueryBuilder()
+    .update(User)
+    .set(updateInfo)
+    .where("user_id = :user_id", { user_id: user.user_id })
+    .execute();
+
+    return "Successfully updated the userInfo"
+  }
 }
 
-// TODO Tomorrow job
-// 
 
-;
+

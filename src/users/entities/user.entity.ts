@@ -9,6 +9,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Product } from 'src/products/entities/product.entity';
+import { IsDate } from 'class-validator';
 
 // What other user Info should I do ....
 
@@ -46,6 +47,11 @@ export class User {
   @OneToMany(() => Product, (product) => product.user, { nullable: true })
   @Field(() => [Product], { nullable: true })
   products?: Product[];
+
+  @IsDate()
+  @Column({nullable: true}) // Make it not nullable later
+  @Field((type) => Date,{nullable: true})
+  expiration_email_time?: Date
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

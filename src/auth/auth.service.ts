@@ -69,7 +69,7 @@ export class AuthService {
       if (user.user) {
         user.user.password = '';
       }
-
+ // Add to send the confirm Email Later ... 
       return user.error
         ? { ...user }
         : { ...user, access_token: this.jwtService.sign(result) };
@@ -78,7 +78,10 @@ export class AuthService {
     }
   }
 
-  getHello(): string {
-    return 'Hello 3!';
+ async confirmEmail(email:string): Promise<string> {
+   const user = await this.usersService.findByEmail(email)
+   // Do logic if certain amount of time has passed return Not valid Link
+  let res  = await this.usersService.updateUserInfo(user,{confirm_email: true, expiration_email_time:null})
+    return res
   }
 }

@@ -5,6 +5,7 @@ import {
   Args,
   Parent,
   ResolveField,
+  Int,
 } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { ReturnType, User } from './entities/user.entity';
@@ -32,7 +33,7 @@ export class UsersResolver {
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('user_id', { type: () => String }) user_id: number) {
+  findOne(@Args('user_id', { type: () => Int }) user_id: number) {
     return this.usersService.findOne(user_id);
   }
 

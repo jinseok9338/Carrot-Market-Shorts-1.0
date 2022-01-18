@@ -21,7 +21,13 @@ type User {
   last_name: String!
   confirm_email: Boolean!
   products: [Product!]
+  expiration_email_time: DateTime
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type ReturnType {
   ok: Boolean!
@@ -45,7 +51,7 @@ type Owner {
 
 type Query {
   users: [User!]!
-  user(user_id: String!): User!
+  user(user_id: Int!): User!
   products: [Product!]!
   product(id: Int!): Product!
   pets: [Pet!]!

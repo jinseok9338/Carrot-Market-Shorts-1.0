@@ -19,8 +19,5 @@ export class UserController {
     return req.user;
   }
 
-  @Get('hello')
-  getHello(): string {
-    return this.authService.getHello();
-  }
+
 }
