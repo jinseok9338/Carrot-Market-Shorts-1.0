@@ -63,13 +63,15 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): ReturnType!
   addMockData: [User!]!
   updateUserInfo(updateUserInfo: UpdateUserInput!): String!
+  deleteUser(user_id: Int!): String!
   createProduct(createProductInput: CreateProductInput!): Product!
+  removeProduct(product_id: Int!): String!
   createPet(createPetInput: CreatePetInput!): Pet!
   updatePet(updatePetInput: UpdatePetInput!): Pet!
   removePet(id: Int!): Pet!
   createOwner(createOwnerInput: CreateOwnerInput!): Owner!
   updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
-  removeOwner(id: Int!): Owner!
+  removeOwner(id: Int!): String!
 }
 
 input CreateUserInput {

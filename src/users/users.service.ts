@@ -70,6 +70,15 @@ export class UsersService {
     return this.usersRepository.findOneOrFail({ email });
   }
 
+  async deleteOne(user_id: number): Promise<string> {
+    let user = await this.usersRepository.findOne(user_id);
+    if (!user) {
+      return `The user ${user_id} doesn't exist`;
+    }
+    await this.usersRepository.delete(user_id);
+    return `Successfully Deleted the User ${user_id} `;
+  }
+
   async addMockUsers(): Promise<User[]> {
     try {
       let UserRes = await getConnection()

@@ -38,6 +38,11 @@ export class ProductsResolver {
     return this.productsService.findOne(product_Id);
   }
 
+  @Mutation(() => String)
+  removeProduct(@Args('product_id', { type: () => Int }) product_id: number) {
+    return this.productsService.removeOne(product_id);
+  }
+
   @ResolveField((returns) => User)
   user(@Parent() user: User): Promise<User> {
     return this.usersService.findOne(user.user_id);

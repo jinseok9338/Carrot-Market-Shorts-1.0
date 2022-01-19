@@ -1,7 +1,13 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { User } from 'src/users/entities/user.entity';
 import { uuid } from 'uuidv4';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -10,7 +16,11 @@ export class Product {
   @Field(() => Int)
   product_id: number;
 
-  @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.products, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinTable()
   @Field(() => User)
   user: User;
 

@@ -28,7 +28,7 @@ export class OwnersResolver {
     return this.ownersService.update(updateOwnerInput.id, updateOwnerInput);
   }
 
-  @Mutation(() => Owner)
+  @Mutation(() => String)
   removeOwner(@Args('id', { type: () => Int }) id: number) {
     return this.ownersService.remove(id);
   }

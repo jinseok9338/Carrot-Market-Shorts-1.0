@@ -57,4 +57,11 @@ export class UsersResolver {
     const res = await this.usersService.updateUserInfo(user, restInput);
     return 'Successfully Updated';
   }
+
+  @Mutation(() => String, { name: 'deleteUser' })
+  async deleteUser(
+    @Args('user_id', { type: () => Int }) user_id: number,
+  ): Promise<String> {
+    return await this.usersService.deleteOne(user_id);
+  }
 }
