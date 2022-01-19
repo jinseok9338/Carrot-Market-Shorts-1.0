@@ -19,7 +19,6 @@ export class Product {
 
   @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
   @Field(() => User)
-  @IsString()
   user: User;
 
   @Column()
