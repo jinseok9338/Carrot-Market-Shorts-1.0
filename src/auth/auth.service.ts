@@ -75,10 +75,13 @@ export class AuthService {
     const user = await this.usersService.findByEmail(email);
     // Do logic if certain amount of time has passed return Not valid Link
     const start = user.expiration_email_time;
+    if (!user.expiration_email_time) {
+      return 'Your email is already verified';
+    }
     const end = new Date();
     let elapsed = end.getTime() - start.getTime(); // In milliseconds
     if (elapsed > 1000 * 60 * 60 * 24) {
-      throw new Error('The Link is no longer valid');
+      return 'The Link is no longer valid';
     }
     let res = await this.usersService.updateUserInfo(user, {
       confirm_email: true,

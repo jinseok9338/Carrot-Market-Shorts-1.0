@@ -49,9 +49,9 @@ export class User {
   products?: Product[];
 
   @IsDate()
-  @Column({nullable: true}) // Make it not nullable later
-  @Field((type) => Date,{nullable: true})
-  expiration_email_time?: Date
+  @Column({ nullable: true }) // Make it not nullable later
+  @Field((type) => Date, { nullable: true })
+  expiration_email_time?: Date | null;
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

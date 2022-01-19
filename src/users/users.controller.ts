@@ -18,6 +18,4 @@ export class UserController {
   getProfile(@Request() req) {
     return req.user;
   }
-
-
 }

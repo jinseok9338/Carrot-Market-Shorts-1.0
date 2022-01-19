@@ -52,8 +52,10 @@ export class UsersResolver {
   async updateUserInfo(
     @Args('updateUserInfo') updateUserInput: UpdateUserInput,
   ): Promise<string> {
-    const user = await this.usersService.findOne(updateUserInput.user_id);
-    await this.usersService.updateUserInfo(user, updateUserInput);
+    console.log(updateUserInput);
+    const { user_id, ...restInput } = updateUserInput;
+    const user = await this.usersService.findOne(user_id);
+    const res = await this.usersService.updateUserInfo(user, restInput);
     return 'Successfully Updated';
   }
 }

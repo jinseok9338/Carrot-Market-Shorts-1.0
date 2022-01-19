@@ -60,7 +60,6 @@ export class UsersService {
 
   async findAll(): Promise<User[]> {
     let res = await this.usersRepository.find();
-    console.log(res.length);
     return this.usersRepository.find(); // SELECT * pet
   }
 
@@ -97,7 +96,8 @@ export class UsersService {
     user: User,
     updateInfo: UserUpdateInfo,
   ): Promise<string> {
-    //update info should be an opject
+    //update info should be an object
+
     await getConnection()
       .createQueryBuilder()
       .update(User)
