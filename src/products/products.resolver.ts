@@ -34,8 +34,8 @@ export class ProductsResolver {
   }
 
   @Query(() => Product, { name: 'product' })
-  findOne(@Args('id', { type: () => Int }) productId: string) {
-    return this.productsService.findOne(productId);
+  findOne(@Args('product_id', { type: () => Int }) product_Id: number) {
+    return this.productsService.findOne(product_Id);
   }
 
   @ResolveField((returns) => User)

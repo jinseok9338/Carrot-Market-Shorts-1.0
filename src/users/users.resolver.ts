@@ -52,7 +52,6 @@ export class UsersResolver {
   async updateUserInfo(
     @Args('updateUserInfo') updateUserInput: UpdateUserInput,
   ): Promise<string> {
-    console.log(updateUserInput);
     const { user_id, ...restInput } = updateUserInput;
     const user = await this.usersService.findOne(user_id);
     const res = await this.usersService.updateUserInfo(user, restInput);

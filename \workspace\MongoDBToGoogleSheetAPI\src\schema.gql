@@ -3,10 +3,9 @@
 # ------------------------------------------------------
 
 type Product {
-  id: Int!
+  product_id: Int!
   user: User!
   user_id: Int!
-  product_id: String!
   product_name: String!
   sold: Boolean!
   images: [String!]
@@ -53,7 +52,7 @@ type Query {
   users: [User!]!
   user(user_id: Int!): User!
   products: [Product!]!
-  product(id: Int!): Product!
+  product(product_id: Int!): Product!
   pets: [Pet!]!
   pet(id: Int!): Pet!
   owners: [Owner!]!
@@ -98,7 +97,6 @@ input UpdateUserInput {
 
 input CreateProductInput {
   user_id: Int!
-  product_id: String!
   product_name: String!
   sold: Boolean!
   images: [String!]

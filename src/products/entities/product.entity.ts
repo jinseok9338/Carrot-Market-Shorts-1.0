@@ -8,7 +8,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 export class Product {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
-  id: number;
+  product_id: number;
 
   @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
   @Field(() => User)
@@ -17,10 +17,6 @@ export class Product {
   @Column()
   @Field(() => Int)
   user_id: number;
-
-  @Column({ unique: true })
-  @Field(() => String)
-  product_id: string;
 
   @Column()
   @Field(() => String)

@@ -1,2 +1,2 @@
-TODO Tweak login so when your email is not confirmed block the user 
-TODO Update user function update rpoduct Function 
+TODO Tweak login so when your email is not confirmed block the user Done
+TODO Update user function update product Function
