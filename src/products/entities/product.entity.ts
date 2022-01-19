@@ -8,6 +8,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { IsString } from 'class-validator';
 
 @ObjectType()
 @Entity()
@@ -18,6 +19,7 @@ export class Product {
 
   @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
   @Field(() => User)
+  @IsString()
   user: User;
 
   @Column()
