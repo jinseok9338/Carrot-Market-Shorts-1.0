@@ -1,0 +1,22 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "user",
+  "database": "mydb",
+  "extra": {
+    "ssl": {
+      "rejectUnauthorized": false
+    }
+  },
+  "ssl": true,
+  "synchronize": true,
+  "logging": false,
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "migrations": ["dist/migration/**/*.ts"],
+  "subscribers": ["dist/subscriber/**/*.ts"],
+  "cli": {
+    "migrationsDir": "dist/migration",
+    "subscribersDir": "dist/subscriber"
+  }
+}
