@@ -17,7 +17,6 @@ export class Product {
   product_id: number;
 
   @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
-  @JoinTable()
   @Field(() => User)
   user: User;
 
