@@ -16,10 +16,7 @@ export class Product {
   @Field(() => Int)
   product_id: number;
 
-  @ManyToOne(() => User, (user) => user.products, {
-    cascade: true,
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
   @JoinTable()
   @Field(() => User)
   user: User;

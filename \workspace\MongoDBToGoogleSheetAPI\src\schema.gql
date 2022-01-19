@@ -34,29 +34,11 @@ type ReturnType {
   user: User
 }
 
-type Pet {
-  id: Int!
-  name: String!
-  owner_id: Int!
-  type: String
-  owner: Owner!
-}
-
-type Owner {
-  id: Int!
-  name: String!
-  pets: Pet
-}
-
 type Query {
   users: [User!]!
   user(user_id: Int!): User!
   products: [Product!]!
   product(product_id: Int!): Product!
-  pets: [Pet!]!
-  pet(id: Int!): Pet!
-  owners: [Owner!]!
-  owner(id: Int!): Owner!
 }
 
 type Mutation {
@@ -66,12 +48,6 @@ type Mutation {
   deleteUser(user_id: Int!): String!
   createProduct(createProductInput: CreateProductInput!): Product!
   removeProduct(product_id: Int!): String!
-  createPet(createPetInput: CreatePetInput!): Pet!
-  updatePet(updatePetInput: UpdatePetInput!): Pet!
-  removePet(id: Int!): Pet!
-  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
-  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
-  removeOwner(id: Int!): String!
 }
 
 input CreateUserInput {
@@ -103,26 +79,4 @@ input CreateProductInput {
   sold: Boolean!
   images: [String!]
   video: String!
-}
-
-input CreatePetInput {
-  name: String!
-  type: String
-  owner_id: Int!
-}
-
-input UpdatePetInput {
-  name: String
-  type: String
-  owner_id: Int
-  id: Int!
-}
-
-input CreateOwnerInput {
-  name: String!
-}
-
-input UpdateOwnerInput {
-  name: String
-  id: Int!
 }
