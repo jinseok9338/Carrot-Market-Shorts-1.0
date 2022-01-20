@@ -18,4 +18,4 @@ tasks:
   - init: >
       psql -h localhost -d postgres --file=support/docker/gitpod/setup_postgres.sql
   - before: cd Server && npm install -g @nestjs/cli && npm install && createuser user && createdb mydb && npm start
-  - command: cd Web && npm install && npm start
+  - command: cd Web && npm install && npm run dev
