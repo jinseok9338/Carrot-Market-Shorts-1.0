@@ -24,7 +24,6 @@ import { ProductsModule } from './products/products.module';
       entities: ['dist/**/*.entity{.ts,.js}'],
       // logging: true, // Use it when we have problem with query or mutation
       dropSchema: true,
-      uuidExtension: 'uuid-ossp',
       installExtensions: true,
       cache: true,
       migrationsRun: true,

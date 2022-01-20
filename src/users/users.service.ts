@@ -76,6 +76,12 @@ export class UsersService {
       return `The user ${user_id} doesn't exist`;
     }
     await this.usersRepository.delete(user_id);
+    await getConnection()
+      .createQueryBuilder()
+      .delete()
+      .from(Product)
+      .where('user_id = :user_id', { user_id: user.user_id })
+      .execute();
     return `Successfully Deleted the User ${user_id} `;
   }
 

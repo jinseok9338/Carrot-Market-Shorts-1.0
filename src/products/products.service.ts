@@ -45,7 +45,7 @@ export class ProductsService {
   async removeOne(product_id: number): Promise<string> {
     let product = await this.productRepository.findOne(product_id);
     if (!product) {
-      return `The user ${product_id} doesn't exist`;
+      return `The product ${product_id} doesn't exist`;
     }
     await this.productRepository.delete(product_id);
     return `successfully deleted product ${product_id} `;
