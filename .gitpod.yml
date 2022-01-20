@@ -10,7 +10,12 @@ ports:
     onOpen: ignore
     visibility: public
 
+  - port: 3001
+    onOpen: ignore
+    visibility: public
+
 tasks:
   - init: >
       psql -h localhost -d postgres --file=support/docker/gitpod/setup_postgres.sql
   - before: cd Server && npm install -g @nestjs/cli && npm install && createuser user && createdb mydb && npm start
+  - command: cd Web && npm install && npm start
