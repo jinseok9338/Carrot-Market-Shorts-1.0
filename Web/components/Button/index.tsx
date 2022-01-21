@@ -3,22 +3,20 @@
 
 export interface ButtoProps {
   outlineWidth?: string;
-  bgColor?: string;
   fontSize?: string;
-  textColor?: string;
+  text?: string;
 }
 
-const Button = ({ outlineWidth, bgColor, fontSize, textColor }: ButtoProps) => {
-  const outlined = "outlined";
+const Button = ({ outlineWidth, fontSize, text }: ButtoProps) => {
   return (
     <button
       className={`w-full ${fontSize ? fontSize : "text-lg"} 
-        font-bold h-full ${bgColor} ${
+        font-bold h-full ${"bg-primary"} ${
         outlineWidth ? outlineWidth : "border-none"
-      } ${outlineWidth ? textColor : "text-white"} cursor-pointer
-         hover:${outlineWidth ? "bg-tintBlue/[0.3]" : bgColor}`}
+      } ${outlineWidth ? "text-primary" : "text-white"} cursor-pointer
+         hover:${outlineWidth ? "bg-tintBlue/[0.3]" : "bg-primary"}`}
     >
-      Hello
+      {text}
     </button>
   );
 };

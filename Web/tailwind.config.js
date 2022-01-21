@@ -19,6 +19,7 @@ module.exports = {
       silver: "#ecebff",
       "bubble-gum": "#ff77e9",
       bermuda: "#78dcca",
+      primary: "#fe2c55",
       tintBlue: "rgba(22, 24, 35)",
     },
     extend: {},

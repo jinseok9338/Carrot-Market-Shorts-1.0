@@ -1,3 +1,5 @@
+import Sidebar from "../SideBar";
+
 function Layout({ children }: any) {
   return (
     <>
@@ -6,7 +8,7 @@ function Layout({ children }: any) {
         className={`container-layout w-screen flex justify-start flex-auto pt-16`}
       >
         <div className={`flex-[2_2_240px] md:hidden md:flex-[0]`}>
-          <Sidebar></Sidebar>
+          <Sidebar />
         </div>
         <div className="flex-[0] m-[0_auto] p-[50px_20px] flex max-w-[1194px]">
           {children}
