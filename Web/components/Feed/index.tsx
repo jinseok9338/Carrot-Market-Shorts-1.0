@@ -1,6 +1,6 @@
 // TODO Need PostCard Component and Container Component
 
-const Feed = () => {
+const Feed = ({ posts }: any) => {
   return (
     <div className="feed-container flex flex-col max-w-3xl items-center flex-auto">
       {posts.map((post, index) => (

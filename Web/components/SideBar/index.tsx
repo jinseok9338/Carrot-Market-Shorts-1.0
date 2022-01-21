@@ -1,3 +1,4 @@
+import User from "../User";
 import Links from "./Links";
 import MenuItem from "./MenuItem";
 
@@ -17,7 +18,7 @@ function Sidebar() {
             avatar:
               "https://p16-amd-va.tiktokcdn.com/img/musically-maliva-obj/1646315618666501~c5_100x100.jpeg",
           }}
-        ></User>
+        />
       </div>
       <div className="InfoContainer mt-[16px] pl-[16px] pb-[16px] w-[240px] box-border text-tintBlue/[0.5] ">
         <Links
