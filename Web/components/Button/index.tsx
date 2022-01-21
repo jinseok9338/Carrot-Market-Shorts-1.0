@@ -1,28 +1,29 @@
 //TODO Need a Color pallette
 // TODO render different color based on if it's outlined or not
 
-
 export interface ButtoProps {
-    outlineWidth?:string
-    bgColor?: string
-    fontSize?:string
-    textColor?:string
+  outlineWidth?: string;
+  bgColor?: string;
+  fontSize?: string;
+  textColor?: string;
 }
 
-const Button = ({outlineWidth,bgColor, fontSize,textColor}:ButtoProps) => {
- const outlined = "outlined"
-    return (
-        <button className = {`w-full ${fontSize? fontSize :"text-lg"} 
-        font-bold h-full ${bgColor} ${outlineWidth?outlineWidth :"border-none" } ${outlineWidth? textColor: "text-white"} cursor-pointer
-         hover:${outlineWidth? "bg-tintBlack":bgColor }`} > 
-            Hello
-        </button>
-    )
-}
+const Button = ({ outlineWidth, bgColor, fontSize, textColor }: ButtoProps) => {
+  const outlined = "outlined";
+  return (
+    <button
+      className={`w-full ${fontSize ? fontSize : "text-lg"} 
+        font-bold h-full ${bgColor} ${
+        outlineWidth ? outlineWidth : "border-none"
+      } ${outlineWidth ? textColor : "text-white"} cursor-pointer
+         hover:${outlineWidth ? "bg-tintBlue/[0.3]" : bgColor}`}
+    >
+      Hello
+    </button>
+  );
+};
 
-
-export default Button 
-
+export default Button;
 
 // import styled from 'styled-components';
 

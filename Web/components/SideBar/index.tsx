@@ -1,16 +1,15 @@
+import Links from "./Links";
+import MenuItem from "./MenuItem";
+
 function Sidebar() {
   return (
-    <div className="fixed top-[70px] left-0 bottom-0 w-[250px] pt-[26px]">
-      <MenuItem active>
-        <img src="/images/homeIcon.svg"></img>
-        <span>Para você</span>
-      </MenuItem>
-      <MenuItem>
-        <img src="/images/peopleIcon.svg"></img>
-        <span>Seguindo</span>
-      </MenuItem>
-      <Following>
-        <FollowingHeader>Suas pricipais contas</FollowingHeader>
+    <div className="fixed top-[70px] left-0 bottom-0 w-[250px] pt-[26px] sidebar-container">
+      <MenuItem active spanText="This is Music" img="/images/peopleIcon.svg" />
+      <MenuItem active spanText="This is Music" img="/images/peopleIcon.svg" />
+      <div className="Following w-full p-[20px_0] border-y-[0.5px] border-tintBlue/[0.12]">
+        <div className="FollowingHeader font-[400] text-[16px] leading-[22px] text-tintBlue/[0.5] h-[8px] pl-[16px] mb-[28px] ">
+          Suas pricipais contas
+        </div>
         <User
           user={{
             name: "Will Smith",
@@ -19,30 +18,17 @@ function Sidebar() {
               "https://p16-amd-va.tiktokcdn.com/img/musically-maliva-obj/1646315618666501~c5_100x100.jpeg",
           }}
         ></User>
-      </Following>
-      <InfoContainer>
-        <Links margin>
-          <a>Início</a>
-          <a>Sobre</a>
-          <a>Sala de imprensa</a>
-          <a>Carreira</a>
-          <a>ByteDance</a>
-        </Links>
-        <Links>
-          <a>Ajuda</a>
-          <a>Segurança</a>
-        </Links>
-        <Links>
-          <a>Diretrizes da comunidade</a>
-          <a>Termos</a>
-        </Links>
-        <Links margin>
-          <a>Privacidade</a>
-        </Links>
-        <Links margin>
-          <a>© 2020 TikTok</a>
-        </Links>
-      </InfoContainer>
+      </div>
+      <div className="InfoContainer mt-[16px] pl-[16px] pb-[16px] w-[240px] box-border text-tintBlue/[0.5] ">
+        <Links
+          margin
+          links={["Início", "Sobre", "Sala de imprensa", "ByteDance"]}
+        />
+        <Links links={["Início", "Sobre"]} />
+        <Links links={["Início", "Sobre"]} />
+        <Links margin links={["Sobre"]} />
+        <Links margin links={["© 2020 TikTok"]} />
+      </div>
     </div>
   );
 }
@@ -56,31 +42,6 @@ export default Sidebar;
 //   bottom: 0;
 //   width: 250px;
 //   padding-top: 26px;
-// `;
-
-// export const MenuItem = styled.div`
-//   cursor: pointer;
-//   color: #161823;
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: center;
-//   padding: 0 12px;
-//   box-sizing: border-box;
-//   height: 60px;
-//   :hover {
-//     background: rgba(22, 24, 35, 0.03);
-//   }
-//   > span {
-//     font-weight: ${(props) => (props.active ? '700' : '400')};
-//     margin-left: 13px;
-//     font-size: 24px;
-//     line-height: 60px;
-//     color: ${(props) => (props.active ? props.theme.colors.primary : 'black')};
-//   }
-//   > img {
-//     width: 40px;
-//     height: 40px;
-//   }
 // `;
 
 // export const Following = styled.div`
@@ -107,22 +68,4 @@ export default Sidebar;
 //   width: 240px;
 //   box-sizing: border-box;
 //   color: rgba(22, 24, 35, 0.5) !important;
-// `;
-
-// export const Links = styled.div`
-//   margin-bottom: ${(props) => (props.margin ? '8px' : '0px')};
-//   > a {
-//     cursor: pointer;
-//     display: inline-block;
-//     margin-right: 5px;
-//     margin-top: 5px;
-//     font-weight: 600;
-//     font-size: 12px;
-//     line-height: 12px;
-//     color: rgba(22, 24, 35, 0.5);
-//     font-family: 'proxima-semibold', PingFangSC, sans-serif;
-//     :hover {
-//       text-decoration: underline;
-//     }
-//   }
 // `;
