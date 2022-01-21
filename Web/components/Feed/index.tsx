@@ -1,21 +1,18 @@
 // TODO Need PostCard Component and Container Component
 
+const Feed = () => {
+  return (
+    <div className="feed-container flex flex-col max-w-3xl items-center flex-auto">
+      {posts.map((post, index) => (
+        <PostCard key={index} post={post}></PostCard>
+      ))}
+    </div>
+  );
+};
 
-const Feed =() =>{
-    return (
-        <Container>
-        {posts.map((post, index) => (
-          <PostCard key={index} post={post}></PostCard>
-        ))}
-      </Container>
-    )
-}
+export default Feed;
 
-export default Feed
-
-// import styled from 'styled-components';
-
-// export const Container = styled.div`
+//   Container
 //   display: flex;
 //   flex-direction: column;
 //   max-width: 732px;
