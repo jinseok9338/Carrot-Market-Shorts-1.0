@@ -2,36 +2,30 @@ import { FC, useRef, useState } from "react";
 import { Content } from "./content";
 import { PostCardHeader } from "./PostCardHeader";
 interface IPostCardProps {
-    post?: {
-        tags: { title: string }[];
-        author?: {
-          avatar?: string;
-          username: string;
-          name: string;
-        };
-        description: string;
+  post: any;
 }
+export const PostCard: FC<IPostCardProps> = ({ post }) => {
+  const videoRef = useRef() as any;
+  const [running, setRunning] = useState(false);
 
+  const toggleAction = () => {
+    if (videoRef?.current != null) {
+      if (!running) videoRef.current.play();
+      else videoRef.current.pause();
 
-export const PostCard: FC<IPostCardProps> = ({post}) => {
-    const videoRef = useRef() as any;
-    const [running, setRunning] = useState(false);
-  
-    const toggleAction = () => {
-      if (videoRef?.current != null) {
-        if (!running) videoRef.current.play();
-        else videoRef.current.pause();
-  
-        setRunning(!running);
-      }
-    };
-  
-
+      setRunning(!running);
+    }
+  };
 
   return (
     <div className="postcard-container w-[592px] max-w-[592px] relative pb-[25px] border-b-[0.5px] border-tintBlack/[0.12] ">
-      <PostCardHeader post ={post} />
-      <Content/>
+      <PostCardHeader post={post} />
+      <Content
+        post={post}
+        running
+        videoRef={videoRef}
+        toggleAction={toggleAction}
+      />
       <Actions>
         <Action>
           <img src="/images/heartIcon.svg"></img>
@@ -59,11 +53,6 @@ export const PostCard: FC<IPostCardProps> = ({post}) => {
 //   margin-bottom: 20px;
 // `;
 
-
-
-
-
-
 // export const Actions = styled.div`
 //   display: flex;
 //   align-items: center;
@@ -84,4 +73,3 @@ export const PostCard: FC<IPostCardProps> = ({post}) => {
 //     margin-right: 4px;
 //   }
 // `;
-

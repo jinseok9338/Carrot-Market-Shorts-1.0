@@ -1,8 +1,10 @@
 import { FC, ReactNode } from "react";
 import Button from "../Button";
-export interface IPostCardHeaderProps {}
+export interface IPostCardHeaderProps {
+  post: any;
+}
 
-export const PostCardHeader: FC<IPostCardHeaderProps> = ({ post }: any) => {
+export const PostCardHeader: FC<IPostCardHeaderProps> = ({ post }) => {
   return (
     <div className="header flex justify-between">
       <div className="person-container flex">
@@ -19,7 +21,7 @@ export const PostCardHeader: FC<IPostCardHeaderProps> = ({ post }: any) => {
           </a>
           <div className="inline">
             <span>{post?.description}</span>
-            {post?.tags.map((tag, index) => (
+            {post?.tags.map((tag: any, index: number) => (
               <a
                 className="tag cursor-pointer font-[bold] ml-[4px] text-[16px] underline hover:decoration-1"
                 key={index}

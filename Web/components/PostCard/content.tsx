@@ -2,9 +2,16 @@ import { FC } from "react";
 interface IContentProps {
   post: any;
   videoRef: any;
+  running: boolean;
+  toggleAction: () => void;
 }
 
-export const Content: FC<IContentProps> = ({ post, videoRef }) => {
+export const Content: FC<IContentProps> = ({
+  post,
+  videoRef,
+  running,
+  toggleAction,
+}) => {
   return (
     <div className="ml-[68px]">
       <div className="song flex items-end mt-[5px]">
@@ -16,21 +23,26 @@ export const Content: FC<IContentProps> = ({ post, videoRef }) => {
           {post?.songName}
         </a>
       </div>
-      <VideoContainer>
-        <Video
+      <div className="video-container cursor-pointer w-[calc(0.56*(400px+((100vw-768px)/1152)*100))] relative mt-[15px] group">
+        <video
+          className="max-w-full rounded-[9px]"
           ref={videoRef}
           src={post?.videoUrl}
           webkit-playsinline="true"
-          playsinline=""
-          loop="true"
+          playsInline
+          loop
           preload="metadata"
-        ></Video>
-        <ActionsContainer onClick={toggleAction}>
-          <PlayerIcon
+        ></video>
+        <div
+          className="action-container invisible w-[40px] h-[40px] bottom-[15px] left-[12px] absolute flex items-center justify-center group-hover:visible"
+          onClick={toggleAction}
+        >
+          <img
+            className="w-[20px] h-[20px]"
             src={running ? "/images/pauseIcon.svg" : "/images/playIcon.svg"}
-          ></PlayerIcon>
-        </ActionsContainer>
-      </VideoContainer>
+          ></img>
+        </div>
+      </div>
     </div>
   );
 };
