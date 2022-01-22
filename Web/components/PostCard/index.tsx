@@ -1,4 +1,5 @@
 import { FC, useRef, useState } from "react";
+import { Actions } from "./actions";
 import { Content } from "./content";
 import { PostCardHeader } from "./PostCardHeader";
 interface IPostCardProps {
@@ -26,20 +27,7 @@ export const PostCard: FC<IPostCardProps> = ({ post }) => {
         videoRef={videoRef}
         toggleAction={toggleAction}
       />
-      <Actions>
-        <Action>
-          <img src="/images/heartIcon.svg"></img>
-          <a>{post?.likes}</a>
-        </Action>
-        <Action>
-          <img src="/images/bubbleIcon.svg"></img>
-          <a>{post?.comments}</a>
-        </Action>
-        <Action>
-          <img src="/images/arrowIcon.svg"></img>
-          <a>{post?.replies}</a>
-        </Action>
-      </Actions>
+      <Actions post={post}></Actions>
     </div>
   );
 };
@@ -51,25 +39,4 @@ export const PostCard: FC<IPostCardProps> = ({ post }) => {
 //   padding-bottom: 25px;
 //   border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
 //   margin-bottom: 20px;
-// `;
-
-// export const Actions = styled.div`
-//   display: flex;
-//   align-items: center;
-//   padding: 0 10px;
-//   margin-top: 12px;
-// `;
-
-// export const Action = styled.div`
-//   display: flex;
-//   align-items: center;
-//   font-size: 18px;
-//   font-weight: 700;
-//   margin-right: 25px;
-//   cursor: pointer;
-//   img {
-//     width: 32px;
-//     height: 32px;
-//     margin-right: 4px;
-//   }
 // `;
