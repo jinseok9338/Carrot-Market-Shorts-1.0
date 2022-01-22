@@ -1,6 +1,3 @@
-//TODO Need a Color pallette
-// TODO render different color based on if it's outlined or not
-
 export interface ButtoProps {
   outlineWidth?: string;
   fontSize?: string;
@@ -14,7 +11,7 @@ const Button = ({ outlineWidth, fontSize, text }: ButtoProps) => {
         font-bold h-full ${"bg-primary"} ${
         outlineWidth ? outlineWidth : "border-none"
       } ${outlineWidth ? "text-primary" : "text-white"} cursor-pointer
-         hover:${outlineWidth ? "bg-tintBlue/[0.3]" : "bg-primary"}`}
+         hover:${outlineWidth ? "bg-tintBlack/[0.3]" : "bg-primary"}`}
     >
       {text}
     </button>

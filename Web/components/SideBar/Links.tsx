@@ -7,7 +7,7 @@ const Links = ({ margin, links }: LinksProps) => {
   return (
     <div className={`${margin ? "m-[8px]" : "m-0"} `}>
       {links.map((link) => (
-        <a className="cursor-pointer inline-block mr-[5px] mt-[5px] font-[600] text-[12] leading-[12px] text-tintBlue/[0.5] font-proxima hover:decoration-solid">
+        <a className="cursor-pointer inline-block mr-[5px] mt-[5px] font-[600] text-[12] leading-[12px] text-tintBlack/[0.5] font-proxima hover:decoration-solid">
           {link}
         </a>
       ))}

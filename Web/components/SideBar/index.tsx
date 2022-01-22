@@ -7,8 +7,8 @@ function Sidebar() {
     <div className="fixed top-[70px] left-0 bottom-0 w-[250px] pt-[26px] sidebar-container">
       <MenuItem active spanText="This is Music" img="/images/peopleIcon.svg" />
       <MenuItem active spanText="This is Music" img="/images/peopleIcon.svg" />
-      <div className="Following w-full p-[20px_0] border-y-[0.5px] border-tintBlue/[0.12]">
-        <div className="FollowingHeader font-[400] text-[16px] leading-[22px] text-tintBlue/[0.5] h-[8px] pl-[16px] mb-[28px] ">
+      <div className="Following w-full p-[20px_0] border-y-[0.5px] border-tintBlack/[0.12]">
+        <div className="FollowingHeader font-[400] text-[16px] leading-[22px] text-tintBlack/[0.5] h-[8px] pl-[16px] mb-[28px] ">
           Suas pricipais contas
         </div>
         <User
@@ -20,7 +20,7 @@ function Sidebar() {
           }}
         />
       </div>
-      <div className="InfoContainer mt-[16px] pl-[16px] pb-[16px] w-[240px] box-border text-tintBlue/[0.5] ">
+      <div className="InfoContainer mt-[16px] pl-[16px] pb-[16px] w-[240px] box-border text-tintBlack/[0.5] ">
         <Links
           margin
           links={["Início", "Sobre", "Sala de imprensa", "ByteDance"]}

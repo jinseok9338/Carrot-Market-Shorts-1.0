@@ -7,7 +7,7 @@ interface MenuItemProps {
 const MenuItem = ({ active, spanText, img }: MenuItemProps) => {
   return (
     <div
-      className={`menu-item cursor-pointer text-tintBlue flex justify-start items-center p-[0_12px] box-border h-[60px] hover:bg-tintBlue/[0.03] `}
+      className={`menu-item cursor-pointer text-tintBlack flex justify-start items-center p-[0_12px] box-border h-[60px] hover:bg-tintBlack/[0.03] `}
     >
       <img src={img} className="w-[40px] h-[40px]"></img>
       <span
