@@ -4,13 +4,13 @@ import { PostCard } from "../PostCard";
 import { IPostCardHeaderProps } from "../PostCard/PostCardHeader";
 
 interface FeedProps {
-  posts: IPostCardHeaderProps[];
+  posts: any;
 }
 
 const Feed = ({ posts }: FeedProps) => {
   return (
     <div className="feed-container flex flex-col max-w-3xl items-center flex-auto">
-      {posts.map((post, index) => (
+      {posts.map((post: any, index: any) => (
         <PostCard key={index} post={post} />
       ))}
     </div>
