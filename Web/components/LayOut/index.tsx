@@ -1,9 +1,10 @@
+import Header from "../Header";
 import Sidebar from "../SideBar";
 
 function Layout({ children }: any) {
   return (
     <>
-      <Header></Header>
+      <Header />
       <div
         className={`container-layout w-screen flex justify-start flex-auto pt-16`}
       >

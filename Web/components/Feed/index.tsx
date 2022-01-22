@@ -1,10 +1,17 @@
 // TODO Need PostCard Component and Container Component
 
-const Feed = ({ posts }: any) => {
+import { PostCard } from "../PostCard";
+import { IPostCardHeaderProps } from "../PostCard/PostCardHeader";
+
+interface FeedProps {
+  posts: IPostCardHeaderProps[];
+}
+
+const Feed = ({ posts }: FeedProps) => {
   return (
     <div className="feed-container flex flex-col max-w-3xl items-center flex-auto">
       {posts.map((post, index) => (
-        <PostCard key={index} post={post}></PostCard>
+        <PostCard key={index} post={post} />
       ))}
     </div>
   );

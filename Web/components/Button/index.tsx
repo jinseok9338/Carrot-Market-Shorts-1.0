@@ -1,19 +1,21 @@
+import { ReactNode } from "react";
+
 export interface ButtoProps {
-  outlineWidth?: string;
-  fontSize?: string;
-  text?: string;
+  outlined?: boolean;
+  fontSize?: number;
+  children?: ReactNode;
 }
 
-const Button = ({ outlineWidth, fontSize, text }: ButtoProps) => {
+const Button = ({ outlined, fontSize, children }: ButtoProps) => {
   return (
     <button
       className={`w-full ${fontSize ? fontSize : "text-lg"} 
         font-bold h-full ${"bg-primary"} ${
-        outlineWidth ? outlineWidth : "border-none"
-      } ${outlineWidth ? "text-primary" : "text-white"} cursor-pointer
-         hover:${outlineWidth ? "bg-tintBlack/[0.3]" : "bg-primary"}`}
+        outlined ? "border-[2px]" : "border-none"
+      } ${outlined ? "text-primary" : "text-white"} cursor-pointer
+         hover:${outlined ? "bg-tintBlack/[0.3]" : "bg-primary"}`}
     >
-      {text}
+      {children}
     </button>
   );
 };

@@ -1,10 +1,15 @@
 import { FC } from "react";
-interface IAvatarProps {}
+interface IAvatarProps {
+  src: string;
+}
 
-export const Avatar: FC<IAvatarProps> = () => {
+export const Avatar: FC<IAvatarProps> = ({ src }) => {
   return (
     <div className="flex-[0_0_40px] ml-[30px] relative cursor-pointer">
-      <img src="https://p16-va.tiktokcdn.com/img/musically-maliva-obj/1658913186824198~c5_100x100.jpeg" />
+      <img
+        className="w-[40px] h-[40px] inline-block leading-[32px] rounded-full box-border m-0 p-0 tabular-nums relative overflow-hidden whitespace-nowrap text-center align-middle text-white"
+        src={src}
+      />
     </div>
   );
 };
