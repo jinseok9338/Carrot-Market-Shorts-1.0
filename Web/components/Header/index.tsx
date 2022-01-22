@@ -5,12 +5,14 @@ const Header = () => {
   return (
     <div className="header-container w-full fixed top-0 right-0 left-0 h-[70px] bg-white border-b-[1px] border-[tintBlue]/[0.2] ">
       <HeaderContent>
-        <div className="block">
-          <img className="w-[28px]" src="/images/logoIcon.svg"></img>
+        <div className="flex flex-row">
           <img
             className="w-[97px] ml-[4px] relative top-[-2px]"
-            src="/images/logo.svg"
+            src="/images/carrot_market_title.png"
           ></img>
+          <p className="ml-[5px] font-[800] text-[14px] relative top-[-8px] text-tintBlue ">
+            Shorts
+          </p>
         </div>
         <div className="flex items-center">
           <img className="w-[37px] h-[37px]" src="/images/uploadIcon.svg"></img>
