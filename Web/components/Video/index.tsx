@@ -4,7 +4,8 @@ import { Avatar } from "./Avatar";
 import { ChangeFeed } from "./changeFeed";
 
 interface IVideoProps {}
-// TODO Conditionallt change the transparancy of the text
+// TODO Make the video go over if one video is over use react-swipeable for the task
+
 export const Video: FC<IVideoProps> = ({}) => {
   return (
     <div className="video border-[1px] border-[white] bg-[white] w-full h-full absolute snap-start top-0 bottom-0 overflow-hidden">
