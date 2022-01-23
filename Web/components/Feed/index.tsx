@@ -1,7 +1,6 @@
 // TODO Need PostCard Component and Container Component
 
-import { PostCard } from "../PostCard";
-import { IPostCardHeaderProps } from "../PostCard/PostCardHeader";
+import { IPostCardHeaderProps } from "../Video/PostCardHeader";
 
 interface FeedProps {
   posts: any;
