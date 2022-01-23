@@ -1,13 +1,15 @@
 import { FC } from "react";
 import { Action } from "./action";
 import { Avatar } from "./Avatar";
+import { ChangeFeed } from "./changeFeed";
 
 interface IVideoProps {}
-
+// TODO Conditionallt change the transparancy of the text
 export const Video: FC<IVideoProps> = ({}) => {
   return (
     <div className="video border-[1px] border-[white] bg-[white] w-full h-full absolute snap-start top-0 bottom-0 overflow-hidden">
-      <div className="action-container flex flex-col justify-around items-center relative bottom-[-50%] left-[85%] w-[60px] h-[380px] z-[3]">
+      <ChangeFeed />
+      <div className="action-container flex flex-col justify-around items-center relative bottom-[-40vh] left-[80vw] w-[20vw] h-[40vh] z-[3]">
         <Avatar src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />
         <Action text="4453">
           <svg
