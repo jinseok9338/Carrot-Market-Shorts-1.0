@@ -8,7 +8,7 @@ import { items, people, posts } from "../mockData/data";
 const Home: NextPage = () => {
   return (
     <Layout>
-      <Feed posts={posts}></Feed>
+      {/* <Feed posts={posts}></Feed> */}
       {/* <Suggestions people={people} items={items}></Suggestions> */}
     </Layout>
   );

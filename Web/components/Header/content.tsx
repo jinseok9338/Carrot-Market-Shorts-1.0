@@ -1,11 +1,19 @@
-//TODO children: any for now ... but will have its type..
-const HeaderContent = ({ children }: any) => (
-  <div className="flex h-full justify-center items-center p-[0_20px] ">
+import { ReactNode } from "react";
+
+interface IconsProps {
+  children:ReactNode;
+  menuText:string
+}
+
+
+const Icons = ({ children,menuText }: IconsProps) => (
+  <div className="flex flex-col w-[27px] h-[27px]">
     {children}
+    <span>{menuText}</span>
   </div>
 );
 
-export default HeaderContent;
+export default Icons;
 
 // export const Content = styled.div`
 //   display: flex;
