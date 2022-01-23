@@ -9,7 +9,7 @@ interface IconsProps {
 const Icons = ({ children,menuText }: IconsProps) => (
   <div className="flex flex-col w-[27px] h-[27px]">
     {children}
-    <span>{menuText}</span>
+    <span className="text-[white] font-[600] font-[12px]">{menuText}</span>
   </div>
 );
 
