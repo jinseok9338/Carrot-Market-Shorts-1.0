@@ -6,12 +6,7 @@ interface LayoutProps {
 }
 
 function Layout({ children }: LayoutProps) {
-  return (
-    <div className="container">
-      {children}
-      <Footer />
-    </div>
-  );
+  return <div className="container">{children}</div>;
 }
 
 export default Layout;

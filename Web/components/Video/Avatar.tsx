@@ -5,12 +5,10 @@ interface IAvatarProps {
 
 export const Avatar: FC<IAvatarProps> = ({ src }) => {
   return (
-    <div className="flex-[0_0_40px] ml-[30px] relative cursor-pointer">
-      <img
-        className="w-[40px] h-[40px] inline-block leading-[32px] rounded-full box-border m-0 p-0 tabular-nums relative overflow-hidden whitespace-nowrap text-center align-middle text-white"
-        src={src}
-      />
-    </div>
+    <img
+      className="w-[50px] h-[50px] inline-block leading-[32px] rounded-full cursor-pointer box-border m-0 p-0 tabular-nums relative overflow-hidden whitespace-nowrap text-center align-middle text-white"
+      src={src}
+    />
   );
 };
 
