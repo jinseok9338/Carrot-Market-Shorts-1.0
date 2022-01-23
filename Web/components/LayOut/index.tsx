@@ -8,9 +8,9 @@ function Layout({ children }: any) {
       <div
         className={`container-layout w-screen flex justify-start flex-auto pt-16`}
       >
-        <div className={`flex-[2_2_240px] md:hidden md:flex-[0]`}>
+        {/* <div className={`flex-[2_2_240px] md:hidden md:flex-[0]`}>
           <Sidebar />
-        </div>
+        </div> */}
         <div className="flex-[0] m-[0_auto] p-[50px_20px] flex max-w-[1194px]">
           {children}
         </div>
