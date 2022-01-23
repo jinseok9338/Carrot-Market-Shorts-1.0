@@ -1,11 +1,11 @@
-import { Avatar } from "./Avatar";
+import { Avatar } from "../Video/Avatar";
 import Icons from "./content";
 import HeaderContent from "./content";
 
 //TODO Problem with the sizing of the screen and the problem with the svg being too small
 const Footer = () => {
   return (
-    <div className="header-container w-full fixed bottom-0 right-0 left-0 h-[70px] bg-[black] flex justify-center">
+    <div className="header-container w-full fixed bottom-0 right-0 left-0 h-[70px] bg-[black] flex justify-center z-10">
       <div className="icons-container w-full flex justify-between">
         <Icons menuText="Home">
           <svg
