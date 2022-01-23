@@ -9,7 +9,7 @@ interface FeedProps {
 
 const Feed = ({ posts }: FeedProps) => {
   return (
-    <div className="feed-container flex flex-col max-w-3xl items-center flex-auto">
+    <div className="feed-container flex flex-col max-w-[768px] items-center flex-auto">
       {posts.map((post: any, index: any) => (
         <PostCard key={index} post={post} />
       ))}

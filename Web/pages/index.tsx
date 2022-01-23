@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <Feed posts={posts}></Feed>
-      <Suggestions people={people} items={items}></Suggestions>
+      {/* <Suggestions people={people} items={items}></Suggestions> */}
     </Layout>
   );
 };

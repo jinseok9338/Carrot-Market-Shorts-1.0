@@ -1,6 +1,6 @@
 //TODO children: any for now ... but will have its type..
 const HeaderContent = ({ children }: any) => (
-  <div className="flex h-full justify-between items-center p-[0_20px] ">
+  <div className="flex h-full justify-center items-center p-[0_20px] ">
     {children}
   </div>
 );

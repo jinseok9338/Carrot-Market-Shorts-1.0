@@ -3,19 +3,21 @@ import HeaderContent from "./content";
 
 const Header = () => {
   return (
-    <div className="header-container w-full fixed top-0 right-0 left-0 h-[70px] bg-white border-b-[1px] border-[tintBlue]/[0.2] ">
+    <div className="header-container w-full fixed top-0 right-0 left-0 h-[70px] bg-white border-b-[1px] border-[tintBlue]/[0.2] flex content-center justify-center">
       <HeaderContent>
-        <div className="flex flex-row">
+        <div className="flex flex-row flex-[1_1_auto] w-[500px]">
+          <a className="cursor-pointer" href="#">
           <img
             className="w-[97px] ml-[4px] relative top-[-2px]"
             src="/images/carrot_market_title.png"
           ></img>
+          </a>
           <p className="ml-[5px] font-[800] text-[14px] relative top-[-8px] text-tintBlue ">
             Shorts
           </p>
         </div>
         <div className="flex items-center">
-          <img className="w-[37px] h-[37px]" src="/images/uploadIcon.svg"></img>
+   
           <Avatar src="https://p16-va.tiktokcdn.com/img/musically-maliva-obj/1658913186824198~c5_100x100.jpeg" />
         </div>
       </HeaderContent>
