@@ -1,20 +1,11 @@
-
-import Footer from "../Header";
-import Header from "../Header";
+import Footer from "../Footer";
+import Header from "../Footer";
 import Sidebar from "../SideBar";
 
 function Layout({ children }: any) {
   return (
     <div className="container">
-      
-      {/* <div
-        className={`container-layout w-screen flex justify-start flex-auto pt-16`}
-      >
-        <div className="flex-[0] m-[0_auto] p-[50px_20px] flex max-w-[1194px]">
-          {children}
-        </div>
-      </div> */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }
