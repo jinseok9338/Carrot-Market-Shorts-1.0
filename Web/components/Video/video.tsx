@@ -5,6 +5,7 @@ const Video = ({ source }: { source: string }) => {
   const videoRef = useRef(null);
 
   const onVideoPress = () => {
+    console.log(videoRef.current);
     if (playing) {
       (videoRef as any).current.pause();
       setPlaying(false);
