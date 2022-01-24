@@ -1,0 +1,82 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Product {
+  product_id: Int!
+  user: User!
+  user_id: Int!
+  product_name: String!
+  sold: Boolean!
+  images: [String!]
+  video: String!
+}
+
+type User {
+  user_id: Int!
+  user_name: String!
+  email: String!
+  first_name: String!
+  last_name: String!
+  confirm_email: Boolean!
+  products: [Product!]
+  expiration_email_time: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ReturnType {
+  ok: Boolean!
+  error: String
+  user: User
+}
+
+type Query {
+  users: [User!]!
+  user(user_id: Int!): User!
+  products: [Product!]!
+  product(product_id: Int!): Product!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): ReturnType!
+  addMockData: [User!]!
+  updateUserInfo(updateUserInfo: UpdateUserInput!): String!
+  deleteUser(user_id: Int!): String!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  removeProduct(product_id: Int!): String!
+}
+
+input CreateUserInput {
+  user_name: String!
+  password: String!
+  password_confirm: String!
+  email: String!
+  first_name: String!
+  last_name: String!
+  confirm_email: Boolean!
+  expiration_email_time: DateTime
+}
+
+input UpdateUserInput {
+  user_name: String
+  password: String
+  password_confirm: String
+  email: String
+  first_name: String
+  last_name: String
+  confirm_email: Boolean
+  expiration_email_time: DateTime
+  user_id: Int!
+}
+
+input CreateProductInput {
+  user_id: Int!
+  product_name: String!
+  sold: Boolean!
+  images: [String!]
+  video: String!
+}

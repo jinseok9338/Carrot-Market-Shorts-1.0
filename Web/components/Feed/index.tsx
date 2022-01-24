@@ -1,5 +1,3 @@
-// TODO Need PostCard Component and Container Component
-
 import { IPostCardHeaderProps } from "../Video/PostCardHeader";
 
 interface FeedProps {

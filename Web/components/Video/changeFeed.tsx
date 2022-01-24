@@ -18,7 +18,7 @@ export const ChangeFeed: FC<IChangeFeedProps> = ({}) => {
       <span
         className={`${
           toggle == "foryou" ? "text-[white]" : "text-[white]/[0.7]"
-        } font-[400]  text-[1.1rem] cursor-pointer`}
+        } font-[400] font-mono text-[1.1rem] cursor-pointer`}
         id={"foryou"}
         onClick={(e) => {
           toggleHighlight(e.currentTarget.id);
@@ -27,7 +27,7 @@ export const ChangeFeed: FC<IChangeFeedProps> = ({}) => {
         for you
       </span>
       <span
-        className={`font-[400]  text-[1.1rem] cursor-pointer ${
+        className={`font-[400]  text-[1.1rem] font-mono cursor-pointer ${
           toggle == "following" ? "text-[white]" : "text-[white]/[0.7]"
         }`}
         id={"following"}

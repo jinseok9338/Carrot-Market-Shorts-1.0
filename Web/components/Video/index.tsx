@@ -2,11 +2,13 @@ import { FC } from "react";
 import { Action } from "./action";
 import { Avatar } from "./Avatar";
 import { ChangeFeed } from "./changeFeed";
+import { SwipeableVideos } from "./swipable";
 
 interface IVideoProps {}
 // TODO Make the video go over if one video is over use react-swipeable for the task
 
 export const Video: FC<IVideoProps> = ({}) => {
+  const sources = ["/playing.mp4", "/playing.mp4"];
   return (
     <div className="video border-[1px] border-[white] bg-[white] w-full h-full absolute snap-start top-0 bottom-0 overflow-hidden">
       <ChangeFeed />
@@ -38,9 +40,9 @@ export const Video: FC<IVideoProps> = ({}) => {
                 width="43.5"
                 height="40.3591"
                 filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
+                colorInterpolationFilters="sRGB"
               >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feColorMatrix
                   in="SourceAlpha"
                   type="matrix"
@@ -78,14 +80,14 @@ export const Video: FC<IVideoProps> = ({}) => {
           >
             <g filter="url(#filter0_d_104_24)">
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M21.8242 33.4976C21.7164 33.4992 21.6083 33.5 21.5 33.5C11.835 33.5 4 27.0081 4 19C4 10.9919 11.835 4.5 21.5 4.5C31.165 4.5 39 10.9919 39 19C39 21.0253 38.4989 22.9536 37.5938 24.7044C36.3794 27.1797 34.5051 29.3888 32.472 31.2945C29.3743 34.1981 25.7901 36.39 23.2378 37.6253C22.5627 37.9521 21.8242 37.4404 21.8242 36.7278V33.4976ZM15.5 19.75C15.5 21.1307 14.3807 22.25 13 22.25C11.6193 22.25 10.5 21.1307 10.5 19.75C10.5 18.3693 11.6193 17.25 13 17.25C14.3807 17.25 15.5 18.3693 15.5 19.75ZM21.5 22.25C22.8807 22.25 24 21.1307 24 19.75C24 18.3693 22.8807 17.25 21.5 17.25C20.1193 17.25 19 18.3693 19 19.75C19 21.1307 20.1193 22.25 21.5 22.25ZM32.5 19.75C32.5 21.1307 31.3807 22.25 30 22.25C28.6193 22.25 27.5 21.1307 27.5 19.75C27.5 18.3693 28.6193 17.25 30 17.25C31.3807 17.25 32.5 18.3693 32.5 19.75Z"
                 fill="#FBFBFB"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M21.5 33.5C31.165 33.5 39 27.0081 39 19C39 10.9919 31.165 4.5 21.5 4.5C11.835 4.5 4 10.9919 4 19C4 27.0081 11.835 33.5 21.5 33.5ZM13 22.25C14.3807 22.25 15.5 21.1307 15.5 19.75C15.5 18.3693 14.3807 17.25 13 17.25C11.6193 17.25 10.5 18.3693 10.5 19.75C10.5 21.1307 11.6193 22.25 13 22.25ZM24 19.75C24 21.1307 22.8807 22.25 21.5 22.25C20.1193 22.25 19 21.1307 19 19.75C19 18.3693 20.1193 17.25 21.5 17.25C22.8807 17.25 24 18.3693 24 19.75ZM30 22.25C31.3807 22.25 32.5 21.1307 32.5 19.75C32.5 18.3693 31.3807 17.25 30 17.25C28.6193 17.25 27.5 18.3693 27.5 19.75C27.5 21.1307 28.6193 22.25 30 22.25Z"
                 fill="white"
               />
@@ -98,7 +100,7 @@ export const Video: FC<IVideoProps> = ({}) => {
                 width="43"
                 height="41.2262"
                 filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
+                colorInterpolationFilters="sRGB"
               >
                 <feFlood flood-opacity="0" result="BackgroundImageFix" />
                 <feColorMatrix
@@ -154,9 +156,9 @@ export const Video: FC<IVideoProps> = ({}) => {
                 width="42.0786"
                 height="34.8412"
                 filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
+                colorInterpolationFilters="sRGB"
               >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feColorMatrix
                   in="SourceAlpha"
                   type="matrix"
@@ -185,14 +187,7 @@ export const Video: FC<IVideoProps> = ({}) => {
           </svg>
         </Action>
       </div>
-      <video
-        controls
-        autoPlay
-        muted
-        className="video__player w-auto h-auto object-fill min-w-full min-h-full absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-      >
-        <source src="/videos/playing.mp4" type="video/mp4" />
-      </video>
+      <SwipeableVideos sources={sources} />
     </div>
   );
 };
