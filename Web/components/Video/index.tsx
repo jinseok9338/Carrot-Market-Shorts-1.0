@@ -3,14 +3,15 @@ import { Action } from "./action";
 import { Avatar } from "./Avatar";
 import { ChangeFeed } from "./changeFeed";
 import { SwipeableVideos } from "./swipable";
+import Video from "./video";
 
 interface IVideoProps {}
 // TODO Make the video go over if one video is over use react-swipeable for the task
 
-export const Video: FC<IVideoProps> = ({}) => {
-  const sources = ["/playing.mp4", "/playing.mp4"];
+export const VideoIndex: FC<IVideoProps> = ({}) => {
+  const sources = ["/videos/playing.mp4", "/videos/playing.mp4"];
   return (
-    <div className="video border-[1px] border-[white] bg-[white] w-full h-full absolute snap-start top-0 bottom-0 overflow-hidden">
+    <SwipeableVideos>
       <ChangeFeed />
       <div className="action-container flex flex-col justify-around items-center relative bottom-[-40vh] left-[80vw] w-[20vw] h-[40vh] z-[3]">
         <Avatar src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" />
@@ -187,7 +188,9 @@ export const Video: FC<IVideoProps> = ({}) => {
           </svg>
         </Action>
       </div>
-      <SwipeableVideos sources={sources} />
-    </div>
+      {sources.map((source) => (
+        <Video source={source} />
+      ))}
+    </SwipeableVideos>
   );
 };

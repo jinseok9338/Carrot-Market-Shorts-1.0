@@ -1,32 +1,25 @@
+import config from "next/config";
 import { FC } from "react";
-import SwipeableViews from "react-swipeable-views";
-interface ISwipeableProps {
-  sources: string[];
-}
+import { useSwipeable } from "react-swipeable";
+import Video from "./video";
 
-const styles = {
-  slideContainer: {
-    height: "100vh",
-    width: "100vw",
-  },
-};
+interface ISwipeableProps {}
 
-const Video = ({ source }: { source: string }) => (
-  <video
-    autoPlay
-    muted
-    className="video__player w-auto h-auto object-fill min-w-full min-h-full absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-  >
-    <source src={source} type="video/mp4" />
-  </video>
-);
+export const SwipeableVideos: FC<ISwipeableProps> = ({ children }) => {
+  const handlers = useSwipeable({
+    onSwipedUp: (eventData) =>
+      console.log("User Swiped Up! play NextVideo", eventData),
+    onSwipedDown: (eventData) =>
+      console.log("User Swiped Down! play PreviousVideo", eventData),
+    ...config,
+  });
 
-export const SwipeableVideos: FC<ISwipeableProps> = ({ sources }) => {
   return (
-    <SwipeableViews containerStyle={styles.slideContainer} axis="y" resistance>
-      {sources.map((source) => (
-        <Video source={source} />
-      ))}
-    </SwipeableViews>
+    <div
+      className="video bg-[white] w-full h-full absolute snap-start top-0 bottom-0 overflow-hidden"
+      {...handlers}
+    >
+      {children}
+    </div>
   );
 };

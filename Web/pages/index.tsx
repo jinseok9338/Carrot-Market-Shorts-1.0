@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import Footer from "../components/Footer";
 import Layout from "../components/LayOut";
-import { Video } from "../components/Video";
+import { VideoIndex } from "../components/Video";
 
 const Home: NextPage = () => {
   return (
     <Layout>
-      <Video />
+      <VideoIndex />
       <Footer />
     </Layout>
   );
