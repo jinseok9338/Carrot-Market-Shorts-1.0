@@ -16,7 +16,7 @@ export const SwipeableVideos: FC<ISwipeableProps> = ({ children }) => {
 
   return (
     <div
-      className="video bg-[white] w-full h-full absolute snap-start top-0 bottom-0 overflow-hidden"
+      className="video bg-[white] w-screen h-screen relative snap-start m-[0_auto] overflow-hidden"
       {...handlers}
     >
       {children}
