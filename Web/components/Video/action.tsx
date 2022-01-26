@@ -1,7 +1,6 @@
 import { FC, ReactNode } from "react";
 interface IActionProps {
   text: string;
-  children: ReactNode;
 }
 
 export const Action: FC<IActionProps> = ({ text, children }) => {

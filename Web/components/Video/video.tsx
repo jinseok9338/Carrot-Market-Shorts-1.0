@@ -22,7 +22,7 @@ const Video = ({ source }: { source: string }) => {
       muted
       ref={videoRef}
       onClick={onVideoPress}
-      className="video__player w-screen h-screen object-fill min-w-full min-h-full translate-y-[-50%]"
+      className="video__player w-screen h-screen object-cover min-w-full min-h-full scale-[1,-1] object-center"
     >
       <source src={source} type="video/mp4" />
     </video>
