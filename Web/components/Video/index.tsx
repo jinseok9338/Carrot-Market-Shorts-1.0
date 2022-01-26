@@ -7,24 +7,16 @@ import Video from "./video";
 interface IVideoProps {}
 // TODO use ScrollTo and useRef to scroll down to the video
 export const VideoIndex: FC<IVideoProps> = ({}) => {
-  const getWidth = () => window.innerWidth;
-  const width = getWidth();
-  const [translate, setTranslate] = useState(0);
-  const [transition, setTransition] = useState(0.45);
-
   const sources = ["/videos/playing.mp4", "/videos/playing.mp4"];
   return (
-    <SwipeableVideos>
-      <div
-        className={`h-full w-[${width.toString()}] flex translate-y-[-${translate.toString()}px] `}
-      >
+    <SwipeableVideos sources={sources}>
+      <div className={`inner-container h-full w-full flex flex-col`}>
         <ChangeFeed />
         <Actions />
         {sources.map((source) => (
-          <>
+          <div className="flex-[1] overflow-hidden">
             <Video source={source} key={source} />
-            <Video source={source} key={source} />
-          </>
+          </div>
         ))}
       </div>
     </SwipeableVideos>
