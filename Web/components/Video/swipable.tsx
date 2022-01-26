@@ -1,6 +1,8 @@
 import config from "next/config";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
+
+//TODO useHook to passdown the videoRef
 
 interface ISwipeableProps {
   sources: string[];
@@ -8,15 +10,27 @@ interface ISwipeableProps {
 
 export const SwipeableVideos: FC<ISwipeableProps> = ({ children, sources }) => {
   const [index, setIndex] = useState(0);
-  const [height, setHeight] = useState(0);
+  const videoRef: any = useRef(null);
+  const [playing, setPlaying] = useState(true);
 
-  useEffect(() => {
-    setHeight(window.innerHeight);
-  }, []);
+  const onVideoPress = () => {
+    console.log(videoRef.current);
+    if (playing) {
+      (videoRef as any).current.pause();
+      setPlaying(false);
+    } else {
+      (videoRef as any).current.play();
+      setPlaying(true);
+    }
+  };
 
   const handlers = useSwipeable({
     onSwipedUp: () => {
       setIndex(index >= sources.length - 1 ? index : index + 1);
+      window.scrollTo({
+        behavior: "smooth",
+        top: videoRef.current.offsetTop,
+      });
       console.log(index, "index");
     },
     onSwipedDown: () => {
@@ -26,11 +40,11 @@ export const SwipeableVideos: FC<ISwipeableProps> = ({ children, sources }) => {
     ...config,
   });
 
+  const videoRefFunc = { playing, setPlaying, onVideoPress, videoRef };
+
   return (
     <div
-      className={`video bg-[white] w-screen h-screen relative snap-start m-[0_auto] overflow-scroll translate-y-[-${
-        height * index
-      }vh]`}
+      className={`video bg-[white] w-screen h-screen relative snap-start m-[0_auto] overflow-scroll`}
       {...handlers}
     >
       {children}
