@@ -1,7 +1,6 @@
 import config from "next/config";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
-import Video from "./video";
 
 interface ISwipeableProps {
   sources: string[];
@@ -9,14 +8,18 @@ interface ISwipeableProps {
 
 export const SwipeableVideos: FC<ISwipeableProps> = ({ children, sources }) => {
   const [index, setIndex] = useState(0);
-  const height = window.innerHeight;
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    setHeight(window.innerHeight);
+  }, []);
 
   const handlers = useSwipeable({
-    onSwipedUp: (eventData) => {
+    onSwipedUp: () => {
       setIndex(index >= sources.length - 1 ? index : index + 1);
       console.log(index, "index");
     },
-    onSwipedDown: (eventData) => {
+    onSwipedDown: () => {
       setIndex(index <= 0 ? index : index - 1);
       console.log(index, "index");
     },
@@ -25,7 +28,7 @@ export const SwipeableVideos: FC<ISwipeableProps> = ({ children, sources }) => {
 
   return (
     <div
-      className={`video bg-[white] w-screen h-screen relative snap-start m-[0_auto] overflow-hidden translate-y-[-${
+      className={`video bg-[white] w-screen h-screen relative snap-start m-[0_auto] overflow-scroll translate-y-[-${
         height * index
       }vh]`}
       {...handlers}

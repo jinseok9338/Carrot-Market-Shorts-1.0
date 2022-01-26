@@ -14,9 +14,7 @@ export const VideoIndex: FC<IVideoProps> = ({}) => {
         <ChangeFeed />
         <Actions />
         {sources.map((source) => (
-          <div className="flex-[1] overflow-hidden">
-            <Video source={source} key={source} />
-          </div>
+          <Video source={source} key={source} />
         ))}
       </div>
     </SwipeableVideos>

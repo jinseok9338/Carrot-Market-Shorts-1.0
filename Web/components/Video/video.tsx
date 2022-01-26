@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+// Getting rid of all the svg
 
 const Video = ({ source }: { source: string }) => {
   const [playing, setPlaying] = useState(false);
@@ -16,17 +17,15 @@ const Video = ({ source }: { source: string }) => {
   };
 
   return (
-    <div>
-      <video
-        autoPlay
-        muted
-        ref={videoRef}
-        onClick={onVideoPress}
-        className="video__player w-auto h-auto object-fill min-w-full min-h-full absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-      >
-        <source src={source} type="video/mp4" />
-      </video>
-    </div>
+    <video
+      autoPlay
+      muted
+      ref={videoRef}
+      onClick={onVideoPress}
+      className="video__player w-screen h-screen object-fill min-w-full min-h-full translate-y-[-50%]"
+    >
+      <source src={source} type="video/mp4" />
+    </video>
   );
 };
 

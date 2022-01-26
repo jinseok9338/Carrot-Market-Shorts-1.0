@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 interface IconsProps {
-  children: ReactNode;
+  children?: ReactNode;
   menuText?: string;
 }
 
