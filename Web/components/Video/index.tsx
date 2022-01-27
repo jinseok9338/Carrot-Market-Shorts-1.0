@@ -34,14 +34,18 @@ export const VideoIndex: FC<IVideoProps> = ({}) => {
           {/* <ChangeFeed />
         <Actions /> */}
 
-          {sources.map((source) => (
-            <SwiperSlide className="h-full w-full" key={Math.random()}>
-              <Video
+          {sources.map((source, i) => (
+            <SwiperSlide
+              className="h-full w-full flex justify-center items-center"
+              key={i}
+            >
+              {/* <Video
                 source={
                   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                 }
                 key={source}
-              />
+              /> */}
+              <p>{`Slide ${i}`}</p>
             </SwiperSlide>
           ))}
           <div className="min-h-[10vh] min-w-screen bg-[black]"></div>
