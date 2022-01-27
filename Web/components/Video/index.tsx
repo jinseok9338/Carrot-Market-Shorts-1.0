@@ -17,40 +17,26 @@ export const VideoIndex: FC<IVideoProps> = ({}) => {
     "/videos/playing.mp4",
     "/videos/playing.mp4",
   ];
+  // videos not playing becuase of the internet speed... What the fuck??
 
   return (
     <Swiper
       direction={"vertical"}
-      className="mySwiper"
+      className="mySwiper video-container bg-[white] w-screen h-screen relative m-[0_auto] overflow-hidden"
       pagination={{
         clickable: false,
         type: "custom",
       }}
     >
-      <div
-        className={`video-container bg-[white] w-screen h-screen relative m-[0_auto] overflow-hidden`}
-      >
-        <div className={`inner-container h-full w-full flex flex-col`}>
-          {/* <ChangeFeed />
+      {/* <ChangeFeed />
         <Actions /> */}
 
-          {sources.map((source, i) => (
-            <SwiperSlide
-              className="h-full w-full flex justify-center items-center"
-              key={i}
-            >
-              {/* <Video
-                source={
-                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                }
-                key={source}
-              /> */}
-              <p>{`Slide ${i}`}</p>
-            </SwiperSlide>
-          ))}
-          <div className="min-h-[10vh] min-w-screen bg-[black]"></div>
-        </div>
-      </div>
+      {sources.map((source, i) => (
+        <SwiperSlide key={i}>
+          <Video source={source} key={source} />
+        </SwiperSlide>
+      ))}
+      <div className="min-h-[10vh] min-w-screen bg-[black]"></div>
     </Swiper>
   );
 };
