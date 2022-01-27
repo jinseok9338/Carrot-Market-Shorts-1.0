@@ -22,7 +22,7 @@ export const VideoIndex: FC<IVideoProps> = ({}) => {
   return (
     <Swiper
       direction={"vertical"}
-      className="mySwiper video-container bg-[white] w-screen h-screen relative m-[0_auto] overflow-hidden"
+      className="mySwiper video-container bg-[white] w-screen h-auto relative m-[0_auto] overflow-hidden"
       pagination={{
         clickable: false,
         type: "custom",
