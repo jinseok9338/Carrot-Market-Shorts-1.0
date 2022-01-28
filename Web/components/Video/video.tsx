@@ -9,6 +9,9 @@ const Video = ({ source }: VideoProps) => {
       id={source}
       muted
       preload="auto"
+      playsInline={true}
+      controls
+      autoPlay
       className={`video__player w-screen  object-cover min-w-full min-h-[91vh] scale-[1,-1] object-center`}
     >
       <source src={source} type="video/mp4" />
