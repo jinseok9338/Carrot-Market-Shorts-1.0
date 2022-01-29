@@ -9,8 +9,15 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper/swiper-bundle.min.js"
+          />
+        </Head>
+
         <link rel="shortcut icon" href="/carrot_market.png" />
+
         <body>
           <Main />
           <NextScript />
