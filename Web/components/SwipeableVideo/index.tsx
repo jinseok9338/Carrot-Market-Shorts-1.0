@@ -36,7 +36,7 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
   const bind = useDrag(
     ({ active, movement: [_mx, my], direction: [_xDir, yDir], cancel }) => {
       if (active && Math.abs(my) > height / 4) {
-        // The Smaller the number the smaller the thersh hold it needs to go over... Danm too long to figure this out...
+        // The Smaller the number the smaller the thersh hold it needs to go over..
         setindex((index) =>
           clamp(index + (yDir > 0 ? -1 : 1), 0, videos.length - 1)
         );
