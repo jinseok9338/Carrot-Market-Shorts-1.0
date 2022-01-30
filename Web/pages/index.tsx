@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <div className="container flex items-center justify center">
       <SwiperView />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
