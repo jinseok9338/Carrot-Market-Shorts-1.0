@@ -8,14 +8,6 @@ import { Wrapper } from "./wrapper";
 
 interface ISwiperProps {}
 
-const pages = [
-  "https://picsum.photos/id/237/200/300",
-  "https://picsum.photos/id/227/200/300",
-  "https://picsum.photos/id/247/200/300",
-  "https://picsum.photos/id/287/200/300",
-  "https://picsum.photos/id/227/200/300",
-];
-
 const videos = [
   "/videos/playing.mp4",
   "/videos/playing.mp4",
