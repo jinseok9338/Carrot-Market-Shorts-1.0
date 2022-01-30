@@ -5,9 +5,9 @@ import { VideoIndex } from "../components/Video";
 
 const Home: NextPage = () => {
   return (
-    <div className="container">
+    <div className="container flex items-center justify center">
       <SwiperView />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
