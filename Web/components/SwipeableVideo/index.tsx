@@ -73,7 +73,7 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
               playsInline={true}
               width="100%"
               height="100%"
-              className={`video__player object-cover scale-[1,-1] object-center`}
+              className={`video__player object-cover absolute scale-[1,-1] object-center`}
             />
           </Wrapper>
         </animated.div>
