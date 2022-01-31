@@ -64,22 +64,6 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
           key={i}
           style={{ display, y }}
         >
-          <animated.div
-            style={{ scale, backgroundImage: `url(${pages[i]})` }}
-          />
-        </animated.div>
-      ))}
-    </div>
-  );
-};
-
-{
-  /*<animated.div
-          className="page"
-          {...bind()}
-          key={i}
-          style={{ display, y }}
-        >
           <Wrapper scale={scale}>
             <ReactPlayer
               playing={i == index ? true : false}
@@ -89,6 +73,13 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
               width="100%"
               height="100%"
             />
-        </Wrapper>
-        </animated.div>*/
+          </Wrapper>
+        </animated.div>
+      ))}
+    </div>
+  );
+};
+
+{
+  /**/
 }
