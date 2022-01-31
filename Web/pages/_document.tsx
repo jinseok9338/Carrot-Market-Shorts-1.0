@@ -9,8 +9,10 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head></Head>
+
         <link rel="shortcut icon" href="/carrot_market.png" />
+
         <body>
           <Main />
           <NextScript />
