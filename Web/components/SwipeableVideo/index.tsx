@@ -17,7 +17,7 @@ const videos = [
 export const SwiperView: FC<ISwiperProps> = ({ children }) => {
   const [ref, { height, width }] = useMeasure();
   const [index, setindex] = useState(0);
-
+  console.log(height);
   // Set the drag hook and define component movement based on gesture data
   //Something is wrong cause it allows the right and left swipe but not up and down
   const [props, api] = useSprings(videos.length, (i) => ({
@@ -48,23 +48,25 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
   );
 
   return (
-    <div ref={ref} className="w-full h-full overflow-scroll">
-      {props.map(({ y, display, scale }, i) => (
+    <div ref={ref} className="w-full h-full overflow-hidden">
+      {props.map(({ y, display }, i) => (
         <animated.div
-          className="w-full h-[90vh] touch-none"
+          className="w-full h-[90vh] touch-none absolute" // Without absolute it won't work ... Css ...
           {...bind()}
           key={i}
-          style={{ display, y, scale }}
+          style={{ display, y }}
         >
-          <ReactPlayer
-            playing={i == index ? true : false}
-            id={videos[i]}
-            muted
-            url={videos[i]}
-            width="100%"
-            height="100%"
-            className={`video__player object-cover object-center m-1`}
-          />
+          <Wrapper>
+            <ReactPlayer
+              playing={i == index ? true : false}
+              id={videos[i]}
+              muted
+              url={videos[i]}
+              width="100%"
+              height="100%"
+              className={`video__player mt-0 mb-0`}
+            />
+          </Wrapper>
         </animated.div>
       ))}
     </div>

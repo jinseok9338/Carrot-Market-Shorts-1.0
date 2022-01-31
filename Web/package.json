@@ -8,6 +8,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.17",
     "@react-spring/web": "^9.4.2",
     "@use-gesture/react": "^10.2.4",
     "lodash.clamp": "^4.0.3",
