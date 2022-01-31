@@ -13,6 +13,12 @@ const videos = [
   "/videos/playing.mp4",
 ];
 
+const pages = [
+  "https://source.unsplash.com/600x600/?girl",
+  "https://source.unsplash.com/600x600/?girl",
+  "https://source.unsplash.com/600x600/?girl",
+];
+
 export const SwiperView: FC<ISwiperProps> = ({ children }) => {
   const [height, setHeight] = useState(0);
   useEffect(() => {
@@ -23,7 +29,7 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
 
   const [index, setindex] = useState(0);
   // Set the drag hook and define component movement based on gesture data
-  const [props, api] = useSprings(videos.length, (i) => ({
+  const [props, api] = useSprings(pages.length, (i) => ({
     y: i * height,
     scale: 1,
     display: "block",
@@ -58,6 +64,22 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
           key={i}
           style={{ display, y }}
         >
+          <animated.div
+            style={{ scale, backgroundImage: `url(${pages[i]})` }}
+          />
+        </animated.div>
+      ))}
+    </div>
+  );
+};
+
+{
+  /*<animated.div
+          className="page"
+          {...bind()}
+          key={i}
+          style={{ display, y }}
+        >
           <Wrapper scale={scale}>
             <ReactPlayer
               playing={i == index ? true : false}
@@ -67,9 +89,6 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
               width="100%"
               height="100%"
             />
-          </Wrapper>
-        </animated.div>
-      ))}
-    </div>
-  );
-};
+        </Wrapper>
+        </animated.div>*/
+}

@@ -9,9 +9,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head></Head>
-
-        <link rel="shortcut icon" href="/carrot_market.png" />
+        <Head>
+          <link rel="shortcut icon" href="/carrot_market.png" />
+        </Head>
 
         <body>
           <Main />
