@@ -6,7 +6,10 @@ import {
   faHeart,
   faShare,
 } from "@fortawesome/free-solid-svg-icons";
-interface IWrapperProps {}
+import { animated, SpringValue } from "@react-spring/web";
+interface IWrapperProps {
+  scale: SpringValue<number>;
+}
 
 //TODO Make the wrapper for the video
 // This wrapper that has relative position will adhere to the animated div Done
@@ -15,9 +18,9 @@ interface IWrapperProps {}
 // 2. we need an Avatar Done
 // 3. we need a container for the product Info and location
 
-export const Wrapper: FC<IWrapperProps> = ({ children }) => {
+export const Wrapper: FC<IWrapperProps> = ({ children, scale }) => {
   return (
-    <>
+    <animated.div style={{ scale }}>
       <div className="absolute w-[60vw] h-[9vh] left-[2vw] bottom-[2vh] z-10 flex justify-around items-start flex-col">
         <div className="flex justify-between">
           <span className="font-bold text-[0.8rem] text-[black]  cursor-pointer userId mr-2">
@@ -43,7 +46,7 @@ export const Wrapper: FC<IWrapperProps> = ({ children }) => {
       <div className="absolute w-[14vw] h-[34vh] right-[2vw] bottom-[5vh] z-10 flex justify-around items-center flex-col">
         <div className="w-11 mb-3 h-11 flex justify-center items-center rounded-full bg-gray-500 text-[1rem] text-white cursor-pointer">
           <img
-            src="http://source.unsplash.com/100x100/?girl"
+            src="https://source.unsplash.com/100x100/?girl"
             className="rounded-full"
           />
         </div>
@@ -64,6 +67,6 @@ export const Wrapper: FC<IWrapperProps> = ({ children }) => {
         <span className="font-[500] text-[0.8rem] text-[white]">share</span>
       </div>
       {children}
-    </>
+    </animated.div>
   );
 };

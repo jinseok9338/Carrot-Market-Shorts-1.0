@@ -1,13 +1,12 @@
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { animated, useSprings } from "@react-spring/web";
-import useMeasure from "react-use-measure";
-import { useDrag, Vector2 } from "@use-gesture/react";
+import { useDrag } from "@use-gesture/react";
 import clamp from "lodash.clamp";
 import ReactPlayer from "react-player";
 import { Wrapper } from "./wrapper";
 
 interface ISwiperProps {}
-
+// I suspect it has something to do with tailwind css
 const videos = [
   "/videos/playing.mp4",
   "/videos/playing.mp4",
@@ -15,11 +14,15 @@ const videos = [
 ];
 
 export const SwiperView: FC<ISwiperProps> = ({ children }) => {
-  const [ref, { height, width }] = useMeasure();
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    // window is accessible here.
+    const height = window.innerHeight;
+    setHeight(height);
+  }, []);
+
   const [index, setindex] = useState(0);
-  console.log(height);
   // Set the drag hook and define component movement based on gesture data
-  //Something is wrong cause it allows the right and left swipe but not up and down
   const [props, api] = useSprings(videos.length, (i) => ({
     y: i * height,
     scale: 1,
@@ -37,26 +40,25 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
       }
       api.start((i) => {
         if (i < index - 1 || i > index + 1) return { display: "none" };
-        if (i == videos.length) {
-          // Pagination
-        }
+        console.log(height);
         const y = (i - index) * height + (active ? my : 0);
         const scale = active ? 1 - Math.abs(my) / height / 2 : 1;
+        console.log(scale);
         return { y, scale, display: "block" };
       });
     }
   );
 
   return (
-    <div ref={ref} className="w-full h-full overflow-hidden">
-      {props.map(({ y, display }, i) => (
+    <div className="wrapper">
+      {props.map(({ y, display, scale }, i) => (
         <animated.div
-          className="w-full h-[90vh] touch-none absolute" // Without absolute it won't work ... Css ...
+          className="page"
           {...bind()}
           key={i}
           style={{ display, y }}
         >
-          <Wrapper>
+          <Wrapper scale={scale}>
             <ReactPlayer
               playing={i == index ? true : false}
               id={videos[i]}
@@ -64,7 +66,6 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
               url={videos[i]}
               width="100%"
               height="100%"
-              className={`video__player mt-0 mb-0`}
             />
           </Wrapper>
         </animated.div>

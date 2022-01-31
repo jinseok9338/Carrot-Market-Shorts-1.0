@@ -4,7 +4,7 @@ import { SwiperView } from "../components/SwipeableVideo";
 
 const Home: NextPage = () => {
   return (
-    <div className="container flex flex-col items-center w-screen justify-center h-screen">
+    <div className="home">
       <SwiperView />
       <Footer />
     </div>
