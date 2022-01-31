@@ -48,26 +48,23 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
   );
 
   return (
-    <div ref={ref} className="w-screen h-screen relative overflow-hidden">
+    <div ref={ref} className="w-full h-full overflow-scroll">
       {props.map(({ y, display, scale }, i) => (
         <animated.div
-          className="absolute w-full h-[90vh] touch-none"
+          className="w-full h-[90vh] touch-none"
           {...bind()}
           key={i}
           style={{ display, y, scale }}
         >
-          <Wrapper>
-            <ReactPlayer
-              playing={i == index ? true : false}
-              id={videos[i]}
-              muted
-              url={videos[i]}
-              playsInline={true}
-              width="100%"
-              height="100%"
-              className={`video__player object-cover absolute scale-[1,-1] object-center`}
-            />
-          </Wrapper>
+          <ReactPlayer
+            playing={i == index ? true : false}
+            id={videos[i]}
+            muted
+            url={videos[i]}
+            width="100%"
+            height="100%"
+            className={`video__player object-cover object-center m-1`}
+          />
         </animated.div>
       ))}
     </div>
