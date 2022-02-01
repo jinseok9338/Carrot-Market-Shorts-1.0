@@ -20,7 +20,7 @@ const pages = [
 ];
 
 export const SwiperView: FC<ISwiperProps> = ({ children }) => {
-  const [height, setHeight] = useState(896);
+  const [height, setHeight] = useState(1000);
   useEffect(() => {
     // window is accessible here.
     const height = window.innerHeight;

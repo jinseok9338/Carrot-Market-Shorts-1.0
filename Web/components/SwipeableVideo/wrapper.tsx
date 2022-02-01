@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressBook,
@@ -11,17 +11,14 @@ interface IWrapperProps {
   scale: SpringValue<number>;
 }
 
-//TODO Make the wrapper for the video
-// This wrapper that has relative position will adhere to the animated div Done
-// 1. we need a container that contains the icons for the share like and comment Done
-// Make the span and the icon together Done
-// 2. we need an Avatar Done
-// 3. we need a container for the product Info and location
-
 export const Wrapper: FC<IWrapperProps> = ({ children, scale }) => {
+  const [liked, setLiked] = useState(false);
+
+  // TODO UseEffect to set the default like, liked, productInfo and addresses
+  // Need to cache the data in the redis first and read from the redis unless the data is changed??
   return (
     <animated.div style={{ scale }}>
-      <div className="absolute w-[60vw] h-[9vh] left-[2vw] bottom-[2vh] z-10 flex justify-around items-start flex-col">
+      <div className="absolute w-[60vw] h-[9vh] left-[2vw] bottom-[4vh] z-10 flex justify-around items-start flex-col">
         <div className="flex justify-between">
           <span className="font-bold text-[0.8rem] text-[black]  cursor-pointer userId mr-2">
             @Jinseok9338
@@ -52,7 +49,10 @@ export const Wrapper: FC<IWrapperProps> = ({ children, scale }) => {
         </div>
         <FontAwesomeIcon
           icon={faHeart}
-          className="text-[2rem] text-[white] cursor-pointer"
+          onClick={() => setLiked((prev) => !prev)} // Update the like
+          className={`text-[2rem] ${
+            liked ? "text-[#f3a0a0]" : "text-[white]"
+          } text-[white] cursor-pointer`}
         />
         <span className="font-[500] text-[0.8rem] text-[white] ">112</span>
         <FontAwesomeIcon
