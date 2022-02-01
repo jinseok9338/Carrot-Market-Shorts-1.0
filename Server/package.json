@@ -49,6 +49,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
+    "scrape-youtube": "^2.1.14",
     "typeorm": "^0.2.41",
     "uuidv4": "^6.2.12"
   },

@@ -8,9 +8,9 @@ import { Wrapper } from "./wrapper";
 interface ISwiperProps {}
 // I suspect it has something to do with tailwind css
 const videos = [
+  "https://youtu.be/JItNDnOECos",
   "/videos/playing.mp4",
-  "/videos/playing.mp4",
-  "/videos/playing.mp4",
+  "https://youtu.be/ceqqHY5E4-w",
 ];
 
 const pages = [
@@ -46,12 +46,11 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
       }
       api.start((i) => {
         if (i < index - 1 || i > index + 1) return { display: "none" };
-        console.log(height);
         const y = (i - index) * height + (active ? my : 0);
         const scale = active ? 1 - Math.abs(my) / height / 2 : 1;
-        console.log(scale);
         return { y, scale, display: "block" };
-      });
+      }),
+        [index];
     }
   );
 
@@ -66,12 +65,17 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
         >
           <Wrapper scale={scale}>
             <ReactPlayer
-              playing={i == index ? true : false}
+              style={{ pointerEvents: "none" }}
+              playing={i === index ? true : false}
               id={videos[i] + Math.random()}
               muted
               url={videos[i]}
               width="100%"
               height="100%"
+              onEnded={
+                () => console.log("The vudio has ended ")
+                // useCallback to update index and fireup the api
+              }
             />
           </Wrapper>
         </animated.div>
