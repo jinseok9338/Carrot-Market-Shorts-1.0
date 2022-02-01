@@ -20,7 +20,7 @@ const pages = [
 ];
 
 export const SwiperView: FC<ISwiperProps> = ({ children }) => {
-  const [height, setHeight] = useState(0);
+  const [height, setHeight] = useState(896);
   useEffect(() => {
     // window is accessible here.
     const height = window.innerHeight;
@@ -67,7 +67,7 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
           <Wrapper scale={scale}>
             <ReactPlayer
               playing={i == index ? true : false}
-              id={videos[i]}
+              id={videos[i] + Math.random()}
               muted
               url={videos[i]}
               width="100%"
