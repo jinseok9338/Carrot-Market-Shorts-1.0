@@ -1,20 +1,24 @@
 import type { NextPage } from "next";
 import Footer from "../components/Footer";
 import { SwiperView } from "../components/SwipeableVideo";
+import { ProvideAuth, useAuth } from "../utils/auth/useAuth";
 import LoginPage from "./Login";
 
 const Home: NextPage = () => {
+  const auth = useAuth();
   return (
-    <div className="home">
-      {true ? (
-        <LoginPage />
-      ) : (
-        <>
-          <SwiperView />
-          <Footer />
-        </>
-      )}
-    </div>
+    <ProvideAuth>
+      <div className="home">
+        {auth?.user ? (
+          <>
+            <SwiperView />
+            <Footer />
+          </>
+        ) : (
+          <LoginPage />
+        )}
+      </div>
+    </ProvideAuth>
   );
 };
 

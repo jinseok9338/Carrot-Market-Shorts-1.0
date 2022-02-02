@@ -1,7 +1,9 @@
 {
   "name": "carrot-market-2.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "local": "NODE_ENV='development' node server.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -14,6 +16,9 @@
     "@fortawesome/react-fontawesome": "^0.1.17",
     "@react-spring/web": "*",
     "@use-gesture/react": "latest",
+    "axios": "^0.25.0",
+    "express": "^4.17.2",
+    "http-proxy-middleware": "^2.0.2",
     "jsonwebtoken": "^8.5.1",
     "lodash.clamp": "^4.0.3",
     "next": "^12.0.8",

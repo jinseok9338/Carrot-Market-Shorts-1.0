@@ -1,9 +1,22 @@
-import { FC } from "react";
+import { FC, useState } from "react";
+import { useAuth } from "../../utils/auth/useAuth";
 interface ILoginPageProps {}
 
 const LoginPage: FC<ILoginPageProps> = (props) => {
   // Do some Login logic here
   // TODO Connect DATABASE to the front end and use Redis for the auth
+
+  //     "user_id": 1,
+  //     "user_name": "jinseok918111",
+  //     "email": "jinseok981222@gmail.com",
+  //     "first_name": "jinseok93",
+  //     "last_name": "Seo",
+  //     "confirm_email": false,
+  //     "password": "Lazctlazct93!@",
+
+  const auth = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <div className="container h-screen flex flex-col items-center justify-center bg-[#181927]">
@@ -25,7 +38,8 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
             id="username"
             name="username"
             type="text"
-            value={"This is the user"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Username"
           />
         </div>
@@ -38,8 +52,9 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
             id="password"
             name="password"
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="******************"
-            value={"This is the user Password"}
           />
           {false && (
             <p className="text-[#b93030] text-xs italic">
@@ -49,6 +64,10 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
         </div>
         <div className="flex items-center justify-between">
           <button
+            onClick={(e) => {
+              e.preventDefault();
+              auth?.signin(email, password);
+            }}
             className="bg-[#3067b9] hover:bg-[#3a3af0] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-[1vw]"
             type="submit"
           >
