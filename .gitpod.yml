@@ -3,7 +3,7 @@ image:
 
 ports:
   - port: 3000
-    onOpen: ignore
+    onOpen: open-browser
     visibility: public
 
   - port: 5432
@@ -14,6 +14,10 @@ ports:
     onOpen: ignore
     visibility: public
 
+  - port: 6379
+    onOpen: ignore
+    visibility: public
 tasks:
   - before: cd Server && npm install -g @nestjs/cli && npm install && createuser user && createdb mydb && npm start
   - command: cd Web && npm install && npm run dev
+  - command: redis-server
