@@ -1,7 +1,6 @@
 {
   "name": "carrot-market-2.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "local": "NODE_ENV='development' node server.js",
     "dev": "next dev",

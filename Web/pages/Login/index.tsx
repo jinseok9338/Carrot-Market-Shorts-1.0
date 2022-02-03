@@ -1,5 +1,9 @@
+import axios from "axios";
 import { FC, useState } from "react";
 import { useAuth } from "../../utils/auth/useAuth";
+import jwt from "jsonwebtoken";
+import { User } from "../../utils/auth/AuthType";
+
 interface ILoginPageProps {}
 
 const LoginPage: FC<ILoginPageProps> = (props) => {
@@ -17,6 +21,19 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
   const auth = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const submitForm = async () => {
+    const res = await axios.post("/api/login", {
+      email,
+      password,
+    });
+    const data = res.data;
+
+    if (data.data) {
+      const profile = jwt.decode(data.data.access_token);
+      auth?.setUser(profile as unknown as User);
+    }
+  };
 
   return (
     <div className="container h-screen flex flex-col items-center justify-center bg-[#181927]">
@@ -66,7 +83,8 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
           <button
             onClick={(e) => {
               e.preventDefault();
-              auth?.signin(email, password);
+              // auth?.signin(email, password);
+              submitForm();
             }}
             className="bg-[#3067b9] hover:bg-[#3a3af0] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-[1vw]"
             type="submit"

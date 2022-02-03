@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { LoginReturn, UserInfo } from './type';
+import { CustomReturnType, UserInfo } from './type';
 import { CreateUserInput } from 'src/users/dto/create-user.input';
 
 @Injectable()
@@ -35,14 +35,19 @@ export class AuthService {
   }
 
   // TODO Tweak Login that if the user.confirmEmail is not true throw error
-  async login(userInfo: UserInfo): Promise<LoginReturn | Error> {
+  async login(userInfo: UserInfo): Promise<CustomReturnType | Error> {
     if (!userInfo.confirm_email) {
-      return new Error('Your Email is not verified yet');
+      return {
+        statusCode: 500,
+        error: 'The email is not verifed yet',
+        data: null,
+      };
     }
 
     const payload = userInfo;
     return {
-      access_token: this.jwtService.sign(payload),
+      statusCode: 200,
+      data: { access_token: this.jwtService.sign(payload) },
     };
   }
 

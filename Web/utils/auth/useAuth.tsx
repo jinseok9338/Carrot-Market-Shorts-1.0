@@ -5,7 +5,7 @@ import React, {
   createContext,
   ReactNode,
 } from "react";
-import { authContextType, SignUpInput } from "./AuthType";
+import { authContextType, SignUpInput, User } from "./AuthType";
 import axios from "axios";
 
 const authContext = createContext<authContextType | null>(null);
@@ -24,22 +24,11 @@ export const useAuth = () => {
 };
 
 function useProvideAuth() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
   axios.defaults.withCredentials = true;
-  const signin = (email: string, password: string) => {
-    axios
-      .post("http://127.0.0.1:3001/login", {
-        email,
-        password,
-      })
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch((e) => console.log(e.message));
-  };
+
   const signup = (signUpInput: SignUpInput) => {};
   const signout = () => {};
   const sendPasswordResetEmail = (email: string) => {};
@@ -57,7 +46,7 @@ function useProvideAuth() {
   // Return the user object and auth methods
   return {
     user,
-    signin,
+    setUser,
     signup,
     signout,
     sendPasswordResetEmail,

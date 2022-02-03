@@ -1,14 +1,18 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
+import axios from "axios";
+import { useAuth } from "../../utils/auth/useAuth";
 
 type Data = {
-  token: any;
+  statusCode: number;
+  error?: string;
+  data: any;
 };
 
 const KEY = "dadasdasdasdasdasdsad";
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -18,14 +22,19 @@ export default function handler(
     return;
   }
 
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  res.json({
-    token: jwt.sign(
-      {
-        username,
-      },
-      KEY
-    ),
+  const result = await axios.post("http://127.0.0.1:3001/login", {
+    email,
+    password,
   });
+  res.json(result.data);
 }
+// res.json({
+//   token: jwt.sign(
+//     {
+//       email,
+//     },
+//     KEY
+//   ),
+// });
