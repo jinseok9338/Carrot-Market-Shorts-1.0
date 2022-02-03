@@ -7,16 +7,14 @@ import LoginPage from "./Login";
 import { useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
-  const auth = useAuth();
-
-  // const { data: session, status } = useSession();
+  const { data: session, status } = useSession();
+  console.log(session, status);
   // const loading = status === "loading";
 
-  console.log(auth?.user);
   return (
     <ProvideAuth>
       <div className="home">
-        {auth?.user ? (
+        {status === "authenticated" ? (
           <>
             <SwiperView />
             <Footer />
