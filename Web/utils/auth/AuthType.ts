@@ -3,15 +3,15 @@ import { Dispatch, SetStateAction } from "react";
 export interface SignUpInput {}
 
 export interface authContextType {
-  user: User | null;
-  setUser: Dispatch<SetStateAction<User | null>>;
+  user: UserType | null;
+  setUser: Dispatch<SetStateAction<UserType | null>>;
   signup?: (signUpInput: SignUpInput) => void;
   signout?: () => void;
   sendPasswordResetEmail?: (email: string) => void;
   confirmPasswordReset?: (code: any, password: string) => void;
 }
 
-export interface User {
+export interface UserType {
   confirm_email: boolean;
   email: string;
   exp: Date;

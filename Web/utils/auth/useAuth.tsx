@@ -5,8 +5,9 @@ import React, {
   createContext,
   ReactNode,
 } from "react";
-import { authContextType, SignUpInput, User } from "./AuthType";
+import { authContextType, SignUpInput, UserType } from "./AuthType";
 import axios from "axios";
+import Cookie from "js-cookie";
 
 const authContext = createContext<authContextType | null>(null);
 
@@ -24,10 +25,7 @@ export const useAuth = () => {
 };
 
 function useProvideAuth() {
-  const [user, setUser] = useState<User | null>(null);
-  // Wrap any Firebase methods we want to use making sure ...
-  // ... to save the user to state.
-  axios.defaults.withCredentials = true;
+  const [user, setUser] = useState<UserType | null>(null);
 
   const signup = (signUpInput: SignUpInput) => {};
   const signout = () => {};
@@ -38,11 +36,7 @@ function useProvideAuth() {
   // Because this sets state in the callback it will cause any ...
   // ... component that utilizes this hook to re-render with the ...
   // ... latest auth object.
-  useEffect(() => {
-    // When user is logged in return the user and setUser
-    // use User so we know that the user is there if the user is not there
-    // then redirect to Login Page
-  }, []);
+  useEffect(() => {}, []);
   // Return the user object and auth methods
   return {
     user,

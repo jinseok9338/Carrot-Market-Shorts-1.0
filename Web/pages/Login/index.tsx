@@ -2,7 +2,7 @@ import axios from "axios";
 import { FC, useState } from "react";
 import { useAuth } from "../../utils/auth/useAuth";
 import jwt from "jsonwebtoken";
-import { User } from "../../utils/auth/AuthType";
+import { UserType } from "../../utils/auth/AuthType";
 
 interface ILoginPageProps {}
 
@@ -22,6 +22,8 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  console.log(auth?.user);
+
   const submitForm = async () => {
     const res = await axios.post("/api/login", {
       email,
@@ -31,7 +33,7 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
 
     if (data.data) {
       const profile = jwt.decode(data.data.access_token);
-      auth?.setUser(profile as unknown as User);
+      auth?.setUser(profile as unknown as UserType);
     }
   };
 
