@@ -16,6 +16,7 @@
     "@react-spring/web": "*",
     "@use-gesture/react": "latest",
     "axios": "^0.25.0",
+    "cookie": "^0.4.2",
     "express": "^4.17.2",
     "http-proxy-middleware": "^2.0.2",
     "js-cookie": "^3.0.1",
@@ -29,6 +30,7 @@
     "redis-om": "^0.1.7"
   },
   "devDependencies": {
+    "@types/cookie": "^0.4.1",
     "@types/js-cookie": "^3.0.1",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/lodash.clamp": "^4.0.6",
