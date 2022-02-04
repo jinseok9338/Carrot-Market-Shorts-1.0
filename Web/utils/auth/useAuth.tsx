@@ -26,18 +26,13 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [user, setUser] = useState<UserType | null>(null);
+  console.log(user, "auth User");
 
   const signup = (signUpInput: SignUpInput) => {};
   const signout = () => {};
   const sendPasswordResetEmail = (email: string) => {};
   const confirmPasswordReset = (code: any, password: string) => {};
 
-  // Subscribe to user on mount
-  // Because this sets state in the callback it will cause any ...
-  // ... component that utilizes this hook to re-render with the ...
-  // ... latest auth object.
-  useEffect(() => {}, []);
-  // Return the user object and auth methods
   return {
     user,
     setUser,

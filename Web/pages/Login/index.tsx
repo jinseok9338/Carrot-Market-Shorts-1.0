@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useAuth } from "../../utils/auth/useAuth";
 import jwt from "jsonwebtoken";
 import { UserType } from "../../utils/auth/AuthType";
@@ -21,8 +21,6 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
   const auth = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  console.log(auth?.user);
 
   const submitForm = async () => {
     const res = await axios.post("/api/login", {
