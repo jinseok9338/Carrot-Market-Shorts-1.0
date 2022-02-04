@@ -21,10 +21,10 @@ const Home: NextPage<Props> = ({ initialUserValue }) => {
 
   useEffect(() => {
     if (auth?.user) {
-      Cookie.set("user", JSON.stringify(auth?.user));
+      Cookie.set("user", JSON.stringify(auth?.user), { expires: 1 });
     }
     auth?.setUser(JSON.parse(initialUserValue as string));
-    Cookie.set("user", JSON.stringify(initialUserValue));
+    Cookie.set("user", JSON.stringify(initialUserValue), { expires: 1 });
   }, [auth?.user]);
 
   return (
