@@ -4,6 +4,7 @@ import {
   IsDate,
   IsEmail,
   IsString,
+  IsUUID,
   Matches,
   MaxLength,
   MinLength,
@@ -17,6 +18,11 @@ export class CreateUserInput {
   @MaxLength(20)
   @Field()
   user_name: string;
+
+  @IsString()
+  @IsUUID()
+  @Field()
+  user_id?: string;
 
   @IsString()
   @MinLength(4)

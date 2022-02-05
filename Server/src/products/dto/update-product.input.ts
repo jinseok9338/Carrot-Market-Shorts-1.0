@@ -3,8 +3,8 @@ import { IsBoolean, IsString, MaxLength, MinLength } from 'class-validator';
 
 @InputType()
 export class UpdateProductInput {
-  @Field(() => Int, { nullable: true })
-  user_id?: number;
+  @Field(() => String, { nullable: true })
+  user_id?: string;
 
   @IsString()
   @Field({ nullable: true })

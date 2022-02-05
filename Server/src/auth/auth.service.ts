@@ -54,9 +54,6 @@ export class AuthService {
   async signUp(signUpUser: CreateUserInput) {
     // I need to mark it types
 
-    signUpUser.confirm_email = false;
-    signUpUser.expiration_email_time = new Date();
-
     const { password, password_confirm, ...result } = signUpUser;
 
     // Create User in the dataBase then return access_token

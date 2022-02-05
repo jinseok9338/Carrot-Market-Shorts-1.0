@@ -7,17 +7,6 @@ export interface ProductData {
   video: string;
 }
 
-export interface userData {
-  user_name: string;
-  password: string;
-  email: string;
-  confirm_email: boolean;
-  first_name: string;
-  last_name: string;
-  expiration_email_time: Date;
-  products: ProductData[];
-}
-
 export interface UserUpdateInfo {
   user_name?: string;
   password?: string;

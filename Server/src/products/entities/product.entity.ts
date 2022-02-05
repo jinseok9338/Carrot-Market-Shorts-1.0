@@ -15,8 +15,8 @@ export class Product {
   user: User;
 
   @Column()
-  @Field(() => Int)
-  user_id: number;
+  @Field(() => String)
+  user_id: string;
 
   @Column()
   @Field(() => String)

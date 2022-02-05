@@ -5,8 +5,8 @@ import { IsBoolean, IsDate, IsInt, IsString } from 'class-validator';
 @InputType()
 export class UpdateUserInput extends PartialType(CreateUserInput) {
   @IsInt()
-  @Field(() => Int, { nullable: false })
-  user_id: number;
+  @Field(() => String, { nullable: false })
+  user_id: string;
 
   @IsString()
   @Field({ nullable: true })

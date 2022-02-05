@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { getConnection, InsertResult } from 'typeorm';
-import { MockProductData } from 'src/users/mockData/ProductUserData';
+import { getConnection } from 'typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
-import { Mockdata } from './mockData/UsersMockData';
 import { ReturnType } from './entities/user.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { UserUpdateInfo } from './type/DataType';
 import { uuid } from 'uuidv4';
+import { defaultValue } from 'src/utils/defaultValue';
+import { createProducts, createUsers } from 'src/utils/fakeData/users';
 @Injectable()
 export class UsersService {
   constructor(
@@ -18,6 +18,7 @@ export class UsersService {
   ) {}
 
   async createUser({
+    user_id,
     user_name,
     password,
     password_confirm,
@@ -27,6 +28,15 @@ export class UsersService {
     confirm_email,
     expiration_email_time,
   }: CreateUserInput): Promise<ReturnType> {
+    let User_id = defaultValue({ initialValue: user_id, defaultValue: uuid() });
+    let Confirm_email = defaultValue({
+      initialValue: confirm_email,
+      defaultValue: false,
+    });
+    let Expiration_email_time = defaultValue({
+      initialValue: expiration_email_time,
+      defaultValue: new Date(),
+    });
     try {
       const is_userId_exist = await this.usersRepository.findOne({ user_name });
       const is_email_exist = await this.usersRepository.findOne({ email });
@@ -41,14 +51,14 @@ export class UsersService {
       }
       await this.usersRepository.save(
         this.usersRepository.create({
-          user_id: uuid(),
+          user_id: User_id,
           user_name,
           password,
-          confirm_email,
+          confirm_email: Confirm_email,
           email,
           first_name,
           last_name,
-          expiration_email_time,
+          expiration_email_time: Expiration_email_time,
         }),
       );
       return {
@@ -65,14 +75,14 @@ export class UsersService {
     return this.usersRepository.find(); // SELECT * pet
   }
 
-  async findOne(user_id: number): Promise<User> {
+  async findOne(user_id: string): Promise<User> {
     return this.usersRepository.findOneOrFail(user_id);
   }
   async findByEmail(email: string): Promise<User> {
     return this.usersRepository.findOneOrFail({ email });
   }
 
-  async deleteOne(user_id: number): Promise<string> {
+  async deleteOne(user_id: string): Promise<string> {
     let user = await this.usersRepository.findOne(user_id);
     if (!user) {
       return `The user ${user_id} doesn't exist`;
@@ -87,21 +97,25 @@ export class UsersService {
     return `Successfully Deleted the User ${user_id} `;
   }
 
-  async addMockUsers(): Promise<User[]> {
+  async addMockUsers(customerNumber: number = 1000): Promise<User[]> {
+    let users = createUsers(customerNumber);
     try {
-      let UserRes = await getConnection()
+      await getConnection()
         .createQueryBuilder()
         .insert()
         .into(User)
-        .values(Mockdata)
+        .values(users)
         .execute();
 
-      let Productres = await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(Product)
-        .values(MockProductData)
-        .execute();
+      users.forEach(async (user) => {
+        let products = createProducts(user.user_id);
+        await getConnection()
+          .createQueryBuilder()
+          .insert()
+          .into(Product)
+          .values(products)
+          .execute();
+      });
 
       return this.usersRepository.find();
     } catch (e) {

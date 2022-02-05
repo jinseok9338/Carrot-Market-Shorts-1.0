@@ -34,12 +34,19 @@ export class ProductsResolver {
   }
 
   @Query(() => Product, { name: 'product' })
-  findOne(@Args('product_id', { type: () => Int }) product_Id: number) {
-    return this.productsService.findOne(product_Id);
+  findOne(@Args('product_id', { type: () => String }) product_id: string) {
+    return this.productsService.findOne(product_id);
+  }
+
+  @Query(() => [Product], { name: 'UserProducts' })
+  UserProducts(@Args('user_id', { type: () => String }) user_id: string) {
+    return this.productsService.findUserProducts(user_id);
   }
 
   @Mutation(() => String)
-  removeProduct(@Args('product_id', { type: () => Int }) product_id: number) {
+  removeProduct(
+    @Args('product_id', { type: () => String }) product_id: string,
+  ) {
     return this.productsService.removeOne(product_id);
   }
 

@@ -24,11 +24,11 @@ export class ProductsService {
     return await this.productRepository.save(newProduct);
   }
 
-  findOwnerOfProduct(user_id: number): Promise<User> {
+  findOwnerOfProduct(user_id: string): Promise<User> {
     return this.usersService.findOne(user_id);
   }
 
-  async findUserProducts(user_id: number): Promise<Product[]> {
+  async findUserProducts(user_id: string): Promise<Product[]> {
     let res = await this.productRepository
       .createQueryBuilder()
       .where('user_id IN (:user_id)', { user_id })
@@ -40,11 +40,11 @@ export class ProductsService {
     return this.productRepository.find();
   }
 
-  findOne(product_id: number) {
+  findOne(product_id: string) {
     return this.productRepository.findOneOrFail(product_id);
   }
 
-  async removeOne(product_id: number): Promise<string> {
+  async removeOne(product_id: string): Promise<string> {
     let product = await this.productRepository.findOne(product_id);
     if (!product) {
       return `The product ${product_id} doesn't exist`;
