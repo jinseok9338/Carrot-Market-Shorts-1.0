@@ -31,4 +31,4 @@ curl "https://api.mockaroo.com/api/6b655b70?count=1000&key=4c733d70" > "Users.js
 http://127.0.0.1:3001/confirmEmail/jinseok981222@gmail.com
 
 ###
-http://127.0.0.1:3001/productData/youtube
+http://127.0.0.1:3001/productData/youtube/300

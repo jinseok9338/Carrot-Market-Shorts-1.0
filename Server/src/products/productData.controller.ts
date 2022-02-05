@@ -13,8 +13,8 @@ import { ProductsDataService } from './productData.service';
 export class ProductDataController {
   constructor(private productDataService: ProductsDataService) {}
 
-  @Get('youtube')
+  @Get('youtube/:number')
   searchYoutue(@Param() params): Promise<Video[]> {
-    return this.productDataService.searchYoutube();
+    return this.productDataService.searchYoutube(params.number);
   }
 }

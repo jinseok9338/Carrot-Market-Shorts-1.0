@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductInput } from './dto/create-product.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
-import { getConnection, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { UsersService } from 'src/users/users.service';
-import { User } from 'src/users/entities/user.entity';
-import { UpdateProductInput } from './dto/update-product.input';
 import { youtube } from 'scrape-youtube';
 import { Video } from 'scrape-youtube/lib/interface';
+import * as fs from 'fs';
 
 @Injectable()
 export class ProductsDataService {
@@ -16,9 +14,20 @@ export class ProductsDataService {
     private usersService: UsersService,
   ) {}
 
-  async searchYoutube(): Promise<Video[]> {
-    const results = await youtube.search('#shorts products');
-    console.log(results.videos.length);
-    return results.videos;
+  async searchYoutube(number: number): Promise<Video[]> {
+    let videos = [] as Video[];
+
+    for (let i = 0; i < number; i++) {
+      const result = await youtube.search(`#shorts products ${i}`);
+      const videolist = result.videos;
+      videolist.forEach((video) => videos.push(video));
+    }
+
+    console.log(videos);
+
+    let data = JSON.stringify(videos);
+    fs.writeFileSync('youtube-video.json', data);
+
+    return videos;
   }
 }
