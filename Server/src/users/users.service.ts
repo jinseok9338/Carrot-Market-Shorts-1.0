@@ -9,6 +9,7 @@ import { Mockdata } from './mockData/UsersMockData';
 import { ReturnType } from './entities/user.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { UserUpdateInfo } from './type/DataType';
+import { uuid } from 'uuidv4';
 @Injectable()
 export class UsersService {
   constructor(
@@ -40,6 +41,7 @@ export class UsersService {
       }
       await this.usersRepository.save(
         this.usersRepository.create({
+          user_id: uuid(),
           user_name,
           password,
           confirm_email,

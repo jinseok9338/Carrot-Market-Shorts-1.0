@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   OneToMany,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -16,9 +17,9 @@ import { IsDate } from 'class-validator';
 @ObjectType()
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  @Field(() => Int)
-  user_id: number;
+  @PrimaryColumn()
+  @Field(() => String)
+  user_id: string;
 
   @Column({ unique: true })
   @Field((type) => String)

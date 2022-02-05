@@ -6,6 +6,7 @@ import { getConnection, Repository } from 'typeorm';
 import { UsersService } from 'src/users/users.service';
 import { User } from 'src/users/entities/user.entity';
 import { UpdateProductInput } from './dto/update-product.input';
+import { uuid } from 'uuidv4';
 
 @Injectable()
 export class ProductsService {
@@ -17,7 +18,8 @@ export class ProductsService {
   async createProduct(
     createProductInput: CreateProductInput,
   ): Promise<Product> {
-    const newProduct = this.productRepository.create(createProductInput);
+    let product = { ...createProductInput, product_id: uuid() };
+    const newProduct = this.productRepository.create(product);
 
     return await this.productRepository.save(newProduct);
   }
