@@ -22,9 +22,6 @@ export class ProductsDataService {
       const videolist = result.videos;
       videolist.forEach((video) => videos.push(video));
     }
-
-    console.log(videos);
-
     let data = JSON.stringify(videos);
     fs.writeFileSync('youtube-video.json', data);
 

@@ -24,7 +24,6 @@ export const createProducts = (user_id: number | string): Product[] => {
 
   const randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
   const products = [];
-  console.log(randomInt);
 
   for (let i = 0; i < randomInt; i++) {
     const product = {
@@ -61,6 +60,5 @@ export const createUsers = (customerNumber: number = 1000): User[] => {
     users.push(user);
   }
 
-  console.log(users);
   return users;
 };

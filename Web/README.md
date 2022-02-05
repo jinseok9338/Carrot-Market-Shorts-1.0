@@ -2,9 +2,10 @@ TODO
 
 Make the mockData with 1000 users with each having at least 1 items 30 max
 
-Process Loader
+Load products video and userInfo
+Set up Appollo Client and auto code generator
 
-add Product
+Process Loader
 
 Each product Page - comment Section
 
