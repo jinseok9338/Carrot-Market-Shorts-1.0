@@ -34,18 +34,21 @@ export class UsersResolver {
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('user_id', { type: () => Int }) user_id: number) {
+  findOne(@Args('user_id', { type: () => String }) user_id: string) {
     return this.usersService.findOne(user_id);
   }
 
-  @ResolveField((returns) => [Product])
+  @ResolveField(() => [Product])
   async products(@Parent() product: Product): Promise<Product[]> {
     return await this.productsService.findUserProducts(product.user_id);
   }
 
   @Mutation(() => [User], { name: 'addMockData' })
-  async AddMockData(): Promise<User[] | Error> {
-    return await this.usersService.addMockUsers();
+  async AddMockData(
+    @Args('customer_number', { type: () => Int })
+    customer_number: number = 1000,
+  ): Promise<User[] | Error> {
+    return await this.usersService.addMockUsers(customer_number);
   }
 
   @Mutation(() => String)
@@ -60,7 +63,7 @@ export class UsersResolver {
 
   @Mutation(() => String, { name: 'deleteUser' })
   async deleteUser(
-    @Args('user_id', { type: () => Int }) user_id: number,
+    @Args('user_id', { type: () => String }) user_id: string,
   ): Promise<String> {
     return await this.usersService.deleteOne(user_id);
   }
