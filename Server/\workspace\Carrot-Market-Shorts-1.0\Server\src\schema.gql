@@ -37,6 +37,7 @@ type ReturnType {
 type Query {
   users: [User!]!
   user(user_id: String!): User!
+  findByEmail(email: String!): User!
   products: [Product!]!
   product(product_id: String!): Product!
   UserProducts(user_id: String!): [Product!]!

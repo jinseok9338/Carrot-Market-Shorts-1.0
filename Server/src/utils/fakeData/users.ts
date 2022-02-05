@@ -3,6 +3,7 @@ import { internet, commerce, lorem, image, name } from 'faker';
 import { videoData } from './youtube-video';
 import { uuid } from 'uuidv4';
 import { User } from 'src/users/entities/user.entity';
+import * as bcrypt from 'bcrypt';
 
 const MakeImagesArray = (): string[] => {
   const max = 4;
@@ -31,7 +32,7 @@ export const createProducts = (user_id: number | string): Product[] => {
       product_name: commerce.product(),
       images: MakeImagesArray(), // This is the array of random number of pics
       video: videoData[Math.floor(Math.random() * videoData.length)].link, // This should come from the video of the Youtube short
-      user_id, // this is placeholder
+      user_id,
       sold: Math.random() < 0.5,
       // I will update the product Info when needed .. it will probably soon enough I guess
     };
@@ -41,17 +42,20 @@ export const createProducts = (user_id: number | string): Product[] => {
   return products;
 };
 
-export const createUsers = (customerNumber: number = 1000): User[] => {
+export const createUsers = async (
+  customerNumber: number = 1000,
+): Promise<User[]> => {
   const users = [];
   for (let i = 0; i < customerNumber; i++) {
     let firstname = name.firstName();
     let lastname = name.lastName();
     let user_id = uuid();
+    let password = await bcrypt.hash('Lazctlazct93!@', 10);
     const user = {
       user_id,
-      user_name: firstname + '_' + lastname,
-      password: 'Lazctlazct93!@',
-      email: internet.email(firstname + lastname),
+      user_name: firstname + '_' + lastname + i, // For Avoiding duplication
+      password: password,
+      email: internet.email(firstname + lastname + i), // For Avoiding duplication
       confirm_email: true, // For convenience
       first_name: firstname,
       last_name: lastname,

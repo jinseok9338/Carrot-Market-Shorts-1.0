@@ -9,6 +9,11 @@ import { useAuth } from "../utils/auth/useAuth";
 import LoginPage from "./Login";
 import Cookie from "js-cookie";
 import { parseCookies } from "../utils/parseCookies";
+import { initializeApollo, addApolloState } from "../lib/apolloClient";
+import PostList, {
+  ALL_POSTS_QUERY,
+  allPostsQueryVars,
+} from "../components/PostList";
 
 interface Props {
   initialUserValue?: string;
@@ -46,5 +51,19 @@ Home.getInitialProps = ({ req }) => {
   cookies.user;
   return { initialUserValue: cookies.user };
 };
+
+export async function getStaticProps() {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: ALL_POSTS_QUERY,
+    variables: allPostsQueryVars,
+  });
+
+  return addApolloState(apolloClient, {
+    props: {},
+    revalidate: 1,
+  });
+}
 
 export default Home;

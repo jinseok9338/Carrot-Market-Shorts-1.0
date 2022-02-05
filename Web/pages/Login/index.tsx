@@ -21,17 +21,22 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
   const auth = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const submitForm = async () => {
-    const res = await axios.post("/api/login", {
-      email,
-      password,
-    });
-    const data = res.data;
-
-    if (data.data) {
-      const profile = jwt.decode(data.data.access_token);
-      auth?.setUser(profile as unknown as UserType);
+    try {
+      const res = await axios.post("/api/login", {
+        email,
+        password,
+      });
+      const data = res.data;
+      console.log(data);
+      if (data.data) {
+        const profile = jwt.decode(data.data.access_token);
+        auth?.setUser(profile as unknown as UserType);
+      }
+    } catch (e) {
+      console.log((e as any).message);
     }
   };
 
@@ -81,10 +86,12 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
         </div>
         <div className="flex items-center justify-between">
           <button
-            onClick={(e) => {
+            disabled={loading}
+            onClick={async (e) => {
+              setLoading(true);
               e.preventDefault();
-              // auth?.signin(email, password);
-              submitForm();
+              await submitForm();
+              setLoading(false);
             }}
             className="bg-[#3067b9] hover:bg-[#3a3af0] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-[1vw]"
             type="submit"

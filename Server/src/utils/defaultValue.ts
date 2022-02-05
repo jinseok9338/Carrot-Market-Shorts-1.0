@@ -7,7 +7,8 @@ export const defaultValue = ({
   initialValue,
   defaultValue,
 }: inputValuetype) => {
-  if (!initialValue && !defaultValue)
-    throw new Error('You should have at least one value');
+  if (!initialValue && !defaultValue) {
+    console.log('You should have at least one value');
+  }
   return initialValue ? initialValue : defaultValue;
 };

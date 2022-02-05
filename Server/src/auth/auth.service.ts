@@ -23,10 +23,12 @@ export class AuthService {
     confirm_email?: boolean;
   } | null> {
     const user = await this.usersService.findByEmail(email);
+    console.log(user.password);
     if (!user) {
       return null;
     }
     const auth = await bcrypt.compare(password, user.password);
+    console.log(auth, 'auth');
     if (auth) {
       const { password, ...result } = user;
       return result;

@@ -38,6 +38,11 @@ export class UsersResolver {
     return this.usersService.findOne(user_id);
   }
 
+  @Query(() => User, { name: 'findByEmail' })
+  findByEmail(@Args('email', { type: () => String }) email: string) {
+    return this.usersService.findByEmail(email);
+  }
+
   @ResolveField(() => [Product])
   async products(@Parent() product: Product): Promise<Product[]> {
     return await this.productsService.findUserProducts(product.user_id);

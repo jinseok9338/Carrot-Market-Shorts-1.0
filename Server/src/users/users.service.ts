@@ -33,10 +33,13 @@ export class UsersService {
       initialValue: confirm_email,
       defaultValue: false,
     });
+
     let Expiration_email_time = defaultValue({
       initialValue: expiration_email_time,
       defaultValue: new Date(),
     });
+
+    console.log(Expiration_email_time);
     try {
       const is_userId_exist = await this.usersRepository.findOne({ user_name });
       const is_email_exist = await this.usersRepository.findOne({ email });
@@ -98,13 +101,13 @@ export class UsersService {
   }
 
   async addMockUsers(customerNumber: number = 1000): Promise<User[]> {
-    let users = createUsers(customerNumber);
+    let users = await createUsers(customerNumber);
     try {
       await getConnection()
         .createQueryBuilder()
         .insert()
         .into(User)
-        .values(users)
+        .values(users) // The password is not hashed ...
         .execute();
 
       users.forEach(async (user) => {
