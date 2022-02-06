@@ -7,7 +7,7 @@ import {
 } from "@apollo/client";
 import { concatPagination } from "@apollo/client/utilities";
 import merge from "deepmerge";
-import isEqual from "lodash/isEqual";
+import isEqual from "lodash.isequal";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
