@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 
 import Footer from "../components/Footer";
-import { SwiperView } from "../components/SwipeableVideo";
+import SwiperView from "../components/SwipeableVideo";
 
 import { useAuth } from "../utils/auth/useAuth";
 
@@ -10,22 +10,18 @@ import LoginPage from "./Login";
 import Cookie from "js-cookie";
 import { parseCookies } from "../utils/parseCookies";
 import { initializeApollo, addApolloState } from "../lib/apolloClient";
-import gql from "graphql-tag";
+
 import { useQuery } from "react-query";
-import {
-  ProductsDocument,
-  ProductsQuery,
-  useProductsQuery,
-} from "../graphql/generated";
+
+import { gql } from "@apollo/client";
 
 interface Props {
   initialUserValue?: string;
+  productsInfo?: any;
 }
 
 const Home: NextPage<Props> = ({ initialUserValue }) => {
   const auth = useAuth();
-  const { data } = useQuery<ProductsQuery>(ProductsDocument);
-  console.log(data);
 
   useEffect(() => {
     if (auth?.user) {
@@ -51,19 +47,11 @@ const Home: NextPage<Props> = ({ initialUserValue }) => {
   );
 };
 
-Home.getInitialProps = ({ req }) => {
+Home.getInitialProps = async ({ req }) => {
   const cookies = parseCookies(req);
   cookies.user;
+
   return { initialUserValue: cookies.user };
 };
-
-export async function getStaticProps() {
-  const apolloClient = initializeApollo();
-
-  return addApolloState(apolloClient, {
-    props: {},
-    revalidate: 1,
-  });
-}
 
 export default Home;

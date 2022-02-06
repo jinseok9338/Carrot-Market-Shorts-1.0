@@ -5,7 +5,14 @@ import clamp from "lodash.clamp";
 import ReactPlayer from "react-player";
 import { Wrapper } from "./wrapper";
 
-interface ISwiperProps {}
+import { useQuery } from "react-query";
+import { gql } from "@apollo/client";
+import { initializeApollo } from "../../lib/apolloClient";
+import { NextPage } from "next";
+
+interface ISwiperProps {
+  products?: any;
+}
 // I suspect it has something to do with tailwind css
 const videos = [
   "https://youtu.be/JItNDnOECos",
@@ -19,8 +26,10 @@ const pages = [
   "https://source.unsplash.com/600x600/?girl",
 ];
 
-export const SwiperView: FC<ISwiperProps> = ({ children }) => {
+const SwiperView: NextPage<ISwiperProps> = ({ products }) => {
   const [height, setHeight] = useState(1000);
+  console.log(products);
+
   useEffect(() => {
     // window is accessible here.
     const height = window.innerHeight;
@@ -84,6 +93,26 @@ export const SwiperView: FC<ISwiperProps> = ({ children }) => {
   );
 };
 
-{
-  /**/
+export async function getStaticProps() {
+  const apolloClient = initializeApollo();
+
+  const { data, loading } = await apolloClient.query({
+    query: gql`
+      query Products {
+        products {
+          user_id
+          product_id
+          video
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      products: data.products,
+    },
+  };
 }
+
+export default SwiperView;
