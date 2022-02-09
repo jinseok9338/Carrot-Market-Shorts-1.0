@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import { useAuth } from "../../utils/auth/useAuth";
+import jwt from "jsonwebtoken";
+import { UserType } from "../../utils/auth/AuthType";
 
 const withAuth = (WrappedComponent: any) => {
   return (props: any) => {
@@ -15,17 +17,9 @@ const withAuth = (WrappedComponent: any) => {
         console.log("No access token found");
         Router.replace("/Login");
       } else {
-        // we call the api that verifies the token.
-        const data = await verifyToken(accessToken);
-        // if token was verified we set the state.
-        if (data.verified) {
-          setVerified(data.verified);
-        } else {
-          // If the token was fraud we first remove it from localStorage and then redirect to "/"
-          localStorage.removeItem("accessToken");
-          console.log("Fraud Access Token");
-          Router.replace("/Login");
-        }
+        const res = jwt.decode(accessToken) as unknown as UserType;
+        auth?.setUser(res);
+        setVerified(!!res);
       }
     }, []);
 

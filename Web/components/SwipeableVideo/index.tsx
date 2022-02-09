@@ -28,7 +28,6 @@ const pages = [
 
 const SwiperView: NextPage<ISwiperProps> = ({ products }) => {
   const [height, setHeight] = useState(1000);
-  console.log(products);
 
   useEffect(() => {
     // window is accessible here.

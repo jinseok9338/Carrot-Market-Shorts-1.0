@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { useAuth } from "../../utils/auth/useAuth";
 import jwt from "jsonwebtoken";
 import { UserType } from "../../utils/auth/AuthType";
+import router, { useRouter } from "next/router";
 
 interface ILoginPageProps {}
 
@@ -22,6 +23,7 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const Router = useRouter();
 
   const submitForm = async () => {
     try {
@@ -31,9 +33,11 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
       });
       const data = res.data;
       console.log(data);
-      if (data.data) {
+      if (data.data.access_token) {
         const profile = jwt.decode(data.data.access_token);
+        localStorage.setItem("accessToken", data.data.access_token);
         auth?.setUser(profile as unknown as UserType);
+        Router.replace("/");
       }
     } catch (e) {
       console.log((e as any).message);

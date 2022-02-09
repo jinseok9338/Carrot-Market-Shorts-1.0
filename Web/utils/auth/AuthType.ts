@@ -9,6 +9,7 @@ export interface authContextType {
   signout?: () => void;
   sendPasswordResetEmail?: (email: string) => void;
   confirmPasswordReset?: (code: any, password: string) => void;
+  verifyToken: (token: string, user: UserType) => boolean;
 }
 
 export interface UserType {

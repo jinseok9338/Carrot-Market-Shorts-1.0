@@ -1,57 +1,34 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
+import jwt from "jsonwebtoken";
 import Footer from "../components/Footer";
 import SwiperView from "../components/SwipeableVideo";
-
 import { useAuth } from "../utils/auth/useAuth";
-
-import LoginPage from "./Login";
-import Cookie from "js-cookie";
-import { parseCookies } from "../utils/parseCookies";
-import { initializeApollo, addApolloState } from "../lib/apolloClient";
-
-import { useQuery } from "react-query";
-
-import { gql } from "@apollo/client";
+import withAuth from "../components/Auth/withAuth";
+import { UserType } from "../utils/auth/AuthType";
 
 interface Props {
   initialUserValue?: string;
   productsInfo?: any;
 }
 
-const Home: NextPage<Props> = ({ initialUserValue }) => {
+const Home: NextPage<Props> = () => {
   const auth = useAuth();
 
   useEffect(() => {
-    if (auth?.user) {
-      Cookie.set("user", JSON.stringify(auth?.user), { expires: 1 });
+    const access_token = localStorage.getItem("accessToken");
+    if (access_token) {
+      const profile = jwt.decode(access_token);
+      auth?.setUser(profile as unknown as UserType);
     }
-    if (initialUserValue) {
-      auth?.setUser(JSON.parse(initialUserValue as string));
-      Cookie.set("user", JSON.stringify(initialUserValue), { expires: 1 });
-    }
-  }, [auth?.user]);
+  }, []);
 
   return (
     <div className="home">
-      {auth?.user ? (
-        <>
-          <SwiperView />
-          <Footer />
-        </>
-      ) : (
-        <LoginPage />
-      )}
+      <SwiperView />
+      <Footer />
     </div>
   );
 };
 
-Home.getInitialProps = async ({ req }) => {
-  const cookies = parseCookies(req);
-  cookies.user;
-
-  return { initialUserValue: cookies.user };
-};
-
-export default Home;
+export default withAuth(Home);
