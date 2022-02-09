@@ -8,9 +8,6 @@ import router, { useRouter } from "next/router";
 interface ILoginPageProps {}
 
 const LoginPage: FC<ILoginPageProps> = (props) => {
-  // Do some Login logic here
-  // TODO Connect DATABASE to the front end and use Redis for the auth
-
   //     "user_id": 1,
   //     "user_name": "jinseok918111",
   //     "email": "jinseok981222@gmail.com",

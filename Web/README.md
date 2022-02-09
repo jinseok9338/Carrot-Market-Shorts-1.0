@@ -1,8 +1,10 @@
 **TODO**
 
-1. Get rid of the useAuth and get authenticated from the server []
-1. Need to have conditional routing based on auth.user []
-1. then move the swipeableVideo to page so I can get Static Props []
+1. Get authenticated from the server [Done]
+1. Need to have conditional routing based on auth.user [Done]
+1. then move the swipeableVideo to page so I can get Static Props [Done]
+1. Get the better initial Page []
+
 1. Make Process Loader and render different View not Page for different process
 
 1. Each product Page - comment Section

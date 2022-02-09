@@ -6,6 +6,7 @@ import SwiperView from "../components/SwipeableVideo";
 import { useAuth } from "../utils/auth/useAuth";
 import withAuth from "../components/Auth/withAuth";
 import { UserType } from "../utils/auth/AuthType";
+import MainProductsPage from "./MainProducts";
 
 interface Props {
   initialUserValue?: string;
@@ -23,12 +24,7 @@ const Home: NextPage<Props> = () => {
     }
   }, []);
 
-  return (
-    <div className="home">
-      <SwiperView />
-      <Footer />
-    </div>
-  );
+  return <MainProductsPage />;
 };
 
 export default withAuth(Home);
