@@ -20,3 +20,16 @@ ports:
 tasks:
   - before: cd Server && npm install -g @nestjs/cli && npm install && createuser user && createdb mydb && npm start
   - command: cd Web && npm install && npm run dev
+
+vscode:
+  extensions:
+    - usernamehw.errorlens
+    - dsznajder.es7-react-js-snippets
+    - GraphQL.vscode-graphql
+    - PKief.material-icon-theme
+    - Equinusocio.vsc-material-theme
+    - equinusocio.vsc-material-theme-icons
+    - esbenp.prettier-vscode
+    - humao.rest-client
+    - bradlc.vscode-tailwindcss
+    - Equinusocio.vsc-community-material-theme
