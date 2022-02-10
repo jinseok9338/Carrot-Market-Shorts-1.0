@@ -19,6 +19,7 @@ type User {
   first_name: String!
   last_name: String!
   confirm_email: Boolean!
+  interested: [String!]
   products: [Product!]
   expiration_email_time: DateTime
 }

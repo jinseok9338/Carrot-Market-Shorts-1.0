@@ -5,12 +5,13 @@ import {
   Entity,
   OneToMany,
   PrimaryColumn,
-  PrimaryGeneratedColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Product } from 'src/products/entities/product.entity';
 import { IsDate } from 'class-validator';
+import { Comment } from '../../comment/entities/comment.entity';
+import { WatchTimes } from 'src/watch-time/entities/watch-time.entity';
 
 // What other user Info should I do ....
 
@@ -44,6 +45,18 @@ export class User {
   @Column()
   // @Field((type) => String) // You are not supposed to query the password
   password: string;
+
+  @Column('simple-array')
+  @Field(() => [String], { nullable: true })
+  interested: string[];
+
+  @Column()
+  @Field((type) => [Comment], { nullable: true })
+  comments: Comment[];
+
+  @Column()
+  @Field((type) => WatchTimes, { nullable: true })
+  watch_time: WatchTimes;
 
   @OneToMany(() => Product, (product) => product.user, {
     nullable: true,

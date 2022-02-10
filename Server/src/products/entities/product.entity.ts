@@ -33,4 +33,8 @@ export class Product {
   @Column()
   @Field(() => String)
   video: string;
+
+  @Column()
+  @Field(() => String)
+  tag: string;
 }
