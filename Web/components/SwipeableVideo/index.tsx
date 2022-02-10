@@ -20,16 +20,10 @@ const videos = [
   "https://youtu.be/ceqqHY5E4-w",
 ];
 
-const pages = [
-  "https://source.unsplash.com/600x600/?girl",
-  "https://source.unsplash.com/600x600/?girl",
-  "https://source.unsplash.com/600x600/?girl",
-];
-
 const SwiperView: NextPage<ISwiperProps> = ({ products }) => {
   const [height, setHeight] = useState(1000);
 
-  let newProducts = products?.slice(0, 8);
+  let newProducts = products ? products?.slice(0, 8) : videos;
 
   useEffect(() => {
     // window is accessible here.

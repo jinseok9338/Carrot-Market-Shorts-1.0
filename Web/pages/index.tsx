@@ -1,19 +1,19 @@
-import type { NextPage } from "next";
-import { useEffect } from "react";
+import type { GetStaticPropsResult, NextPage } from "next";
+import { useEffect, useState } from "react";
 import jwt from "jsonwebtoken";
 import Footer from "../components/Footer";
 import SwiperView from "../components/SwipeableVideo";
 import { useAuth } from "../utils/auth/useAuth";
 import withAuth from "../components/Auth/withAuth";
 import { UserType } from "../utils/auth/AuthType";
-import MainProductsPage from "./MainProducts";
+import { gql } from "@apollo/client";
+import { initializeApollo } from "../lib/apolloClient";
 
 interface Props {
-  initialUserValue?: string;
-  productsInfo?: any;
+  products: any;
 }
 
-const Home: NextPage<Props> = () => {
+const Home: NextPage<Props> = ({ products }) => {
   const auth = useAuth();
 
   useEffect(() => {
@@ -24,7 +24,35 @@ const Home: NextPage<Props> = () => {
     }
   }, []);
 
-  return <MainProductsPage />;
+  return (
+    <div className="home">
+      <SwiperView products={products} />
+      <Footer />
+    </div>
+  );
 };
+
+export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
+  const apolloClient = initializeApollo();
+
+  const { data, loading } = await apolloClient.query({
+    query: gql`
+      query Products {
+        products {
+          user_id
+          product_id
+          video
+        }
+      }
+    `,
+  });
+
+  console.log(data.products);
+  return {
+    props: {
+      products: data.products,
+    },
+  };
+}
 
 export default withAuth(Home);
