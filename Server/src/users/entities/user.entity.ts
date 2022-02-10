@@ -11,7 +11,7 @@ import { InternalServerErrorException } from '@nestjs/common';
 import { Product } from 'src/products/entities/product.entity';
 import { IsDate } from 'class-validator';
 import { Comment } from '../../comment/entities/comment.entity';
-import { WatchTimes } from 'src/watch-time/entities/watch-time.entity';
+import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
 
 // What other user Info should I do ....
 
@@ -46,20 +46,24 @@ export class User {
   // @Field((type) => String) // You are not supposed to query the password
   password: string;
 
+  // Array of items that user set as interesting
   @Column('simple-array')
   @Field(() => [String], { nullable: true })
   interested: string[];
 
-  @OneToMany(() => Comment, (comment) => comment.user_id, {
+  @OneToMany(() => Comment, (comment) => comment.user, {
     nullable: true,
     cascade: true,
   })
   @Field((type) => [Comment], { nullable: true })
   comments: Comment[];
 
-  @Column()
-  @Field((type) => WatchTimes, { nullable: true })
-  watch_time: WatchTimes;
+  @OneToMany(() => WatchTime, (watchTime) => watchTime.product_id, {
+    nullable: true,
+    cascade: true,
+  })
+  @Field((type) => [WatchTime], { nullable: true })
+  watch_time: WatchTime[];
 
   @OneToMany(() => Product, (product) => product.user, {
     nullable: true,

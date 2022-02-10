@@ -1,15 +1,30 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateCommentInput } from './dto/create-comment.input';
 import { UpdateCommentInput } from './dto/update-comment.input';
+import { Comment } from './entities/comment.entity';
+import { getRepository } from 'typeorm';
 
 @Injectable()
 export class CommentService {
+  constructor(
+    @InjectRepository(Comment) private commentRepository: Repository<Comment>,
+  ) {}
+
   create(createCommentInput: CreateCommentInput) {
     return 'This action adds a new comment';
   }
 
   findAll() {
     return `This action returns all comment`;
+  }
+
+  async findProductComments(product_id: string): Promise<Comment[]> {
+    return await getRepository(Comment)
+      .createQueryBuilder('comment')
+      .where('comment.product_id = :product_id', { product_id })
+      .getMany();
   }
 
   findOne(id: number) {

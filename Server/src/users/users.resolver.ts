@@ -13,12 +13,15 @@ import { CreateUserInput } from './dto/create-user.input';
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
 import { UpdateUserInput } from './dto/update-user.input';
+import { CommentService } from 'src/comment/comment.service';
+import { Comment } from 'src/comment/entities/comment.entity';
 
 @Resolver(() => User)
 export class UsersResolver {
   constructor(
     private readonly usersService: UsersService,
     private productsService: ProductsService,
+    private commentService: CommentService,
   ) {}
 
   @Mutation(() => ReturnType)
@@ -41,11 +44,6 @@ export class UsersResolver {
   @Query(() => User, { name: 'findByEmail' })
   findByEmail(@Args('email', { type: () => String }) email: string) {
     return this.usersService.findByEmail(email);
-  }
-
-  @ResolveField(() => [Product])
-  async products(@Parent() product: Product): Promise<Product[]> {
-    return await this.productsService.findUserProducts(product.user_id);
   }
 
   @Mutation(() => [User], { name: 'addMockData' })
@@ -71,5 +69,15 @@ export class UsersResolver {
     @Args('user_id', { type: () => String }) user_id: string,
   ): Promise<String> {
     return await this.usersService.deleteOne(user_id);
+  }
+
+  @ResolveField(() => [Product]) //This is for the products Query
+  async products(@Parent() product: Product): Promise<Product[]> {
+    return await this.productsService.findUserProducts(product.user_id);
+  }
+
+  @ResolveField(() => [Comment]) //This is for the Comments Query
+  async comments(@Parent() comment: Comment): Promise<Comment[]> {
+    return await this.commentService.findProductComments(comment.product_id);
   }
 }

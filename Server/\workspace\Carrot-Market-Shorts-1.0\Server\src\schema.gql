@@ -10,6 +10,28 @@ type Product {
   sold: Boolean!
   images: [String!]
   video: String!
+  tag: String!
+}
+
+type Comment {
+  comment_id: String!
+  user_id: String!
+  product_id: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  message: String!
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type WatchTime {
+  product_id: String!
+  watch_time_seconds: String!
+  tag: String!
 }
 
 type User {
@@ -20,14 +42,11 @@ type User {
   last_name: String!
   confirm_email: Boolean!
   interested: [String!]
+  comments: [Comment!]
+  watch_time: [WatchTime!]
   products: [Product!]
   expiration_email_time: DateTime
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type ReturnType {
   ok: Boolean!
@@ -42,6 +61,8 @@ type Query {
   products: [Product!]!
   product(product_id: String!): Product!
   UserProducts(user_id: String!): [Product!]!
+  comment(id: Int!): Comment!
+  watchTime(id: Int!): WatchTime!
 }
 
 type Mutation {
@@ -51,6 +72,12 @@ type Mutation {
   deleteUser(user_id: String!): String!
   createProduct(createProductInput: CreateProductInput!): Product!
   removeProduct(product_id: String!): String!
+  createComment(createCommentInput: CreateCommentInput!): Comment!
+  updateComment(updateCommentInput: UpdateCommentInput!): Comment!
+  removeComment(id: Int!): Comment!
+  createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
+  updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
+  removeWatchTime(id: Int!): WatchTime!
 }
 
 input CreateUserInput {
@@ -83,4 +110,26 @@ input CreateProductInput {
   sold: Boolean!
   images: [String!]
   video: String!
+}
+
+input CreateCommentInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateCommentInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateWatchTimeInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateWatchTimeInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }

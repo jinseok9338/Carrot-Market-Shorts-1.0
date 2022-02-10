@@ -7,6 +7,7 @@ import { UsersModule } from 'src/users/users.module';
 import { User } from 'src/users/entities/user.entity';
 import { ProductDataController } from './productData.controller';
 import { ProductsDataService } from './productData.service';
+import { Comment } from 'src/comment/entities/comment.entity';
 
 @Module({
   imports: [

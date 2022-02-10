@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { WatchTimeService } from './watch-time.service';
-import { WatchTime } from './entities/watch-time.entity';
+import { WatchTime } from './entities/watch-times.entity';
 import { CreateWatchTimeInput } from './dto/create-watch-time.input';
 import { UpdateWatchTimeInput } from './dto/update-watch-time.input';
 
@@ -9,7 +9,9 @@ export class WatchTimeResolver {
   constructor(private readonly watchTimeService: WatchTimeService) {}
 
   @Mutation(() => WatchTime)
-  createWatchTime(@Args('createWatchTimeInput') createWatchTimeInput: CreateWatchTimeInput) {
+  createWatchTime(
+    @Args('createWatchTimeInput') createWatchTimeInput: CreateWatchTimeInput,
+  ) {
     return this.watchTimeService.create(createWatchTimeInput);
   }
 
@@ -24,8 +26,13 @@ export class WatchTimeResolver {
   }
 
   @Mutation(() => WatchTime)
-  updateWatchTime(@Args('updateWatchTimeInput') updateWatchTimeInput: UpdateWatchTimeInput) {
-    return this.watchTimeService.update(updateWatchTimeInput.id, updateWatchTimeInput);
+  updateWatchTime(
+    @Args('updateWatchTimeInput') updateWatchTimeInput: UpdateWatchTimeInput,
+  ) {
+    return this.watchTimeService.update(
+      updateWatchTimeInput.id,
+      updateWatchTimeInput,
+    );
   }
 
   @Mutation(() => WatchTime)
