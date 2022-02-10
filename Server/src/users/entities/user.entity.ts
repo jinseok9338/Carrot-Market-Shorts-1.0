@@ -50,7 +50,10 @@ export class User {
   @Field(() => [String], { nullable: true })
   interested: string[];
 
-  @Column()
+  @OneToMany(() => Comment, (comment) => comment.user_id, {
+    nullable: true,
+    cascade: true,
+  })
   @Field((type) => [Comment], { nullable: true })
   comments: Comment[];
 

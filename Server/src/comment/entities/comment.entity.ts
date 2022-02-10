@@ -5,6 +5,10 @@ import { Column, PrimaryColumn } from 'typeorm';
 export class Comment {
   @PrimaryColumn()
   @Field(() => String)
+  comment_id: string;
+
+  @Column()
+  @Field(() => String)
   user_id: string;
 
   @Column()
