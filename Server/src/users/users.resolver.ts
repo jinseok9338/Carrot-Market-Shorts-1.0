@@ -46,13 +46,13 @@ export class UsersResolver {
     return this.usersService.findByEmail(email);
   }
 
-  @Mutation(() => [User], { name: 'addMockData' })
-  async AddMockData(
-    @Args('customer_number', { type: () => Int })
-    customer_number: number = 1000,
-  ): Promise<User[] | Error> {
-    return await this.usersService.addMockUsers(customer_number);
-  }
+  // @Mutation(() => [User], { name: 'addMockData' })
+  // async AddMockData(
+  //   @Args('customer_number', { type: () => Int })
+  //   customer_number: number = 1000,
+  // ): Promise<User[] | Error> {
+  //   return await this.usersService.addMockUsers(customer_number);
+  // }
 
   @Mutation(() => String)
   async updateUserInfo(

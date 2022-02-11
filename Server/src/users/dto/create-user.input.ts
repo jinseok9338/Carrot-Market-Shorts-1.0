@@ -1,5 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
 import {
+  IsArray,
   IsBoolean,
   IsDate,
   IsEmail,

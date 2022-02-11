@@ -1,7 +1,15 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { User } from 'src/users/entities/user.entity';
+import { Comment } from 'src/comment/entities/comment.entity';
 
-import { Column, Entity, JoinTable, ManyToOne, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -34,7 +42,14 @@ export class Product {
   @Field(() => String)
   video: string;
 
-  @Column()
-  @Field(() => String)
-  tag: string;
+  @Column('simple-array')
+  @Field(() => [String])
+  tag: string[];
+
+  @OneToMany(() => Comment, (comment) => comment.product_id, {
+    nullable: true,
+    cascade: true,
+  })
+  @Field((type) => [Comment], { nullable: true })
+  comments: Comment[];
 }

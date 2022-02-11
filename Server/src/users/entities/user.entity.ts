@@ -47,23 +47,16 @@ export class User {
   password: string;
 
   // Array of items that user set as interesting
-  @Column('simple-array')
+  @Column('simple-array', { nullable: true })
   @Field(() => [String], { nullable: true })
-  interested: string[];
-
-  @OneToMany(() => Comment, (comment) => comment.user, {
-    nullable: true,
-    cascade: true,
-  })
-  @Field((type) => [Comment], { nullable: true })
-  comments: Comment[];
+  interested?: string[];
 
   @OneToMany(() => WatchTime, (watchTime) => watchTime.product_id, {
     nullable: true,
     cascade: true,
   })
   @Field((type) => [WatchTime], { nullable: true })
-  watch_time: WatchTime[];
+  watch_time?: WatchTime[];
 
   @OneToMany(() => Product, (product) => product.user, {
     nullable: true,
@@ -76,6 +69,10 @@ export class User {
   @Column({ nullable: true }) // Make it not nullable later
   @Field((type) => Date, { nullable: true })
   expiration_email_time?: Date | null;
+
+  @Column('simple-array', { nullable: true })
+  @Field((type) => [String])
+  tag: string[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

@@ -1,5 +1,11 @@
 import { InputType, Field, Int } from '@nestjs/graphql';
-import { IsBoolean, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 @InputType()
 export class CreateProductInput {
@@ -20,4 +26,8 @@ export class CreateProductInput {
   @Field()
   @IsString()
   video: string;
+
+  @IsArray()
+  @Field(() => [String])
+  tag: string[];
 }

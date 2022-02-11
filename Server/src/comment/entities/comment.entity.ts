@@ -28,8 +28,4 @@ export class Comment {
   @Column()
   @Field(() => String)
   message: string;
-
-  @ManyToOne(() => User, (user) => user.comments, { onDelete: 'CASCADE' })
-  @Field(() => User)
-  user: User;
 }
