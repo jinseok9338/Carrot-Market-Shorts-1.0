@@ -4,17 +4,20 @@ import { getConnection } from 'typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
+import { Comment } from 'src/comment/entities/comment.entity';
 import { ReturnType } from './entities/user.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { UserUpdateInfo } from './type/DataType';
 import { uuid } from 'uuidv4';
 import { defaultValue } from 'src/utils/defaultValue';
-import { createProducts, createUsers } from 'src/utils/fakeData/users';
+import { createUsers } from 'src/utils/fakeData/users';
+import { createProducts } from 'src/utils/fakeData/products';
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
     @InjectRepository(Product) private productsRepository: Repository<Product>,
+    @InjectRepository(Product) private commentRepository: Repository<Comment>,
   ) {}
 
   async createUser({
@@ -29,6 +32,7 @@ export class UsersService {
     expiration_email_time,
   }: CreateUserInput): Promise<ReturnType> {
     let User_id = defaultValue({ initialValue: user_id, defaultValue: uuid() });
+
     let Confirm_email = defaultValue({
       initialValue: confirm_email,
       defaultValue: false,
@@ -98,32 +102,6 @@ export class UsersService {
       .where('user_id = :user_id', { user_id: user.user_id })
       .execute();
     return `Successfully Deleted the User ${user_id} `;
-  }
-
-  async addMockUsers(customerNumber: number = 1000): Promise<User[]> {
-    let users = await createUsers(customerNumber);
-    try {
-      await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(User)
-        .values(users) // The password is not hashed ...
-        .execute();
-
-      users.forEach(async (user) => {
-        let products = createProducts(user.user_id);
-        await getConnection()
-          .createQueryBuilder()
-          .insert()
-          .into(Product)
-          .values(products)
-          .execute();
-      });
-
-      return this.usersRepository.find();
-    } catch (e) {
-      console.log(e);
-    }
   }
 
   async updateUserInfo(
