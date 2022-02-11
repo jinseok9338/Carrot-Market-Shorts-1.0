@@ -1,4 +1,4 @@
-import { internet, name } from 'faker';
+import { internet, name, image } from 'faker';
 
 import { uuid } from 'uuidv4';
 import { User } from 'src/users/entities/user.entity';
@@ -23,6 +23,8 @@ export const createUsers = async (
       last_name: lastname,
       expiration_email_time: null,
       interested: [],
+      watch_time: [],
+      display_pic: image.people(30, 30),
     };
     users.push(user);
   }

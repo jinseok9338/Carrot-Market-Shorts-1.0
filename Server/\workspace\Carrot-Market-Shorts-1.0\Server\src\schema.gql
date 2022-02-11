@@ -9,6 +9,8 @@ type Comment {
   created_at: DateTime!
   updated_at: DateTime!
   message: String!
+  user_name: String!
+  display_pic: String!
 }
 
 """
@@ -37,6 +39,7 @@ type WatchTime {
 type User {
   user_id: String!
   user_name: String!
+  display_pic: String!
   email: String!
   first_name: String!
   last_name: String!

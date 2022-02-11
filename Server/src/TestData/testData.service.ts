@@ -21,7 +21,11 @@ export class TestDataService {
 
   async addTestData(customerNumber: number): Promise<User[]> {
     let users = await createUsers(customerNumber);
-    let user_ids = users.map((user) => user.user_id);
+    let user_ids_with_names = users.map((user) => ({
+      user_id: user.user_id,
+      user_name: user.user_name,
+      display_pic: user.display_pic,
+    }));
     try {
       await getConnection()
         .createQueryBuilder()
@@ -43,8 +47,13 @@ export class TestDataService {
       const products = await this.productsRepository.find();
 
       products.forEach(async (product) => {
-        let sampleed_user_ids = getRandomSample(user_ids, getRandomInt(2, 5));
+        let sampleed_user_ids = getRandomSample(
+          user_ids_with_names,
+          getRandomInt(2, 5),
+        );
+
         let comments = createComments(sampleed_user_ids, product.product_id);
+
         await getConnection()
           .createQueryBuilder()
           .insert()

@@ -28,4 +28,12 @@ export class Comment {
   @Column()
   @Field(() => String)
   message: string;
+
+  @Column()
+  @Field(() => String)
+  user_name: string;
+
+  @Column()
+  @Field(() => String)
+  display_pic: string;
 }
