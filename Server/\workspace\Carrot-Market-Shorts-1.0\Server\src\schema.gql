@@ -48,7 +48,6 @@ type User {
   watch_time: [WatchTime!]
   products: [Product!]
   expiration_email_time: DateTime
-  tag: [String!]!
   comments: [Comment!]!
 }
 

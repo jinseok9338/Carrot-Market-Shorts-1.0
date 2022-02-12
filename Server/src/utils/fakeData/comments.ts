@@ -2,7 +2,14 @@ import { Comment } from 'src/comment/entities/comment.entity';
 import { uuid } from 'uuidv4';
 import { lorem } from 'faker';
 
-export const createComments = (users: any[], product_id: string): Comment[] => {
+export const createComments = (
+  users: {
+    user_id: string;
+    user_name: string;
+    display_pic: string;
+  }[],
+  product_id: string,
+): Comment[] => {
   let comments = [];
   for (let i = 0; i < users.length; i++) {
     let comment: Comment = {

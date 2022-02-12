@@ -74,10 +74,6 @@ export class User {
   @Field((type) => Date, { nullable: true })
   expiration_email_time?: Date | null;
 
-  @Column('simple-array', { nullable: true })
-  @Field((type) => [String])
-  tag: string[];
-
   @BeforeInsert()
   async hashPassword(): Promise<void> {
     try {

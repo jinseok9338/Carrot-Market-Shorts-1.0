@@ -31,7 +31,7 @@ export class TestDataService {
         .createQueryBuilder()
         .insert()
         .into(User)
-        .values(users) // The password is not hashed ...
+        .values(users)
         .execute();
 
       users.forEach(async (user) => {
@@ -47,12 +47,12 @@ export class TestDataService {
       const products = await this.productsRepository.find();
 
       products.forEach(async (product) => {
-        let sampleed_user_ids = getRandomSample(
+        let sampled_user_ids = getRandomSample(
           user_ids_with_names,
           getRandomInt(2, 5),
         );
 
-        let comments = createComments(sampleed_user_ids, product.product_id);
+        let comments = createComments(sampled_user_ids, product.product_id);
 
         await getConnection()
           .createQueryBuilder()
