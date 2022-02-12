@@ -13,8 +13,8 @@ import { CreateProductInput } from './dto/create-product.input';
 
 import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
-import { Comment } from 'src/comment/entities/comment.entity';
-import { CommentService } from 'src/comment/comment.service';
+import { Comment } from 'src/comments/entities/comment.entity';
+import { CommentService } from 'src/comments/comments.services';
 
 @Resolver((of) => Product)
 export class ProductsResolver {
