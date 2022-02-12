@@ -13,8 +13,8 @@ import { CreateProductInput } from './dto/create-product.input';
 
 import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
-import { Comment } from 'src/comment/entities/comment.entity';
-import { CommentService } from 'src/comment/comment.service';
+import { Comment } from 'src/comments/entities/comment.entity';
+import { CommentService } from 'src/comments/comments.service';
 
 @Resolver((of) => Product)
 export class ProductsResolver {
@@ -58,7 +58,7 @@ export class ProductsResolver {
     return this.usersService.findOne(user.user_id);
   }
 
-  @ResolveField((returns) => Comment)
+  @ResolveField((returns) => [Comment])
   comments(@Parent() comment: Comment): Promise<Comment[]> {
     return this.commentService.findProductComments(comment.product_id);
   }

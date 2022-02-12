@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { User } from 'src/users/entities/user.entity';
-import { Comment } from 'src/comment/entities/comment.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 
 import {
   Column,
@@ -46,7 +46,7 @@ export class Product {
   @Field(() => [String])
   tag: string[];
 
-  @OneToMany(() => Comment, (comment) => comment.product_id, {
+  @OneToMany(() => Comment, (comment) => comment.product, {
     nullable: true,
     cascade: true,
   })

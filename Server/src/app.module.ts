@@ -10,7 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
 import { ProductDataController } from './products/productData.controller';
 import { WatchTimeModule } from './watch-time/watch-time.module';
-import { CommentModule } from './comment/comment.module';
+import { CommentModule } from './comments/comments.module';
 import { TestDataModule } from './TestData/testData.module';
 
 @Module({

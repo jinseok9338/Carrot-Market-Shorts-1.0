@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateCommentInput } from 'src/comment/dto/create-comment.input';
+import { CreateCommentInput } from 'src/comments/dto/create-comment.input';
 import { Product } from 'src/products/entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Comment } from 'src/comment/entities/comment.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 import { getConnection, Repository } from 'typeorm';
 import { createUsers } from 'src/utils/fakeData/users';
 import { createProducts } from 'src/utils/fakeData/products';
 import { createComments } from 'src/utils/fakeData/comments';
 import { getRandomInt } from 'src/utils/getRandomNumber';
 import { getRandomSample } from 'src/utils/getRandomSample';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class TestDataService {
@@ -20,13 +21,14 @@ export class TestDataService {
   ) {}
 
   async addTestData(customerNumber: number): Promise<User[]> {
-    let users = await createUsers(customerNumber);
-    let user_ids_with_names = users.map((user) => ({
-      user_id: user.user_id,
-      user_name: user.user_name,
-      display_pic: user.display_pic,
-    }));
     try {
+      let users = await createUsers(customerNumber);
+      let user_ids_with_names = users.map((user) => ({
+        user_id: user.user_id,
+        user_name: user.user_name,
+        display_pic: user.display_pic,
+      }));
+
       await getConnection()
         .createQueryBuilder()
         .insert()
@@ -34,8 +36,11 @@ export class TestDataService {
         .values(users)
         .execute();
 
+      let AllProducts = [] as Product[];
+
       users.forEach(async (user) => {
         let products = createProducts(user.user_id);
+        AllProducts.concat(products);
         await getConnection()
           .createQueryBuilder()
           .insert()
@@ -44,15 +49,13 @@ export class TestDataService {
           .execute();
       });
 
-      const products = await this.productsRepository.find();
-
-      products.forEach(async (product) => {
+      AllProducts.forEach(async (product) => {
         let sampled_user_ids = getRandomSample(
           user_ids_with_names,
           getRandomInt(2, 5),
         );
 
-        let comments = createComments(sampled_user_ids, product.product_id);
+        let comments = createComments(sampled_user_ids, product);
 
         await getConnection()
           .createQueryBuilder()
@@ -66,5 +69,26 @@ export class TestDataService {
     } catch (e) {
       console.log(e);
     }
+  }
+  // Do not Expect the
+  async addTestComment(): Promise<Comment[]> {
+    let users = (await this.usersRepository.find()).slice(0, 4);
+    users = users.map((user) => ({
+      user_name: user.user_name,
+      display_pic: user.display_pic,
+      user_id: user.user_id,
+    })) as any;
+
+    let product = await this.productsRepository.find()[0];
+    let comments = createComments(users, product);
+
+    await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(Comment)
+      .values(comments)
+      .execute();
+
+    return this.commentRepository.find();
   }
 }

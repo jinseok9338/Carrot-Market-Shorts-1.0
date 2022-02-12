@@ -7,7 +7,7 @@ import { ProductsResolver } from 'src/products/products.resolver';
 import { ProductsService } from 'src/products/products.service';
 import { User } from 'src/users/entities/user.entity';
 import { UsersModule } from 'src/users/users.module';
-import { Comment } from 'src/comment/entities/comment.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 import { TestDataService } from './testData.service';
 import { TestDataResolver } from './testData.resolver';
 

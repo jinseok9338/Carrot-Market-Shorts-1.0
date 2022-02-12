@@ -7,13 +7,13 @@ import { UsersModule } from 'src/users/users.module';
 import { User } from 'src/users/entities/user.entity';
 import { ProductDataController } from './productData.controller';
 import { ProductsDataService } from './productData.service';
-import { Comment } from 'src/comment/entities/comment.entity';
-import { CommentService } from 'src/comment/comment.service';
-import { CommentModule } from 'src/comment/comment.module';
+import { Comment } from 'src/comments/entities/comment.entity';
+import { CommentService } from 'src/comments/comments.service';
+import { CommentModule } from 'src/comments/comments.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Product, User]),
+    TypeOrmModule.forFeature([Product, User, Comment]),
     forwardRef(() => UsersModule),
     CommentModule,
   ],

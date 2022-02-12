@@ -5,8 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsModule } from 'src/products/products.module';
-import { CommentModule } from 'src/comment/comment.module';
-import { Comment } from 'src/comment/entities/comment.entity';
+import { CommentModule } from 'src/comments/comments.module';
+import { Comment } from 'src/comments/entities/comment.entity';
 import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
 import { WatchTimeModule } from 'src/watch-time/watch-time.module';
 

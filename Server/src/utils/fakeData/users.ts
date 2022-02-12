@@ -23,7 +23,6 @@ export const createUsers = async (
       last_name: lastname,
       expiration_email_time: null,
       interested: [],
-      watch_time: [],
       display_pic: image.people(30, 30),
     };
     users.push(user);

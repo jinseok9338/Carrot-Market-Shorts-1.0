@@ -10,7 +10,6 @@ import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Product } from 'src/products/entities/product.entity';
 import { IsDate } from 'class-validator';
-import { Comment } from '../../comment/entities/comment.entity';
 import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
 
 // What other user Info should I do ....

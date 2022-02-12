@@ -32,7 +32,6 @@ export const createProducts = (user_id: number | string): Product[] => {
       video: videoData[Math.floor(Math.random() * videoData.length)].link, // This should come from the video of the Youtube short
       user_id,
       sold: Math.random() < 0.5,
-      comments: [],
       tag: [],
       // I will update the product Info when needed .. it will probably soon enough I guess
     };

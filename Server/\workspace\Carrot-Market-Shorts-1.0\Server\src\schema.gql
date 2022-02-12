@@ -11,6 +11,8 @@ type Comment {
   message: String!
   user_name: String!
   display_pic: String!
+  product: Product!
+  user: Product!
 }
 
 """
@@ -48,7 +50,6 @@ type User {
   watch_time: [WatchTime!]
   products: [Product!]
   expiration_email_time: DateTime
-  comments: [Comment!]!
 }
 
 type ReturnType {
@@ -64,6 +65,7 @@ type Query {
   products: [Product!]!
   product(product_id: String!): Product!
   UserProducts(user_id: String!): [Product!]!
+  comments: [Comment!]!
   comment(id: Int!): Comment!
   watchTime(id: Int!): WatchTime!
 }
@@ -80,7 +82,8 @@ type Mutation {
   createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
   removeWatchTime(id: Int!): WatchTime!
-  createTestData(customerNumber: Float!): String!
+  createTest(customerNumber: Float!): [User!]!
+  createTestComment: [Comment!]!
 }
 
 input CreateUserInput {

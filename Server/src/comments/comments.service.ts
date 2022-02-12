@@ -16,14 +16,14 @@ export class CommentService {
     return 'This action adds a new comment';
   }
 
-  findAll() {
-    return `This action returns all comment`;
+  async findAll() {
+    return await this.commentRepository.find();
   }
 
   async findProductComments(product_id: string): Promise<Comment[]> {
     return await getRepository(Comment)
-      .createQueryBuilder('comment')
-      .where('comment.product_id = :product_id', { product_id })
+      .createQueryBuilder()
+      .where('product_id IN (:product_id)', { product_id })
       .getMany();
   }
 
