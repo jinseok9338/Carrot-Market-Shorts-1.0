@@ -8,11 +8,14 @@ import { User } from 'src/users/entities/user.entity';
 import { ProductDataController } from './productData.controller';
 import { ProductsDataService } from './productData.service';
 import { Comment } from 'src/comment/entities/comment.entity';
+import { CommentService } from 'src/comment/comment.service';
+import { CommentModule } from 'src/comment/comment.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Product, User]),
     forwardRef(() => UsersModule),
+    CommentModule,
   ],
   providers: [ProductsResolver, ProductsService, ProductsDataService],
   controllers: [ProductDataController],
