@@ -46,7 +46,7 @@ export class Product {
   @Field(() => [String])
   tag: string[];
 
-  @OneToMany(() => Comment, (comment) => comment.product_id, {
+  @OneToMany(() => Comment, (comment) => comment.product, {
     nullable: true,
     cascade: true,
   })

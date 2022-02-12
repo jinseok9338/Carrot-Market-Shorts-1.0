@@ -53,6 +53,7 @@ export class TestDataService {
         );
 
         let comments = createComments(sampled_user_ids, product.product_id);
+        console.log(comments);
 
         await getConnection()
           .createQueryBuilder()

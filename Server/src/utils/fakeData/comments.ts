@@ -12,7 +12,7 @@ export const createComments = (
 ): Comment[] => {
   let comments = [];
   for (let i = 0; i < users.length; i++) {
-    let comment: Comment = {
+    let comment = {
       comment_id: uuid(),
       created_at: new Date(),
       message: lorem.sentence(),

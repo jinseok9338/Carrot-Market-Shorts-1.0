@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Product } from 'src/products/entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
@@ -36,4 +37,10 @@ export class Comment {
   @Column()
   @Field(() => String)
   display_pic: string;
+
+  @ManyToOne(() => Product, (product) => product.comments, {
+    nullable: true,
+  })
+  @Field(() => Product)
+  product: Product;
 }

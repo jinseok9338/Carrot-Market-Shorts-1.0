@@ -75,9 +75,4 @@ export class UsersResolver {
   async products(@Parent() product: Product): Promise<Product[]> {
     return await this.productsService.findUserProducts(product.user_id);
   }
-
-  @ResolveField(() => [Comment]) //This is for the Comments Query
-  async comments(@Parent() comment: Comment): Promise<Comment[]> {
-    return await this.commentService.findProductComments(comment.product_id);
-  }
 }

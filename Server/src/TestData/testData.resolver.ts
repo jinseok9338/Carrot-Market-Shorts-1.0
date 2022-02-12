@@ -7,8 +7,10 @@ import { TestDataService } from './testData.service';
 export class TestDataResolver {
   constructor(private testDataService: TestDataService) {}
 
-  @Mutation(() => String)
-  createTestData(@Args('customerNumber') customerNumber: number) {
-    return this.testDataService.addTestData(customerNumber);
+  @Mutation(() => [User])
+  async createTestData(
+    @Args('customerNumber') customerNumber: number,
+  ): Promise<User[]> {
+    return await this.testDataService.addTestData(customerNumber);
   }
 }

@@ -58,7 +58,7 @@ export class ProductsResolver {
     return this.usersService.findOne(user.user_id);
   }
 
-  @ResolveField((returns) => Comment)
+  @ResolveField((returns) => [Comment])
   comments(@Parent() comment: Comment): Promise<Comment[]> {
     return this.commentService.findProductComments(comment.product_id);
   }
