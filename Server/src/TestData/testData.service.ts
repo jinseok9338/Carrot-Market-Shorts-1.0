@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateCommentInput } from 'src/comment/dto/create-comment.input';
+import { CreateCommentInput } from 'src/comments/dto/create-comment.input';
 import { Product } from 'src/products/entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Comment } from 'src/comment/entities/comment.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 import { getConnection, Repository } from 'typeorm';
 import { createUsers } from 'src/utils/fakeData/users';
 import { createProducts } from 'src/utils/fakeData/products';
 import { createComments } from 'src/utils/fakeData/comments';
 import { getRandomInt } from 'src/utils/getRandomNumber';
 import { getRandomSample } from 'src/utils/getRandomSample';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class TestDataService {
@@ -68,5 +69,26 @@ export class TestDataService {
     } catch (e) {
       console.log(e);
     }
+  }
+  // Do not Expect the
+  async addTestComment(): Promise<Comment[]> {
+    let users = (await this.usersRepository.find()).slice(0, 4);
+    users = users.map((user) => ({
+      user_name: user.user_name,
+      display_pic: user.display_pic,
+      user_id: user.user_id,
+    })) as any;
+
+    let product = await this.productsRepository.find()[0];
+    let comments = createComments(users, product);
+
+    await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(Comment)
+      .values(comments)
+      .execute();
+
+    return this.commentRepository.find();
   }
 }

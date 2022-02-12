@@ -4,7 +4,7 @@ import { getConnection } from 'typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { User } from './entities/user.entity';
-import { Comment } from 'src/comment/entities/comment.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 import { ReturnType } from './entities/user.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { UserUpdateInfo } from './type/DataType';

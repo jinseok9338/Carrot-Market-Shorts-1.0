@@ -1,5 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { CommentService } from './comments.services';
+import { CommentService } from './comments.service';
 import { CommentResolver } from './comments.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Comment } from './entities/comment.entity';

@@ -22,8 +22,8 @@ export class CommentService {
 
   async findProductComments(product_id: string): Promise<Comment[]> {
     return await getRepository(Comment)
-      .createQueryBuilder('comment')
-      .where('comment.product_id = :product_id', { product_id })
+      .createQueryBuilder()
+      .where('product_id IN (:product_id)', { product_id })
       .getMany();
   }
 

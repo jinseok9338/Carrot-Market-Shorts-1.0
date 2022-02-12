@@ -1,14 +1,16 @@
-import { Comment } from 'src/comment/entities/comment.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 import { uuid } from 'uuidv4';
 import { lorem } from 'faker';
 import { Product } from 'src/products/entities/product.entity';
 
+interface UserType {
+  user_id: string;
+  user_name: string;
+  display_pic: string;
+}
+
 export const createComments = (
-  users: {
-    user_id: string;
-    user_name: string;
-    display_pic: string;
-  }[],
+  users: UserType[],
   product: Product,
 ): Comment[] => {
   let comments = [];

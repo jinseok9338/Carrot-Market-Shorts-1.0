@@ -38,9 +38,7 @@ export class Comment {
   @Field(() => String)
   display_pic: string;
 
-  @ManyToOne(() => Product, (product) => product.comments, {
-    nullable: true,
-  })
+  @ManyToOne(() => Product, (product) => product.comments)
   @Field(() => Product)
   product: Product;
 }

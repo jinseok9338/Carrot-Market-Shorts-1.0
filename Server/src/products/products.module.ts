@@ -8,7 +8,7 @@ import { User } from 'src/users/entities/user.entity';
 import { ProductDataController } from './productData.controller';
 import { ProductsDataService } from './productData.service';
 import { Comment } from 'src/comments/entities/comment.entity';
-import { CommentService } from 'src/comments/comments.services';
+import { CommentService } from 'src/comments/comments.service';
 import { CommentModule } from 'src/comments/comments.module';
 
 @Module({

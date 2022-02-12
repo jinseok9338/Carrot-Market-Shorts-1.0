@@ -14,7 +14,7 @@ import { CreateProductInput } from './dto/create-product.input';
 import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { Comment } from 'src/comments/entities/comment.entity';
-import { CommentService } from 'src/comments/comments.services';
+import { CommentService } from 'src/comments/comments.service';
 
 @Resolver((of) => Product)
 export class ProductsResolver {

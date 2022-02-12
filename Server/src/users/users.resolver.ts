@@ -13,7 +13,7 @@ import { CreateUserInput } from './dto/create-user.input';
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
 import { UpdateUserInput } from './dto/update-user.input';
-import { CommentService } from 'src/comments/comments.services';
+import { CommentService } from 'src/comments/comments.service';
 import { Comment } from 'src/comments/entities/comment.entity';
 
 @Resolver(() => User)
