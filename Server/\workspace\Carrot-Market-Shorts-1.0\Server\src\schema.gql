@@ -82,7 +82,7 @@ type Mutation {
   createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
   removeWatchTime(id: Int!): WatchTime!
-  createTest(customerNumber: Float!): [User!]!
+  createTestUsers(customerNumber: Float!): [User!]!
   createTestComments: [Comment!]!
   createTestProducts: [Product!]!
 }

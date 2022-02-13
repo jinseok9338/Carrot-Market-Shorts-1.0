@@ -9,7 +9,7 @@ import { Product } from 'src/products/entities/product.entity';
 export class TestDataResolver {
   constructor(private testDataService: TestDataService) {}
 
-  @Mutation(() => [User], { name: 'createTest' })
+  @Mutation(() => [User], { name: 'createTestUsers' })
   async createTestData(
     @Args('customerNumber') customerNumber: number,
   ): Promise<User[]> {
