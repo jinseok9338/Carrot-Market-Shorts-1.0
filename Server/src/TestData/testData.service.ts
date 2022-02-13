@@ -20,75 +20,51 @@ export class TestDataService {
     @InjectRepository(Product) private productsRepository: Repository<Product>,
   ) {}
 
-  async addTestData(customerNumber: number): Promise<User[]> {
-    try {
-      let users = await createUsers(customerNumber);
-      let user_ids_with_names = users.map((user) => ({
-        user_id: user.user_id,
-        user_name: user.user_name,
-        display_pic: user.display_pic,
-      }));
+  async addTestUsers(customerNumber: number): Promise<User[]> {
+    let users = await createUsers(customerNumber);
+    await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(User)
+      .values(users)
+      .execute();
 
-      await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(User)
-        .values(users)
-        .execute();
-
-      let AllProducts = [] as Product[];
-
-      users.forEach(async (user) => {
-        let products = createProducts(user.user_id);
-        AllProducts.concat(products);
-        await getConnection()
-          .createQueryBuilder()
-          .insert()
-          .into(Product)
-          .values(products)
-          .execute();
-      });
-
-      AllProducts.forEach(async (product) => {
-        let sampled_user_ids = getRandomSample(
-          user_ids_with_names,
-          getRandomInt(2, 5),
-        );
-
-        let comments = createComments(sampled_user_ids, product);
-
-        await getConnection()
-          .createQueryBuilder()
-          .insert()
-          .into(Comment)
-          .values(comments)
-          .execute();
-      });
-
-      return this.usersRepository.find();
-    } catch (e) {
-      console.log(e);
-    }
+    return this.usersRepository.find();
   }
-  // Do not Expect the
-  async addTestComment(): Promise<Comment[]> {
-    let users = (await this.usersRepository.find()).slice(0, 4);
-    users = users.map((user) => ({
-      user_name: user.user_name,
-      display_pic: user.display_pic,
-      user_id: user.user_id,
-    })) as any;
 
-    let product = await this.productsRepository.find()[0];
-    let comments = createComments(users, product);
+  async addTestProducts(): Promise<Product[]> {
+    const users = await this.usersRepository.find();
+    let AllProducts = [] as Product[];
+
+    users.forEach((user) => {
+      let products = createProducts(user.user_id);
+      AllProducts.concat(products);
+    });
+
+    await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(Product)
+      .values(AllProducts)
+      .execute();
+    return this.productsRepository.find();
+  }
+
+  async addTestComment(): Promise<Comment[]> {
+    const products = await this.productsRepository.find();
+
+    const AllComments = [];
+    products.forEach((product) => {
+      let comments = createProducts(product.product_id);
+      AllComments.concat(comments);
+    });
 
     await getConnection()
       .createQueryBuilder()
       .insert()
       .into(Comment)
-      .values(comments)
+      .values(AllComments)
       .execute();
-
     return this.commentRepository.find();
   }
 }

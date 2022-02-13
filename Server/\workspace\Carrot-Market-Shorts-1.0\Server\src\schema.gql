@@ -83,7 +83,8 @@ type Mutation {
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
   removeWatchTime(id: Int!): WatchTime!
   createTest(customerNumber: Float!): [User!]!
-  createTestComment: [Comment!]!
+  createTestComments: [Comment!]!
+  createTestProducts: [Product!]!
 }
 
 input CreateUserInput {
