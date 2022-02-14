@@ -1,8 +1,18 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  Subscription,
+} from '@nestjs/graphql';
 import { WatchTimeService } from './watch-time.service';
 import { WatchTime } from './entities/watch-times.entity';
 import { CreateWatchTimeInput } from './dto/create-watch-time.input';
 import { UpdateWatchTimeInput } from './dto/update-watch-time.input';
+import { PubSub } from 'graphql-subscriptions';
+
+const pubSub = new PubSub();
 
 @Resolver(() => WatchTime)
 export class WatchTimeResolver {
@@ -38,5 +48,23 @@ export class WatchTimeResolver {
   @Mutation(() => WatchTime)
   removeWatchTime(@Args('id', { type: () => Int }) id: number) {
     return this.watchTimeService.remove(id);
+  }
+
+  @Subscription((returns) => WatchTime)
+  watchTimeAdded() {
+    return pubSub.asyncIterator('Watch_time_added');
+  }
+
+  @Mutation((returns) => WatchTime)
+  async addComment(
+    @Args('product_id', { type: () => String }) product_id: string,
+    @Args('watch_time', { type: () => String }) watch_time: number,
+  ) {
+    const watchTime = this.watchTimeService.addWatchTime(
+      product_id,
+      watch_time,
+    );
+    pubSub.publish('Watch_time_added', { watchTimeAdded: watchTime });
+    return this.watchTimeService.findOne(watch_time_id);
   }
 }

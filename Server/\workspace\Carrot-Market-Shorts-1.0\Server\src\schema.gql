@@ -34,8 +34,8 @@ type Product {
 
 type WatchTime {
   product_id: String!
+  product: Product!
   watch_time_seconds: String!
-  tag: String!
 }
 
 type User {
