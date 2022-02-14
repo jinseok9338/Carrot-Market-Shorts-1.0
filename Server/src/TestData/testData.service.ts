@@ -37,8 +37,6 @@ export class TestDataService {
       .createQueryBuilder('user')
       .getMany();
 
-    console.log(users[0].user_id);
-
     let AllProducts = [] as Product[];
 
     users.forEach((user) => {
@@ -62,13 +60,22 @@ export class TestDataService {
     return this.productsRepository.find();
   }
 
+  //Resolve Field products and Users
+  // Comment.product returns null which it shouldn't and UserField returns Products
   async addTestComment(): Promise<Comment[]> {
-    // Later .... But this is progress...
     const products = await this.productsRepository.find();
+    const users = (await this.usersRepository.find()).map(
+      ({ display_pic, user_id, user_name }) => ({
+        display_pic,
+        user_id,
+        user_name,
+      }),
+    );
 
     let AllComments = [];
     products.forEach((product) => {
-      let comments = createComments(product.product_id);
+      const RandomUsers = getRandomSample(users, getRandomInt(2, 8));
+      let comments = createComments(RandomUsers, product);
       AllComments = AllComments.concat(comments);
     });
 
