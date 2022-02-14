@@ -43,7 +43,6 @@ export class UsersService {
       defaultValue: new Date(),
     });
 
-    console.log(Expiration_email_time);
     try {
       const is_userId_exist = await this.usersRepository.findOne({ user_name });
       const is_email_exist = await this.usersRepository.findOne({ email });

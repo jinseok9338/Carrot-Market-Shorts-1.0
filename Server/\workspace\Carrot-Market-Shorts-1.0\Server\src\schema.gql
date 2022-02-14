@@ -12,7 +12,7 @@ type Comment {
   user_name: String!
   display_pic: String!
   product: Product!
-  user: Product!
+  user: User!
 }
 
 """

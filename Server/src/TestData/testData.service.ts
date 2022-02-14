@@ -48,8 +48,6 @@ export class TestDataService {
       throw new Error('No Products');
     }
 
-    console.log(AllProducts);
-
     await getConnection()
       .createQueryBuilder()
       .insert()
