@@ -20,6 +20,13 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type WatchTime {
+  watch_time_id: String!
+  user_id: String!
+  product_id: String!
+  watch_time_seconds: Int!
+}
+
 type Product {
   product_id: String!
   user: User!
@@ -29,14 +36,9 @@ type Product {
   images: [String!]
   video: String!
   tag: [String!]!
+  watch_times: [WatchTime!]
   comments: [Comment!]
-}
-
-type WatchTime {
-  watch_time_id: String!
-  user_id: String!
-  product_id: String!
-  watch_time_seconds: Int!
+  watchTimes: [WatchTime!]!
 }
 
 type User {

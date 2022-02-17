@@ -15,6 +15,9 @@ import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { Comment } from 'src/comments/entities/comment.entity';
 import { CommentService } from 'src/comments/comments.service';
+import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+import { WatchTimeService } from 'src/watch-time/watch-time.service';
+import { PaginationInput } from './dto/PaginationInput';
 
 @Resolver((of) => Product)
 export class ProductsResolver {
@@ -22,6 +25,7 @@ export class ProductsResolver {
     private readonly productsService: ProductsService,
     private usersService: UsersService,
     private commentService: CommentService,
+    private watchTimesService: WatchTimeService,
   ) {}
 
   @Mutation(() => Product)
@@ -39,6 +43,11 @@ export class ProductsResolver {
   @Query(() => Product, { name: 'product' })
   findOne(@Args('product_id', { type: () => String }) product_id: string) {
     return this.productsService.findOne(product_id);
+  }
+
+  @Query(() => [Product], { name: 'product_pagination' })
+  paginateProduct(@Args('paginationInput') paginationInput: PaginationInput) {
+    return this.productsService.paginateProduct(paginationInput);
   }
 
   @Query(() => [Product], { name: 'UserProducts' })
@@ -61,5 +70,10 @@ export class ProductsResolver {
   @ResolveField((returns) => [Comment])
   comments(@Parent() comment: Comment): Promise<Comment[]> {
     return this.commentService.findProductComments(comment.product_id);
+  }
+
+  @ResolveField((returns) => [WatchTime])
+  watchTimes(@Parent() watch_time: WatchTime): Promise<WatchTime[]> {
+    return this.watchTimesService.findProductWatchTime(watch_time.product_id);
   }
 }

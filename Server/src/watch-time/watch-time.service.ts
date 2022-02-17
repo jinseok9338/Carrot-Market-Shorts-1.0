@@ -57,6 +57,15 @@ export class WatchTimeService {
     return watch_times;
   }
 
+  async findProductWatchTime(product_id: string): Promise<WatchTime[]> {
+    const watch_times = await getRepository(WatchTime)
+      .createQueryBuilder('watchtime')
+      .where('watchtime.product_id = :product_id', { product_id })
+      .getMany();
+
+    return watch_times;
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} watchTime`;
   }

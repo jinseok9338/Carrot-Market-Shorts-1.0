@@ -6,5 +6,5 @@
 1. Add function that add data to watchTime[Done]
 1. modify the add Mock Data into 3 seperate functions [Done]
 1. motify signUp users and create users addMockData [Done]
-1. find out how to subsribe to a stream of data []
-1. find out how to subsribe to a stream of data []
+1. find out how to subsribe to a stream of data [Done]
+1. Resolve product.watch_time [Done]
