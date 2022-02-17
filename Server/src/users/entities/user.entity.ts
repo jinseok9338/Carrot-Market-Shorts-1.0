@@ -59,7 +59,7 @@ export class User {
     cascade: true,
   })
   @Field((type) => [WatchTime], { nullable: true })
-  watch_time?: WatchTime[];
+  watch_times?: WatchTime[];
 
   @OneToMany(() => Product, (product) => product.user, {
     nullable: true,

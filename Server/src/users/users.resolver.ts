@@ -15,6 +15,8 @@ import { ProductsService } from 'src/products/products.service';
 import { UpdateUserInput } from './dto/update-user.input';
 import { CommentService } from 'src/comments/comments.service';
 import { Comment } from 'src/comments/entities/comment.entity';
+import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+import { WatchTimeService } from 'src/watch-time/watch-time.service';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -22,6 +24,7 @@ export class UsersResolver {
     private readonly usersService: UsersService,
     private productsService: ProductsService,
     private commentService: CommentService,
+    private watchTimesService: WatchTimeService,
   ) {}
 
   @Mutation(() => ReturnType)
@@ -74,5 +77,10 @@ export class UsersResolver {
   @ResolveField(() => [Product]) //This is for the products Query
   async products(@Parent() product: Product): Promise<Product[]> {
     return await this.productsService.findUserProducts(product.user_id);
+  }
+
+  @ResolveField(() => [WatchTime]) //This is for the products Query
+  async watchTimes(@Parent() watchTime: WatchTime): Promise<WatchTime[]> {
+    return this.watchTimesService.findUserWatchTime(watchTime.user_id);
   }
 }

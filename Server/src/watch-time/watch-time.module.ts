@@ -7,5 +7,6 @@ import { WatchTime } from './entities/watch-times.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([WatchTime])],
   providers: [WatchTimeResolver, WatchTimeService],
+  exports: [WatchTimeService],
 })
 export class WatchTimeModule {}

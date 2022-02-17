@@ -33,6 +33,8 @@ type Product {
 }
 
 type WatchTime {
+  watch_time_id: String!
+  user_id: String!
   product_id: String!
   watch_time_seconds: Int!
 }
@@ -46,9 +48,10 @@ type User {
   last_name: String!
   confirm_email: Boolean!
   interested: [String!]
-  watch_time: [WatchTime!]
+  watch_times: [WatchTime!]
   products: [Product!]
   expiration_email_time: DateTime
+  watchTimes: [WatchTime!]!
 }
 
 type ReturnType {
@@ -81,7 +84,7 @@ type Mutation {
   createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
   removeWatchTime(id: Int!): WatchTime!
-  addWatchTime(seconds: Int!, product_id: String!): WatchTime!
+  addWatchTime(user_id: String!, seconds: Int!, product_id: String!): WatchTime!
   createTestUsers(customerNumber: Float!): [User!]!
   createTestComments: [Comment!]!
   createTestProducts: [Product!]!
