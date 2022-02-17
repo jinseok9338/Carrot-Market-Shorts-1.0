@@ -9,11 +9,9 @@ export class WatchTime {
   @Field((type) => String)
   product_id?: string;
 
-  @Column(() => Product)
-  @Field((type) => Product)
-  product: Product;
-
   @Column()
-  @Field((type) => String)
-  watch_time_seconds?: string;
+  @Field((type) => Int)
+  watch_time_seconds?: number;
+
+  // Do we need Product Entity?
 }
