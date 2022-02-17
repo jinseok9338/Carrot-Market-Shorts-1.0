@@ -12,7 +12,7 @@ import { CreateWatchTimeInput } from './dto/create-watch-time.input';
 import { UpdateWatchTimeInput } from './dto/update-watch-time.input';
 import { PubSub } from 'graphql-subscriptions';
 
-const pubSub = new PubSub();
+const pubSub = new PubSub(); // Stands for Publish and subscribe
 
 @Resolver(() => WatchTime)
 export class WatchTimeResolver {
@@ -50,21 +50,21 @@ export class WatchTimeResolver {
     return this.watchTimeService.remove(id);
   }
 
-  @Subscription((returns) => WatchTime)
+  @Subscription((returns) => WatchTime, { name: 'watchTimeAdded' })
   watchTimeAdded() {
     return pubSub.asyncIterator('Watch_time_added');
   }
 
-  @Mutation((returns) => WatchTime)
-  async addComment(
+  @Mutation(() => WatchTime)
+  async addWatchTime(
     @Args('product_id', { type: () => String }) product_id: string,
-    @Args('watch_time', { type: () => String }) watch_time: number,
+    @Args('seconds', { type: () => Int }) seconds: number,
   ) {
-    const watchTime = this.watchTimeService.addWatchTime(
+    const watchTime = await this.watchTimeService.addWatchTime(
       product_id,
-      watch_time,
+      seconds,
     );
     pubSub.publish('Watch_time_added', { watchTimeAdded: watchTime });
-    return this.watchTimeService.findOne(watch_time_id);
+    return watchTime;
   }
 }

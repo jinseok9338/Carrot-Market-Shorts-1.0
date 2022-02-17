@@ -15,7 +15,9 @@ import { TestDataModule } from './TestData/testData.module';
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'), //Code first approach
-      installSubscriptionHandlers: true,
+      subscriptions: {
+        'graphql-ws': true,
+      },
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
