@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Product } from 'src/products/entities/product.entity';
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity()
@@ -9,10 +10,8 @@ export class WatchTime {
   product_id?: string;
 
   @Column()
-  @Field((type) => String)
-  watch_time_seconds?: string;
+  @Field((type) => Int)
+  watch_time_seconds?: number;
 
-  @Column()
-  @Field((type) => String)
-  tag?: string;
+  // Do we need Product Entity?
 }

@@ -4,7 +4,7 @@ import { CreateCommentInput } from 'src/comments/dto/create-comment.input';
 import { Product } from 'src/products/entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Comment } from 'src/comments/entities/comment.entity';
-import { getConnection, Repository } from 'typeorm';
+import { getConnection, getRepository, Repository } from 'typeorm';
 import { createUsers } from 'src/utils/fakeData/users';
 import { createProducts } from 'src/utils/fakeData/products';
 import { createComments } from 'src/utils/fakeData/comments';
@@ -20,75 +20,69 @@ export class TestDataService {
     @InjectRepository(Product) private productsRepository: Repository<Product>,
   ) {}
 
-  async addTestData(customerNumber: number): Promise<User[]> {
-    try {
-      let users = await createUsers(customerNumber);
-      let user_ids_with_names = users.map((user) => ({
-        user_id: user.user_id,
-        user_name: user.user_name,
-        display_pic: user.display_pic,
-      }));
+  async addTestUsers(customerNumber: number): Promise<User[]> {
+    let users = await createUsers(customerNumber);
+    await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(User)
+      .values(users)
+      .execute();
 
-      await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(User)
-        .values(users)
-        .execute();
-
-      let AllProducts = [] as Product[];
-
-      users.forEach(async (user) => {
-        let products = createProducts(user.user_id);
-        AllProducts.concat(products);
-        await getConnection()
-          .createQueryBuilder()
-          .insert()
-          .into(Product)
-          .values(products)
-          .execute();
-      });
-
-      AllProducts.forEach(async (product) => {
-        let sampled_user_ids = getRandomSample(
-          user_ids_with_names,
-          getRandomInt(2, 5),
-        );
-
-        let comments = createComments(sampled_user_ids, product);
-
-        await getConnection()
-          .createQueryBuilder()
-          .insert()
-          .into(Comment)
-          .values(comments)
-          .execute();
-      });
-
-      return this.usersRepository.find();
-    } catch (e) {
-      console.log(e);
-    }
+    return this.usersRepository.find();
   }
-  // Do not Expect the
-  async addTestComment(): Promise<Comment[]> {
-    let users = (await this.usersRepository.find()).slice(0, 4);
-    users = users.map((user) => ({
-      user_name: user.user_name,
-      display_pic: user.display_pic,
-      user_id: user.user_id,
-    })) as any;
 
-    let product = await this.productsRepository.find()[0];
-    let comments = createComments(users, product);
+  async addTestProducts(): Promise<Product[]> {
+    const users = await getRepository(User)
+      .createQueryBuilder('user')
+      .getMany();
+
+    let AllProducts = [] as Product[];
+
+    users.forEach((user) => {
+      let products = createProducts(user.user_id);
+      AllProducts = AllProducts.concat(products);
+    });
+
+    if (AllProducts.length == 0) {
+      throw new Error('No Products');
+    }
+
+    await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(Product)
+      .values(AllProducts)
+      .execute();
+
+    return this.productsRepository.find();
+  }
+
+  //Resolve Field products and Users
+  // Comment.product returns null which it shouldn't and UserField returns Products
+  async addTestComment(): Promise<Comment[]> {
+    const products = await this.productsRepository.find();
+    const users = (await this.usersRepository.find()).map(
+      ({ display_pic, user_id, user_name }) => ({
+        display_pic,
+        user_id,
+        user_name,
+      }),
+    );
+
+    let AllComments = [];
+    products.forEach((product) => {
+      const RandomUsers = getRandomSample(users, getRandomInt(2, 8));
+      let comments = createComments(RandomUsers, product);
+      AllComments = AllComments.concat(comments);
+    });
 
     await getConnection()
       .createQueryBuilder()
       .insert()
       .into(Comment)
-      .values(comments)
+      .values(AllComments)
       .execute();
-
     return this.commentRepository.find();
   }
 }

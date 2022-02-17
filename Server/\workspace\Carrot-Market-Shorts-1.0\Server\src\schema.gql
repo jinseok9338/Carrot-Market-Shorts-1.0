@@ -12,7 +12,7 @@ type Comment {
   user_name: String!
   display_pic: String!
   product: Product!
-  user: Product!
+  user: User!
 }
 
 """
@@ -34,8 +34,7 @@ type Product {
 
 type WatchTime {
   product_id: String!
-  watch_time_seconds: String!
-  tag: String!
+  watch_time_seconds: Int!
 }
 
 type User {
@@ -82,8 +81,10 @@ type Mutation {
   createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
   removeWatchTime(id: Int!): WatchTime!
-  createTest(customerNumber: Float!): [User!]!
-  createTestComment: [Comment!]!
+  addWatchTime(seconds: Int!, product_id: String!): WatchTime!
+  createTestUsers(customerNumber: Float!): [User!]!
+  createTestComments: [Comment!]!
+  createTestProducts: [Product!]!
 }
 
 input CreateUserInput {
@@ -139,4 +140,8 @@ input UpdateWatchTimeInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
+}
+
+type Subscription {
+  watchTimeAdded: WatchTime!
 }

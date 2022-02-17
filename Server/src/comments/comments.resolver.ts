@@ -13,12 +13,15 @@ import { CreateCommentInput } from './dto/create-comment.input';
 import { UpdateCommentInput } from './dto/update-comment.input';
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
+import { User } from 'src/users/entities/user.entity';
+import { UsersService } from 'src/users/users.service';
 
 @Resolver(() => Comment)
 export class CommentResolver {
   constructor(
     private readonly commentService: CommentService,
     private readonly productsService: ProductsService,
+    private usersService: UsersService,
   ) {}
 
   @Mutation(() => Comment)
@@ -53,8 +56,13 @@ export class CommentResolver {
     return this.commentService.remove(id);
   }
 
+  @ResolveField((returns) => User)
+  user(@Parent() Commentuser: User): Promise<User> {
+    return this.usersService.findOne(Commentuser.user_id);
+  }
+
   @ResolveField((returns) => Product)
-  user(@Parent() product: Product): Promise<Product> {
+  product(@Parent() product: Product): Promise<Product> {
     return this.productsService.findOne(product.product_id);
   }
 }
