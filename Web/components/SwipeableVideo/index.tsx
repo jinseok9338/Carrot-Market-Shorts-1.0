@@ -23,8 +23,6 @@ const videos = [
 const SwiperView: NextPage<ISwiperProps> = ({ products }) => {
   const [height, setHeight] = useState(1000);
 
-  let newProducts = products ? products?.slice(0, 8) : videos;
-
   useEffect(() => {
     // window is accessible here.
     const height = window.innerHeight;
@@ -33,7 +31,7 @@ const SwiperView: NextPage<ISwiperProps> = ({ products }) => {
 
   const [index, setindex] = useState(0);
   // Set the drag hook and define component movement based on gesture data
-  const [props, api] = useSprings(newProducts?.length, (i) => ({
+  const [props, api] = useSprings(videos?.length, (i) => ({
     y: i * height,
     scale: 1,
     display: "block",
@@ -43,7 +41,7 @@ const SwiperView: NextPage<ISwiperProps> = ({ products }) => {
       if (active && Math.abs(my) > height / 4) {
         // The Smaller the number the smaller the thersh hold it needs to go over..
         setindex((index) =>
-          clamp(index + (yDir > 0 ? -1 : 1), 0, newProducts?.length - 1)
+          clamp(index + (yDir > 0 ? -1 : 1), 0, videos?.length - 1)
         );
 
         cancel();
@@ -71,9 +69,9 @@ const SwiperView: NextPage<ISwiperProps> = ({ products }) => {
             <ReactPlayer
               style={{ pointerEvents: "none" }}
               playing={i === index ? true : false}
-              id={newProducts[i].product_id}
+              id={videos[i]}
               muted
-              url={newProducts[i].video}
+              url={videos[i]}
               width="100%"
               height="100%"
               onEnded={() => console.log("The vudio has ended ")}

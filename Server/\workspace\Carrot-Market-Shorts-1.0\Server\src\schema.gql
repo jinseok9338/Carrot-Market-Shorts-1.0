@@ -44,7 +44,7 @@ type Product {
 type User {
   user_id: String!
   user_name: String!
-  display_pic: String!
+  display_pic: String
   email: String!
   first_name: String!
   last_name: String!
@@ -68,10 +68,17 @@ type Query {
   findByEmail(email: String!): User!
   products: [Product!]!
   product(product_id: String!): Product!
+  product_pagination(paginationInput: PaginationInput!): [Product!]!
   UserProducts(user_id: String!): [Product!]!
   comments: [Comment!]!
   comment(id: Int!): Comment!
   watchTime(id: Int!): WatchTime!
+}
+
+input PaginationInput {
+  user_id: String!
+  take: Int!
+  page: Int!
 }
 
 type Mutation {
