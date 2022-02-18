@@ -25,11 +25,6 @@ export class WatchTimeResolver {
     return this.watchTimeService.create(createWatchTimeInput);
   }
 
-  @Query(() => [WatchTime], { name: 'watchTime' })
-  findAll() {
-    return this.watchTimeService.findAll();
-  }
-
   @Query(() => WatchTime, { name: 'watchTime' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.watchTimeService.findOne(id);
@@ -59,10 +54,12 @@ export class WatchTimeResolver {
   async addWatchTime(
     @Args('product_id', { type: () => String }) product_id: string,
     @Args('seconds', { type: () => Int }) seconds: number,
+    @Args('user_id', { type: () => String }) user_id: string,
   ) {
     const watchTime = await this.watchTimeService.addWatchTime(
       product_id,
       seconds,
+      user_id,
     );
     pubSub.publish('Watch_time_added', { watchTimeAdded: watchTime });
     return watchTime;

@@ -7,6 +7,8 @@ import { UsersService } from 'src/users/users.service';
 import { User } from 'src/users/entities/user.entity';
 import { UpdateProductInput } from './dto/update-product.input';
 import { uuid } from 'uuidv4';
+import { PaginationInput } from './dto/PaginationInput';
+import { PaginationResult } from './paginationResultType';
 
 @Injectable()
 export class ProductsService {
@@ -64,6 +66,15 @@ export class ProductsService {
       .where('product_id = :product_id', { product_id: product.product_id })
       .execute();
 
+    return 'successfully Updated productInfo';
+  }
+
+  async paginateProduct({
+    user_id,
+    page,
+    take,
+  }: PaginationInput): Promise<PaginationResult> {
+    // Put Pagination Logic Here
     return 'successfully Updated productInfo';
   }
 }

@@ -10,12 +10,14 @@ import { ProductsDataService } from './productData.service';
 import { Comment } from 'src/comments/entities/comment.entity';
 import { CommentService } from 'src/comments/comments.service';
 import { CommentModule } from 'src/comments/comments.module';
+import { WatchTimeModule } from 'src/watch-time/watch-time.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Product, User, Comment]),
-    forwardRef(() => UsersModule),
     CommentModule,
+    forwardRef(() => UsersModule),
+    forwardRef(() => WatchTimeModule),
   ],
   providers: [ProductsResolver, ProductsService, ProductsDataService],
   controllers: [ProductDataController],
