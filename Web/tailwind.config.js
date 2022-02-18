@@ -23,7 +23,15 @@ module.exports = {
       tintBlack: "rgba(22, 24, 35)",
       tintBlue: "rgba(34, 90, 89)",
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "Profile-background":
+          "linear-gradient(180deg, #2DC9FA 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(159.93deg, #27B6E3 26.66%, rgba(116, 247, 184, 0.5) 86.62%)",
+      },
+      fontFamily: {
+        Montserrat: ["Montserrat"],
+      },
+    },
   },
   plugins: [],
 };

@@ -21,11 +21,3 @@ const Icons = ({ children, menuText }: IconsProps) => {
 };
 
 export default Icons;
-
-// export const Content = styled.div`
-//   display: flex;
-//   height: 100%;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 0 20px;
-// `;
