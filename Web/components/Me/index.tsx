@@ -2,7 +2,7 @@ import { FC } from "react";
 interface IMeProps {}
 
 // we need to make profile page that's scrollable ...
-const Me: FC<IMeProps> = (props) => {
+const Me: FC<IMeProps> = ({}) => {
   return (
     <div className="w-full h-full absolute flex flex-col items-center justify-start">
       <div className="background h-[60%]">
