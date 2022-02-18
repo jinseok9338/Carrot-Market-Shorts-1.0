@@ -101,6 +101,7 @@ type Mutation {
 
 input CreateUserInput {
   user_name: String!
+  display_pic: String!
   user_id: String!
   password: String!
   password_confirm: String!
@@ -113,6 +114,7 @@ input CreateUserInput {
 
 input UpdateUserInput {
   user_name: String
+  display_pic: String
   user_id: String!
   password: String
   password_confirm: String

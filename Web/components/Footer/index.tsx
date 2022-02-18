@@ -1,4 +1,3 @@
-import { faCcDiscover } from "@fortawesome/free-brands-svg-icons";
 import {
   faGlasses,
   faHome,
@@ -25,13 +24,17 @@ const Footer = ({ setProcess, process }: FooterProps) => {
         <Icons menuText="Home">
           <FontAwesomeIcon
             icon={faHome}
-            className="text-[1.5rem] text-[white] mr-1"
+            className={`text-[1.5rem] ${
+              process == "Home" ? "text-[white]" : "text-[white]/[0.4]"
+            }`}
           />
         </Icons>
         <Icons menuText="Discover">
           <FontAwesomeIcon
             icon={faGlasses}
-            className="text-[1.5rem] text-[white] mr-1"
+            className={`text-[1.5rem] ${
+              process == "Discover" ? "text-[white]" : "text-[white]/[0.4]"
+            } `}
           />
         </Icons>
         <div className="flex flex-col w-16 h-full justify-center items-center  cursor-pointer">
@@ -40,13 +43,17 @@ const Footer = ({ setProcess, process }: FooterProps) => {
         <Icons menuText="Inbox">
           <FontAwesomeIcon
             icon={faInbox}
-            className="text-[1.5rem] text-[white] mr-1"
+            className={`text-[1.5rem] ${
+              process == "Inbox" ? "text-[white]" : "text-[white]/[0.4]"
+            } `}
           />
         </Icons>
         <Icons menuText="Me">
           <FontAwesomeIcon
             icon={faUser}
-            className="text-[1.5rem] text-[white] mr-1"
+            className={`text-[1.5rem] ${
+              process == "Me" ? "text-[white]" : "text-[white]/[0.4]"
+            }`}
           />
         </Icons>
       </div>

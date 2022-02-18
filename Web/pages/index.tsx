@@ -1,7 +1,6 @@
 import type { GetStaticPropsResult, NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import jwt from "jsonwebtoken";
-import Footer from "../components/Footer";
 import { useAuth } from "../utils/auth/useAuth";
 import withAuth from "../components/Auth/withAuth";
 import { UserType } from "../utils/auth/AuthType";
@@ -11,7 +10,7 @@ import { useProcess } from "../utils/ProcessLoader/useProcess";
 import dynamic from "next/dynamic";
 import ProcessRenderer from "../utils/ProcessRenderer";
 
-const SwiperView = dynamic(() => import("../components/SwipeableVideo"));
+const Footer = dynamic(() => import("../components/Footer"));
 
 interface Props {
   products: any;

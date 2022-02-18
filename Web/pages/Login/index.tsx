@@ -1,9 +1,9 @@
 import axios from "axios";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useAuth } from "../../utils/auth/useAuth";
 import jwt from "jsonwebtoken";
 import { UserType } from "../../utils/auth/AuthType";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 interface ILoginPageProps {}
 
