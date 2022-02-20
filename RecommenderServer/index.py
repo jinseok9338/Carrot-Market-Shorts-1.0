@@ -10,6 +10,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = "secret string"
 
 
-@app.route("/") 
-def hello():  return "Hello, World!"
-   
+@app.route("/")
+def hello():
+    """
+    This is hello function
+    """
+    return "Hello, World!"
