@@ -47,21 +47,21 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
         className="text-[2rem] absolute top-1 right-3 text-[#EF5858] mr-1 cursor-pointer "
         onClick={() => setLogin(null)}
       />
-      <div className="h-full w-full flex flex-col items-center justify-around">
-        <div className="flex flex-col">
-          <span className="">Welcome Back</span>
-          <span className="">Login</span>
+      <div className="h-full w-full flex flex-col items-center justify-around ">
+        <div className="flex flex-col items-center h-[15vh] ">
+          <span className="text-[1.5rem] mb-[0vh] mr-[57vw] mt-[2vh]  ">Welcome Back</span>
+          <span className="text-[2rem] mb-[0vh] mr-[73vw]">Login</span>
         </div>
-        <form method="post" action="/api/login">
-          <input type="text" className="" />
-          <input type="text" className="" />
+        <form method="post" action="/api/login" className="flex flex-col items-center h-[24vh]">
+          <input type="text" className="w-[80vw] h-[8vh] mb-[2vh] rounded-[3vw] " />
+          <input type="text" className="w-[80vw] h-[8vh] rounded-[3vw] " />
         </form>
         <div className="">
-          <span className="">Forgot your password?</span>
+          <span className="text-[0.5rem] ml-[55vw]">Forgot your password?</span>
         </div>
         <button
           disabled={loading}
-          className=""
+          className="w-[50vw] h-[5vh] bg-[#050522] text-[#FFDE69] rounded-[3vw]"
           onClick={async (e) => {
             setLoading(true);
             e.preventDefault();
@@ -81,3 +81,4 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
     </>
   );
 };
+//vh vw % rem
