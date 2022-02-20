@@ -48,20 +48,21 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
         onClick={() => setLogin(null)}
       />
       <div className="h-full w-full flex flex-col items-center justify-around ">
-        <div className="flex flex-col items-center h-[15vh] ">
+        <div className="flex flex-col items-center h-[12vh] ">
           <span className="text-[1.5rem] mb-[0vh] mr-[57vw] mt-[2vh]  ">Welcome Back</span>
           <span className="text-[2rem] mb-[0vh] mr-[73vw]">Login</span>
         </div>
-        <form method="post" action="/api/login" className="flex flex-col items-center h-[24vh]">
-          <input type="text" className="w-[80vw] h-[8vh] mb-[2vh] rounded-[3vw] " />
-          <input type="text" className="w-[80vw] h-[8vh] rounded-[3vw] " />
-        </form>
-        <div className="">
-          <span className="text-[0.5rem] ml-[55vw]">Forgot your password?</span>
+        <form method="post" action="/api/login" className="flex flex-col-reverse items-center h-[23vh] justify-start ">
+          <div className="flex flex-col mb-[3vh] ml-[55vw] mt-[1vh] ">
+          <span className="text-[0.7rem]  ">Forgot your password?</span>
         </div>
+          <input type="password" placeholder="************" className="w-[80vw] h-[8vh] mt-[1vh] rounded-[3vw] text-[3vh] pl-[5vw]" />
+          <input type="text" placeholder="example@mail.com" className="w-[80vw] h-[8vh] rounded-[3vw] text-[3vh] pl-[5vw] " />
+        </form>
+        
         <button
           disabled={loading}
-          className="w-[50vw] h-[5vh] bg-[#050522] text-[#FFDE69] rounded-[3vw]"
+          className="w-[80vw] h-[8vh] bg-[#050522] text-[#FFDE69] rounded-[3vw] mb-[2vh] "
           onClick={async (e) => {
             setLoading(true);
             e.preventDefault();
@@ -71,8 +72,8 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
         >
           Login
         </button>
-        <div className="">
-          <span className="">Don't have an account?</span>
+        <div className="mb-[2vh] mt-[0vh] ">
+          <span className="mr-[2vw]">Don't have an account?</span>
           <a className="" onClick={() => setLogin("signUp")}>
             Sign Up
           </a>
