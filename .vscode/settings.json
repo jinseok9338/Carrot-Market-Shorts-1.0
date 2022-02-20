@@ -1,9 +1,5 @@
 {
-  "python.linting.pylintEnabled": true,
-  "python.linting.enabled": true,
-  "python.linting.pylintPath": "pylint",
-  "python.linting.pylintArgs": [
-    "--init-hook",
-    "import sys; sys.path.append('/workspace/Carrot-Market-Shorts-1.0')"
-  ]
+  "python.linting.pylintPath": "/workspace/Carrot-Market-Shorts-1.0/RecommenderServer/.venv/bin/pylint",
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black"
 }
