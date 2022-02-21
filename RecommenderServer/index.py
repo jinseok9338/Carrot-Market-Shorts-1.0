@@ -1,13 +1,18 @@
-from load_data import data
-from recommender import algo
+from surprise import KNNWithMeans
+from surprise import Dataset
+from surprise.model_selection import GridSearchCV
 
-trainingSet = data.build_full_trainset()
-algo.fit(trainingSet)
+data = Dataset.load_builtin("ml-100k")
+sim_options = {
+    "name": ["msd", "cosine"],
+    "min_support": [3, 4, 5],
+    "user_based": [False, True],
+}
 
+param_grid = {"sim_options": sim_options}
 
-# Computing the cosine similarity matrix...
-# Done computing similarity matrix.
-# <surprise.prediction_algorithms.knns.KNNWithMeans object at 0x7f04fec56898>
+gs = GridSearchCV(KNNWithMeans, param_grid, measures=["rmse", "mae"], cv=3)
+gs.fit(data)
 
-prediction = algo.predict('E', 2)
-print(prediction.est)
+print(gs.best_score["rmse"])
+print(gs.best_params["rmse"])
