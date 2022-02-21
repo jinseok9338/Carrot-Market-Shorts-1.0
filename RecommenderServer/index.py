@@ -1,18 +1,13 @@
-from flask import Flask, render_template, request, flash
-from flask_sqlalchemy import SQLAlchemy
+from load_data import data
+from recommender import algo
+
+trainingSet = data.build_full_trainset()
+algo.fit(trainingSet)
 
 
-app = Flask(__name__)
-app.config[
-    "SQLALCHEMY_DATABASE_URI"
-] = "postgresql://postgres:password@localhost/flasksql"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.secret_key = "secret string"
+# Computing the cosine similarity matrix...
+# Done computing similarity matrix.
+# <surprise.prediction_algorithms.knns.KNNWithMeans object at 0x7f04fec56898>
 
-
-@app.route("/")
-def hello():
-    """
-    This is hello function
-    """
-    return "Hello, World!"
+prediction = algo.predict('E', 2)
+print(prediction.est)
