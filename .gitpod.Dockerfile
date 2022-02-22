@@ -1,5 +1,5 @@
 FROM gitpod/workspace-full
-USER root
+
 
 # Install util tools.
 RUN apt-get update \
@@ -32,8 +32,3 @@ ENV PGDATABASE="postgres"
 RUN printf "\n# Auto-start PostgreSQL server.\n[[ \$(pg_ctl status | grep PID) ]] || pg_start > /dev/null\n" >> ~/.bashrc
 
 
-# Give back control
-USER root
-
-# Cleaning
-RUN apt-get clean
