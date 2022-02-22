@@ -12,7 +12,4 @@ app.secret_key = "secret string"
 
 @app.route("/")
 def hello():
-    """
-    This is hello function
-    """
     return "Hello, World!"

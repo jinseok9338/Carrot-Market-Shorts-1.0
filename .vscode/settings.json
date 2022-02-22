@@ -1,7 +1,7 @@
 {
-  "python.linting.pylintPath": "/workspace/Carrot-Market-Shorts-1.0/RecommenderServer/conda/bin/pylint",
+  "python.linting.pylintPath": "/workspace/Carrot-Market-Shorts-1.0/RecommenderServer/miniconda/bin/pylint",
   "editor.formatOnSave": true,
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length", "100"],
-  "python.formatting.blackPath": "/workspace/Carrot-Market-Shorts-1.0/RecommenderServer/conda/bin/black"
+  "python.formatting.blackPath": "/workspace/Carrot-Market-Shorts-1.0/RecommenderServer/miniconda/bin/black"
 }
