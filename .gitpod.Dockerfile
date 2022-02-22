@@ -1,14 +1,7 @@
 FROM gitpod/workspace-full
 
 
-# Install util tools.
-RUN apt-get update \
- && apt-get install -y \
-  apt-utils \
-  sudo \
-  git \
-  less \
-  wget
+
 # Docker build does not rebuild an image when a base image is changed, increase this counter to trigger it.
 ENV TRIGGER_REBUILD=1
 # Install PostgreSQL
