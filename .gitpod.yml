@@ -25,7 +25,7 @@ ports:
 tasks:
   # - before: cd Server && npm install -g @nestjs/cli && npm install && createuser user && createdb mydb && npm start
   # - command: cd Web && npm install && npm run dev
-  - command: cd RecommenderServer && bash Miniconda3-latest-MacOSX-x86_64.sh -b -p /workspace/Carrot-Market-Shorts-1.0/RecommenderServer/miniconda && pip install --upgrade pip && pip install -r requirements.txt
+  - command: cd RecommenderServer && bash Miniconda3-py37_4.10.3-Linux-x86_64.sh -b -p /workspace/Carrot-Market-Shorts-1.0/RecommenderServer/miniconda && pip install --upgrade pip && pip install -r requirements.txt
 
 vscode:
   extensions:
