@@ -65,5 +65,5 @@ async def create_note(note: NoteIn):
     return {**note.dict(), "id": last_record_id}
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+def read_item(item_id: int, _q: Optional[str] = None):
+    return {"item_id": item_id, "_q": _q}
