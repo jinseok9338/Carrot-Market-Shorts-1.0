@@ -2,48 +2,9 @@
 # pylint: disable=no-self-argument
 
 from typing import Optional,List
-import databases
-import sqlalchemy
-from fastapi import FastAPI
-from pydantic import BaseModel
+from __initApp__ import app,database
+from Models import NoteIn, Note , notes
 
-
-
-DATABASE_URL = "postgresql://localhost/mydb?user=user"
-
-database = databases.Database(DATABASE_URL)
-
-metadata = sqlalchemy.MetaData()
-
-notes = sqlalchemy.Table(
-    "notes",
-    metadata,
-    sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("text", sqlalchemy.String),
-    sqlalchemy.Column("completed", sqlalchemy.Boolean),
-)
-
-engine = sqlalchemy.create_engine(
-    DATABASE_URL
-)
-metadata.create_all(engine)
-
-
-class NoteIn(BaseModel):
-    text: str
-    completed: bool
-
-
-class Note(BaseModel):
-    id: int
-    text: str
-    completed: bool
-
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
 
 
 @app.on_event("startup")
