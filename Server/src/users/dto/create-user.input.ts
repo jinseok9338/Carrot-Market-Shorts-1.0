@@ -21,6 +21,10 @@ export class CreateUserInput {
   user_name: string;
 
   @IsString()
+  @Field()
+  display_pic: string;
+
+  @IsString()
   @IsUUID()
   @Field()
   user_id?: string;

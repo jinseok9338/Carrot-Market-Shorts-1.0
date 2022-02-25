@@ -73,7 +73,7 @@ export class ProductsService {
     user_id,
     page,
     take,
-  }: PaginationInput): Promise<PaginationResult> {
+  }: PaginationInput): Promise<string> {
     // Put Pagination Logic Here
     return 'successfully Updated productInfo';
   }

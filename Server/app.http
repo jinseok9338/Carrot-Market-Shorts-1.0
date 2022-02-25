@@ -11,6 +11,7 @@ content-type: application/json
        "email":"jinseok981222@gmail.com",
        "first_name":"jinseok93",
        "last_name":"Seo",
+       "display_pic":"sdad",
        "expiration_email_time": null
    }
 }

@@ -30,6 +30,7 @@ export class UsersService {
     last_name,
     confirm_email,
     expiration_email_time,
+    display_pic,
   }: CreateUserInput): Promise<ReturnType> {
     let User_id = defaultValue({ initialValue: user_id, defaultValue: uuid() });
 
@@ -65,6 +66,7 @@ export class UsersService {
           first_name,
           last_name,
           expiration_email_time: Expiration_email_time,
+          display_pic,
         }),
       );
       return {
