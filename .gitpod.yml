@@ -24,7 +24,7 @@ ports:
 
 tasks:
   - before: cd Server && npm install -g @nestjs/cli && npm install && createuser user && createdb mydb && npm start
-  # - command: cd Web && npm install && npm run dev
+  - command: cd Web && npm install && npm run dev
   - command: cd recommender_server && virtualenv .venv && source .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && cd fast_api && uvicorn main:app --reload
 
 vscode:
