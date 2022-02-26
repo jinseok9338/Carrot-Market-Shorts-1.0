@@ -1,0 +1,4 @@
+**/FastApi/__pycache__/
+__pycache__
+.venv
+RecommenderServer/FastApi/__pycache__/
