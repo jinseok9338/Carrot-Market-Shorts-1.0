@@ -1,0 +1,47 @@
+
+  {User:{
+    user_id: string;
+    user_name: string;
+    display_pic: string;
+    email?: string;
+    first_name?: string
+    last_name?: string;
+    confirm_email?: boolean;
+    password: string;
+    interested?: string[];
+    watch_times?: WatchTime[];
+    products?: Product[];
+    expiration_email_time?: Date | null}
+  }
+
+{Product:{
+  product_id: string;
+  user: User;
+  user_id: string;
+  product_name: string;
+  sold: boolean;
+  images?: string[];
+  video: string;
+  tag: string[];
+  watch_times: WatchTime[];
+  comments: Comment[];
+}}
+
+{Comment:{
+  comment_id: string;
+  user_id: string;
+  product_id: string;
+  created_at: Date;
+  updated_at: Date;
+  message: string;
+  user_name: string;
+  display_pic: string;
+  product: Product;
+}}
+
+{WatchTime:{
+  watch_time_id?: string;
+  user_id?: string;
+  product_id: string;
+  watch_time_seconds?: number;
+    }}
