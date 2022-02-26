@@ -1,6 +1,7 @@
 {
   "python.linting.pylintPath": "/workspace/Carrot-Market-Shorts-1.0/recommender_server/.venv/bin/pylint",
   "editor.formatOnSave": true,
+  "python.linting.pylintEnabled": true,
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length", "100"],
   "python.linting.pylintArgs": ["--disable=C0111"],
