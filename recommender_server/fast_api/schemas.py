@@ -21,8 +21,7 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     user_id: str
-    is_active: bool
-    
 
+    
     class Config:
         orm_mode = True
