@@ -21,6 +21,4 @@ export class WatchTime {
   @Column()
   @Field((type) => Int)
   watch_time_seconds?: number;
-
-  // Do we need Product Entity?
 }

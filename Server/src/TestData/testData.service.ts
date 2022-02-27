@@ -11,6 +11,7 @@ import { createComments } from 'src/utils/fakeData/comments';
 import { getRandomInt } from 'src/utils/getRandomNumber';
 import { getRandomSample } from 'src/utils/getRandomSample';
 import { Logger } from '@nestjs/common';
+import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
 
 @Injectable()
 export class TestDataService {
@@ -18,6 +19,8 @@ export class TestDataService {
     @InjectRepository(Comment) private commentRepository: Repository<Comment>,
     @InjectRepository(User) private usersRepository: Repository<User>,
     @InjectRepository(Product) private productsRepository: Repository<Product>,
+    @InjectRepository(WatchTime)
+    private watchTimeRepository: Repository<WatchTime>,
   ) {}
 
   async addTestUsers(customerNumber: number): Promise<User[]> {
@@ -58,8 +61,12 @@ export class TestDataService {
     return this.productsRepository.find();
   }
 
-  //Resolve Field products and Users
-  // Comment.product returns null which it shouldn't and UserField returns Products
+  async AddWatchTestWatchTime(): Promise<WatchTime[]> {
+    // we need to add random seconds to the watchTime.watchTIme_seconds
+
+    return await this.watchTimeRepository.find();
+  }
+
   async addTestComment(): Promise<Comment[]> {
     const products = await this.productsRepository.find();
     const users = (await this.usersRepository.find()).map(
