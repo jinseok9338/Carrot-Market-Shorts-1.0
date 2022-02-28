@@ -1,7 +1,24 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Product } from 'src/products/entities/product.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
+@Entity()
 @ObjectType()
 export class UserWatchTime {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @PrimaryColumn()
+  @Field(() => String)
+  watch_time_id: string;
+
+  @Column()
+  @Field(() => String)
+  user_id: string;
+
+  @Column()
+  @Field(() => Int)
+  watch_time_seconds: number;
+
+  @Column()
+  @Field(() => Product)
+  product: Product;
 }

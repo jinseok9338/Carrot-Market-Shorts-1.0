@@ -1,11 +1,27 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { getRepository, Repository } from 'typeorm';
 import { CreateUserWatchTimeInput } from './dto/create-user-watch-time.input';
 import { UpdateUserWatchTimeInput } from './dto/update-user-watch-time.input';
+import { UserWatchTime } from './entities/user-watch-time.entity';
 
 @Injectable()
 export class UserWatchTimeService {
+  constructor(
+    @InjectRepository(UserWatchTime)
+    private userWatchTimesRepository: Repository<UserWatchTime>,
+  ) {}
+
   create(createUserWatchTimeInput: CreateUserWatchTimeInput) {
     return 'This action adds a new userWatchTime';
+  }
+
+  async findUserWatchTime(user_id: string) {
+    const watch_times = await getRepository(UserWatchTime)
+      .createQueryBuilder('userWatchTime')
+      .where('userWatchTime.user_id = :user_id', { user_id })
+      .getMany();
+    return watch_times;
   }
 
   findAll() {
