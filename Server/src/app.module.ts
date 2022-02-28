@@ -10,6 +10,8 @@ import { ProductsModule } from './products/products.module';
 import { WatchTimeModule } from './watch-time/watch-time.module';
 import { CommentModule } from './comments/comments.module';
 import { TestDataModule } from './TestData/testData.module';
+import { UserWatchTimeModule } from './user-watch-time/user-watch-time.module';
+import { ProductWatchTimeModule } from './product-watch-time/product-watch-time.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { TestDataModule } from './TestData/testData.module';
     WatchTimeModule,
     CommentModule,
     TestDataModule,
+    UserWatchTimeModule,
+    ProductWatchTimeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
