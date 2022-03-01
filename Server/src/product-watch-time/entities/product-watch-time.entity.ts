@@ -1,11 +1,12 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Product } from 'src/products/entities/product.entity';
+import { UserWatchTime } from 'src/user-watch-time/entities/user-watch-time.entity';
 
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class UserWatchTime {
+export class ProductWatchTime {
   @PrimaryColumn()
   @Field(() => String)
   product_watch_time_id: string;
@@ -17,9 +18,6 @@ export class UserWatchTime {
   @Column()
   @Field(() => [UserWatchTime])
   user_watch_times: UserWatchTime[];
-
-  @Field(() => Int) // Resolved Field
-  total_seconds: number;
 
   @Column()
   @Field(() => Product)

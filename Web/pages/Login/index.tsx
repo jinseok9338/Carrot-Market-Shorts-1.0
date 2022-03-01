@@ -4,6 +4,8 @@ import { useAuth } from "../../utils/auth/useAuth";
 import jwt from "jsonwebtoken";
 import { UserType } from "../../utils/auth/AuthType";
 import router, { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 interface ILoginPageProps {}
 
@@ -56,15 +58,21 @@ const LoginPage: FC<ILoginPageProps> = (props) => {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Username
           </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            name="username"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Username"
-          />
+          <div className="relative">
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              name="username"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Username"
+            />
+            <FontAwesomeIcon
+              icon={faEye}
+              className="text-[1.1rem] text-[black]/[0.5] mr-1 absolute right-2 top-3"
+            />
+          </div>
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2">

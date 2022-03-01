@@ -39,4 +39,13 @@ export class UserWatchTimeService {
   remove(id: number) {
     return `This action removes a #${id} userWatchTime`;
   }
+
+  async findUserWatchTimes(user_id: string): Promise<UserWatchTime[]> {
+    const userWatchTimes = await this.userWatchTimesRepository
+      .createQueryBuilder()
+      .where('user_id IN (:user_id)', { user_id })
+      .getMany();
+
+    return userWatchTimes;
+  }
 }
