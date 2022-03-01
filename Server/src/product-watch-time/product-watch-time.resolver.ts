@@ -17,6 +17,7 @@ import { UserWatchTimeService } from 'src/user-watch-time/user-watch-time.servic
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
 import { PubSub } from 'graphql-subscriptions';
+import { getConnection } from 'typeorm';
 
 export const pubSub = new PubSub(); // Stands for Publish and subscribe
 
@@ -82,8 +83,20 @@ export class ProductWatchTimeResolver {
     const userWatchTime = (
       await pubSub.asyncIterator('userWatchTimeAdded').return()
     ).value as UserWatchTime;
+
     const productWatchTime = await this.productWatchTimeService.findByUserId(
       userWatchTime.product.product_id,
     );
+
+    if (!productWatchTime) {
+    }
+
+    // Update the ProductWatchTime
+    await getConnection()
+      .createQueryBuilder()
+      .update(UserWatchTime)
+      .set({ firstName: 'Timber', lastName: 'Saw' })
+      .where('id = :id', { id: 1 })
+      .execute();
   }
 }
