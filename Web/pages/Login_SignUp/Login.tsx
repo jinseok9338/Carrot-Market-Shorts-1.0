@@ -47,6 +47,9 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
         className="text-[2rem] absolute top-1 right-3 text-[#EF5858] mr-1 cursor-pointer "
         onClick={() => setLogin(null)}
       />
+      <div className="h-[2.7vh] w-[27vw] ">
+          <span>username/email</span>
+        </div>
       <div className="h-full w-full flex flex-col items-center justify-around ">
         <div className="flex flex-col items-center h-[12vh] ">
           <span className="text-[1.5rem] mb-[0vh] mr-[57vw] mt-[2vh]  ">Welcome Back</span>
@@ -56,7 +59,7 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
           <div className="flex flex-col mb-[3vh] ml-[55vw] mt-[1vh] ">
           <span className="text-[0.7rem]  ">Forgot your password?</span>
         </div>
-          <input type="password" placeholder="************" className="w-[80vw] h-[8vh] mt-[1vh] rounded-[3vw] text-[3vh] pl-[5vw]" />
+          <input type="password" placeholder="************" className="w-[80vw] h-[8vh] mt-[1vh] rounded-[3vw] text-[3vh] pl-[5vw] " />
           <input type="text" placeholder="example@mail.com" className="w-[80vw] h-[8vh] rounded-[3vw] text-[3vh] pl-[5vw] " />
         </form>
         
@@ -83,3 +86,5 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
   );
 };
 //vh vw % rem
+// 피그마와 가로 1.07배 가로 1.05배
+// 가로
