@@ -6,6 +6,7 @@ import {
   Int,
   Parent,
   ResolveField,
+  Subscription,
 } from '@nestjs/graphql';
 import { ProductWatchTimeService } from './product-watch-time.service';
 import { ProductWatchTime } from './entities/product-watch-time.entity';
@@ -15,6 +16,9 @@ import { UserWatchTime } from 'src/user-watch-time/entities/user-watch-time.enti
 import { UserWatchTimeService } from 'src/user-watch-time/user-watch-time.service';
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
+import { PubSub } from 'graphql-subscriptions';
+
+export const pubSub = new PubSub(); // Stands for Publish and subscribe
 
 @Resolver(() => ProductWatchTime)
 export class ProductWatchTimeResolver {
@@ -68,5 +72,18 @@ export class ProductWatchTimeResolver {
   @ResolveField((returns) => Product)
   product(@Parent() product: Product): Promise<Product> {
     return this.productsService.findOne(product.product_id);
+  }
+
+  @Subscription((returns) => ProductWatchTime, { name: 'userWatchTimeAdded' })
+  async userWatchTimeAdded() {
+    if (!(await pubSub.asyncIterator('userWatchTimeAdded').return())) {
+      throw new Error('Something Went wrong');
+    }
+    const userWatchTime = (
+      await pubSub.asyncIterator('userWatchTimeAdded').return()
+    ).value as UserWatchTime;
+    const productWatchTime = await this.productWatchTimeService.findByUserId(
+      userWatchTime.product.product_id,
+    );
   }
 }

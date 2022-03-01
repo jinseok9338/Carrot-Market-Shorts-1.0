@@ -33,6 +33,13 @@ export class ProductWatchTimeService {
     return `This action removes a #${id} productWatchTime`;
   }
 
+  async findByUserId(product_id: string) {
+    return await this.productWatchTimeRepository
+      .createQueryBuilder()
+      .where('product_id IN (:product_id)', { product_id })
+      .getOne();
+  }
+
   addProductWatchTime(seconds: number, product_id: string) {
     const product_watch_time =
       this.productWatchTimeRepository.findOne(product_id);

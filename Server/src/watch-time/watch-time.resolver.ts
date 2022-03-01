@@ -49,19 +49,4 @@ export class WatchTimeResolver {
   watchTimeAdded() {
     return pubSub.asyncIterator('Watch_time_added');
   }
-
-  @Mutation(() => WatchTime)
-  async addWatchTime(
-    @Args('product_id', { type: () => String }) product_id: string,
-    @Args('seconds', { type: () => Int }) seconds: number,
-    @Args('user_id', { type: () => String }) user_id: string,
-  ) {
-    const watchTime = await this.watchTimeService.addWatchTime(
-      product_id,
-      seconds,
-      user_id,
-    );
-    pubSub.publish('Watch_time_added', { watchTimeAdded: watchTime });
-    return watchTime;
-  }
 }

@@ -109,10 +109,10 @@ type Mutation {
   createUserWatchTime(createUserWatchTimeInput: CreateUserWatchTimeInput!): UserWatchTime!
   updateUserWatchTime(updateUserWatchTimeInput: UpdateUserWatchTimeInput!): UserWatchTime!
   removeUserWatchTime(id: Int!): UserWatchTime!
+  addWatchTime(user_id: String!, seconds: Int!): UserWatchTime!
   createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
   removeWatchTime(id: Int!): WatchTime!
-  addWatchTime(user_id: String!, seconds: Int!, product_id: String!): WatchTime!
   createTestUsers(customerNumber: Float!): [User!]!
   createTestComments: [Comment!]!
   createTestProducts: [Product!]!
@@ -202,4 +202,5 @@ input UpdateProductWatchTimeInput {
 
 type Subscription {
   watchTimeAdded: WatchTime!
+  userWatchTimeAdded: ProductWatchTime!
 }
