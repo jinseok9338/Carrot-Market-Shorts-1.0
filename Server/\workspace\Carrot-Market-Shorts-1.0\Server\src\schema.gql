@@ -41,6 +41,13 @@ type Product {
   watchTimes: [WatchTime!]!
 }
 
+type UserWatchTime {
+  watch_time_id: String!
+  user_id: String!
+  watch_time_seconds: Int!
+  product: Product!
+}
+
 type User {
   user_id: String!
   user_name: String!
@@ -50,16 +57,24 @@ type User {
   last_name: String!
   confirm_email: Boolean!
   interested: [String!]
-  watch_times: [WatchTime!]
+  user_watch_times: [UserWatchTime!]
   products: [Product!]
   expiration_email_time: DateTime
-  watchTimes: [WatchTime!]!
+  watchTimes: [UserWatchTime!]!
 }
 
 type ReturnType {
   ok: Boolean!
   error: String
   user: User
+}
+
+type ProductWatchTime {
+  product_watch_time_id: String!
+  user_ids: [String!]!
+  user_watch_times: [UserWatchTime!]!
+  product: Product!
+  user: UserWatchTime!
 }
 
 type Query {
@@ -72,7 +87,9 @@ type Query {
   UserProducts(user_id: String!): [Product!]!
   comments: [Comment!]!
   comment(id: Int!): Comment!
+  userWatchTime(id: Int!): UserWatchTime!
   watchTime(id: Int!): WatchTime!
+  productWatchTime(id: Int!): ProductWatchTime!
 }
 
 input PaginationInput {
@@ -90,6 +107,9 @@ type Mutation {
   createComment(createCommentInput: CreateCommentInput!): Comment!
   updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   removeComment(id: Int!): Comment!
+  createUserWatchTime(createUserWatchTimeInput: CreateUserWatchTimeInput!): UserWatchTime!
+  updateUserWatchTime(updateUserWatchTimeInput: UpdateUserWatchTimeInput!): UserWatchTime!
+  removeUserWatchTime(id: Int!): UserWatchTime!
   createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
   removeWatchTime(id: Int!): WatchTime!
@@ -97,6 +117,9 @@ type Mutation {
   createTestUsers(customerNumber: Float!): [User!]!
   createTestComments: [Comment!]!
   createTestProducts: [Product!]!
+  createProductWatchTime(createProductWatchTimeInput: CreateProductWatchTimeInput!): ProductWatchTime!
+  updateProductWatchTime(updateProductWatchTimeInput: UpdateProductWatchTimeInput!): ProductWatchTime!
+  removeProductWatchTime(id: Int!): ProductWatchTime!
 }
 
 input CreateUserInput {
@@ -145,12 +168,34 @@ input UpdateCommentInput {
   id: Int!
 }
 
+input CreateUserWatchTimeInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserWatchTimeInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
 input CreateWatchTimeInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
 input UpdateWatchTimeInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateProductWatchTimeInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateProductWatchTimeInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

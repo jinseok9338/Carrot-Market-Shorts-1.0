@@ -5,7 +5,6 @@ import {
   Args,
   Parent,
   ResolveField,
-  Int,
 } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { ReturnType, User } from './entities/user.entity';
@@ -13,10 +12,6 @@ import { CreateUserInput } from './dto/create-user.input';
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
 import { UpdateUserInput } from './dto/update-user.input';
-import { CommentService } from 'src/comments/comments.service';
-import { Comment } from 'src/comments/entities/comment.entity';
-import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
-import { WatchTimeService } from 'src/watch-time/watch-time.service';
 import { UserWatchTime } from 'src/user-watch-time/entities/user-watch-time.entity';
 import { UserWatchTimeService } from 'src/user-watch-time/user-watch-time.service';
 
@@ -25,7 +20,7 @@ export class UsersResolver {
   constructor(
     private readonly usersService: UsersService,
     private productsService: ProductsService,
-    private commentService: CommentService,
+
     private userWatchTimeService: UserWatchTimeService,
   ) {}
 

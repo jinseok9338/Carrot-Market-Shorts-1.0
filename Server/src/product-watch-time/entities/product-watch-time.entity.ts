@@ -2,7 +2,7 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Product } from 'src/products/entities/product.entity';
 import { UserWatchTime } from 'src/user-watch-time/entities/user-watch-time.entity';
 
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -15,11 +15,18 @@ export class ProductWatchTime {
   @Field(() => [String])
   user_ids: string[];
 
-  @Column()
+  @OneToMany(
+    () => UserWatchTime,
+    (user_watch_time) => user_watch_time.product.product_id,
+    {
+      nullable: true,
+      cascade: true,
+    },
+  )
   @Field(() => [UserWatchTime])
   user_watch_times: UserWatchTime[];
 
-  @Column()
+  @Column(() => Product)
   @Field(() => Product)
   product: Product;
 }
