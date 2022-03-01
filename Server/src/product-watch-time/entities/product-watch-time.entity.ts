@@ -1,6 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Product } from 'src/products/entities/product.entity';
 import { UserWatchTime } from 'src/user-watch-time/entities/user-watch-time.entity';
+import { defaultValue } from 'src/utils/defaultValue';
 
 import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 
@@ -11,7 +12,7 @@ export class ProductWatchTime {
   @Field(() => String)
   product_watch_time_id: string;
 
-  @Column('simple-array')
+  @Column('simple-array', { default: [] })
   @Field(() => [String])
   user_ids: string[];
 
@@ -26,6 +27,7 @@ export class ProductWatchTime {
   @Field(() => [UserWatchTime])
   user_watch_times: UserWatchTime[];
 
+  // I need to resolve this field
   @Column(() => Product)
   @Field(() => Product)
   product: Product;

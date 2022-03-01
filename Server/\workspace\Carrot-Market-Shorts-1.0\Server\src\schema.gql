@@ -74,7 +74,6 @@ type ProductWatchTime {
   user_ids: [String!]!
   user_watch_times: [UserWatchTime!]!
   product: Product!
-  user: UserWatchTime!
 }
 
 type Query {
