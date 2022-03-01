@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getRepository, Repository } from 'typeorm';
+import { uuid } from 'uuidv4';
 import { CreateUserWatchTimeInput } from './dto/create-user-watch-time.input';
 import { UpdateUserWatchTimeInput } from './dto/update-user-watch-time.input';
 import { UserWatchTime } from './entities/user-watch-time.entity';
@@ -14,14 +15,6 @@ export class UserWatchTimeService {
 
   create(createUserWatchTimeInput: CreateUserWatchTimeInput) {
     return 'This action adds a new userWatchTime';
-  }
-
-  async findUserWatchTime(user_id: string) {
-    const watch_times = await getRepository(UserWatchTime)
-      .createQueryBuilder('userWatchTime')
-      .where('userWatchTime.user_id = :user_id', { user_id })
-      .getMany();
-    return watch_times;
   }
 
   findAll() {
@@ -47,5 +40,30 @@ export class UserWatchTimeService {
       .getMany();
 
     return userWatchTimes;
+  }
+
+  //Whenever the addWatchUserTime is fired listen to it and fire up add to the product watch tiome
+  async addUserWatchTime(
+    user_id: string,
+    seconds: number,
+  ): Promise<UserWatchTime> {
+    //Find the WatchTIme by the user_id
+    let watch_time = await this.userWatchTimesRepository
+      .createQueryBuilder()
+      .where('user_id IN (:user_id)', { user_id })
+      .getOne();
+    // If not found create one
+    if (!watch_time) {
+      const new_watch_time = await this.userWatchTimesRepository.save(
+        this.userWatchTimesRepository.create({
+          user_id,
+          watch_time_id: uuid(),
+          watch_time_seconds: seconds,
+        }),
+      );
+      watch_time = new_watch_time;
+    }
+
+    return watch_time;
   }
 }

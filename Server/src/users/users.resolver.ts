@@ -80,6 +80,6 @@ export class UsersResolver {
   async watchTimes(
     @Parent() userWatchTime: UserWatchTime,
   ): Promise<UserWatchTime[]> {
-    return this.userWatchTimeService.findUserWatchTime(userWatchTime.user_id);
+    return this.userWatchTimeService.findUserWatchTimes(userWatchTime.user_id);
   }
 }
