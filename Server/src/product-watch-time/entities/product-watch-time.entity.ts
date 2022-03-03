@@ -12,8 +12,6 @@ export class ProductWatchTime {
   @Field(() => String)
   product_watch_time_id: string;
 
- 
-
   @OneToMany(
     () => UserWatchTime,
     (user_watch_time) => user_watch_time.product.product_id,
@@ -25,8 +23,11 @@ export class ProductWatchTime {
   @Field(() => [UserWatchTime])
   user_watch_times: UserWatchTime[];
 
-  // I need to resolve this field
   @Column(() => Product)
   @Field(() => Product)
-  product: Product;
+  product?: Product;
+
+  @Column(() => String)
+  @Field(() => String)
+  product_id: string;
 }

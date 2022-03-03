@@ -11,6 +11,8 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
+import { uuid } from 'uuidv4';
 
 @ObjectType()
 @Entity()
@@ -47,12 +49,9 @@ export class Product {
   @Field(() => [String])
   tag: string[];
 
-  @OneToMany(() => WatchTime, (watch_time) => watch_time.product_id, {
-    nullable: true,
-    cascade: true,
-  })
-  @Field((type) => [WatchTime], { nullable: true })
-  watch_times: WatchTime[];
+  @Column(() => ProductWatchTime)
+  @Field((type) => ProductWatchTime)
+  product_watch_times: ProductWatchTime;
 
   @OneToMany(() => Comment, (comment) => comment.product, {
     nullable: true,

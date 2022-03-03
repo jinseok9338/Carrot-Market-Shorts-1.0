@@ -71,9 +71,4 @@ export class ProductsResolver {
   comments(@Parent() comment: Comment): Promise<Comment[]> {
     return this.commentService.findProductComments(comment.product_id);
   }
-
-  @ResolveField((returns) => [WatchTime])
-  watchTimes(@Parent() watch_time: WatchTime): Promise<WatchTime[]> {
-    return this.watchTimesService.findProductWatchTime(watch_time.product_id);
-  }
 }

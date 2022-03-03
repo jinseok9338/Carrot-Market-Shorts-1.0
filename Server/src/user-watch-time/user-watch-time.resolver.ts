@@ -17,32 +17,6 @@ export class UserWatchTimeResolver {
     return this.userWatchTimeService.create(createUserWatchTimeInput);
   }
 
-  @Query(() => [UserWatchTime], { name: 'userWatchTime' })
-  findAll() {
-    return this.userWatchTimeService.findAll();
-  }
-
-  @Query(() => UserWatchTime, { name: 'userWatchTime' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.userWatchTimeService.findOne(id);
-  }
-
-  @Mutation(() => UserWatchTime)
-  updateUserWatchTime(
-    @Args('updateUserWatchTimeInput')
-    updateUserWatchTimeInput: UpdateUserWatchTimeInput,
-  ) {
-    return this.userWatchTimeService.update(
-      updateUserWatchTimeInput.id,
-      updateUserWatchTimeInput,
-    );
-  }
-
-  @Mutation(() => UserWatchTime)
-  removeUserWatchTime(@Args('id', { type: () => Int }) id: number) {
-    return this.userWatchTimeService.remove(id);
-  }
-
   @Mutation(() => UserWatchTime)
   async addWatchTime(
     @Args('seconds', { type: () => Int }) seconds: number,

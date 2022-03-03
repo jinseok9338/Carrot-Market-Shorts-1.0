@@ -88,9 +88,7 @@ export class ProductWatchTimeResolver {
       userWatchTime.product.product_id,
     );
 
-    if (!productWatchTime) {
-    }
-
+   
     // Update the ProductWatchTime
     await getConnection()
       .createQueryBuilder()

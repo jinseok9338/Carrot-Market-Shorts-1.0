@@ -44,6 +44,7 @@ type Product {
 type UserWatchTime {
   watch_time_id: String!
   user_id: String!
+  product_id: String!
   watch_time_seconds: Int!
   product: Product!
 }
@@ -73,6 +74,7 @@ type ProductWatchTime {
   product_watch_time_id: String!
   user_watch_times: [UserWatchTime!]!
   product: Product!
+  product_id: String!
 }
 
 type Query {
@@ -85,7 +87,6 @@ type Query {
   UserProducts(user_id: String!): [Product!]!
   comments: [Comment!]!
   comment(id: Int!): Comment!
-  userWatchTime(id: Int!): UserWatchTime!
   watchTime(id: Int!): WatchTime!
   productWatchTime(id: Int!): ProductWatchTime!
 }
@@ -106,8 +107,6 @@ type Mutation {
   updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   removeComment(id: Int!): Comment!
   createUserWatchTime(createUserWatchTimeInput: CreateUserWatchTimeInput!): UserWatchTime!
-  updateUserWatchTime(updateUserWatchTimeInput: UpdateUserWatchTimeInput!): UserWatchTime!
-  removeUserWatchTime(id: Int!): UserWatchTime!
   addWatchTime(product_id: String!, user_id: String!, seconds: Int!): UserWatchTime!
   createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
@@ -169,12 +168,6 @@ input UpdateCommentInput {
 input CreateUserWatchTimeInput {
   """Example field (placeholder)"""
   exampleField: Int!
-}
-
-input UpdateUserWatchTimeInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }
 
 input CreateWatchTimeInput {

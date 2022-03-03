@@ -15,6 +15,10 @@ export class UserWatchTime {
   user_id: string;
 
   @Column()
+  @Field(() => String)
+  product_id: string;
+
+  @Column()
   @Field(() => Int)
   watch_time_seconds: number;
 
