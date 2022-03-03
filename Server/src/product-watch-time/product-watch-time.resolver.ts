@@ -84,7 +84,7 @@ export class ProductWatchTimeResolver {
       await pubSub.asyncIterator('userWatchTimeAdded').return()
     ).value as UserWatchTime;
 
-    const productWatchTime = await this.productWatchTimeService.findByUserId(
+    const productWatchTime = await this.productWatchTimeService.findByProductId(
       userWatchTime.product.product_id,
     );
 
@@ -94,9 +94,17 @@ export class ProductWatchTimeResolver {
     // Update the ProductWatchTime
     await getConnection()
       .createQueryBuilder()
-      .update(UserWatchTime)
-      .set({ firstName: 'Timber', lastName: 'Saw' })
-      .where('id = :id', { id: 1 })
+      .update(ProductWatchTime)
+      .set({
+        ...productWatchTime,
+        user_watch_times: [...productWatchTime.user_watch_times, userWatchTime],
+      })
+      .where('product_id = :product_id', {
+        product_id: userWatchTime.product.product_id,
+      })
       .execute();
+    return this.productWatchTimeService.findByProductId(
+      userWatchTime.product.product_id,
+    );
   }
 }

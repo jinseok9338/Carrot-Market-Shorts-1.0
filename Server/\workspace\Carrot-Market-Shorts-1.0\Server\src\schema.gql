@@ -71,7 +71,6 @@ type ReturnType {
 
 type ProductWatchTime {
   product_watch_time_id: String!
-  user_ids: [String!]!
   user_watch_times: [UserWatchTime!]!
   product: Product!
 }

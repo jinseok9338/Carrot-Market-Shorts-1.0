@@ -33,7 +33,7 @@ export class ProductWatchTimeService {
     return `This action removes a #${id} productWatchTime`;
   }
 
-  async findByUserId(product_id: string) {
+  async findByProductId(product_id: string) {
     return await this.productWatchTimeRepository
       .createQueryBuilder()
       .where('product_id IN (:product_id)', { product_id })

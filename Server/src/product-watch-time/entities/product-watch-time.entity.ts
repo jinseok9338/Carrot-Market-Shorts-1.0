@@ -12,9 +12,7 @@ export class ProductWatchTime {
   @Field(() => String)
   product_watch_time_id: string;
 
-  @Column('simple-array', { default: [] })
-  @Field(() => [String])
-  user_ids: string[];
+ 
 
   @OneToMany(
     () => UserWatchTime,
