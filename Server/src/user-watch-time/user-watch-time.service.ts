@@ -46,12 +46,15 @@ export class UserWatchTimeService {
   async addUserWatchTime(
     user_id: string,
     seconds: number,
+    product_id: string,
   ): Promise<UserWatchTime> {
     //Find the WatchTIme by the user_id
+    // If the watch Time is found then add the seconds to
     let watch_time = await this.userWatchTimesRepository
       .createQueryBuilder()
       .where('user_id IN (:user_id)', { user_id })
       .getOne();
+
     // If not found create one
     if (!watch_time) {
       const new_watch_time = await this.userWatchTimesRepository.save(

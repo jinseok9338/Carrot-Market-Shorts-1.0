@@ -47,10 +47,12 @@ export class UserWatchTimeResolver {
   async addWatchTime(
     @Args('seconds', { type: () => Int }) seconds: number,
     @Args('user_id', { type: () => String }) user_id: string,
+    @Args('product_id', { type: () => String }) product_id: string,
   ) {
     const userWatchTime = await this.userWatchTimeService.addUserWatchTime(
       user_id,
       seconds,
+      product_id,
     );
     pubSub.publish('userWatchTimeAdded', { userWatchTimeAdded: userWatchTime });
     return userWatchTime;

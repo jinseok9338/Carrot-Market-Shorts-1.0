@@ -108,7 +108,7 @@ type Mutation {
   createUserWatchTime(createUserWatchTimeInput: CreateUserWatchTimeInput!): UserWatchTime!
   updateUserWatchTime(updateUserWatchTimeInput: UpdateUserWatchTimeInput!): UserWatchTime!
   removeUserWatchTime(id: Int!): UserWatchTime!
-  addWatchTime(user_id: String!, seconds: Int!): UserWatchTime!
+  addWatchTime(product_id: String!, user_id: String!, seconds: Int!): UserWatchTime!
   createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
   updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
   removeWatchTime(id: Int!): WatchTime!
