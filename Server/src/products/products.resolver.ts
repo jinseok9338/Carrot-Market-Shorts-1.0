@@ -18,6 +18,8 @@ import { CommentService } from 'src/comments/comments.service';
 import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
 import { WatchTimeService } from 'src/watch-time/watch-time.service';
 import { PaginationInput } from './dto/PaginationInput';
+import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
+import { ProductWatchTimeService } from 'src/product-watch-time/product-watch-time.service';
 
 @Resolver((of) => Product)
 export class ProductsResolver {
@@ -25,7 +27,7 @@ export class ProductsResolver {
     private readonly productsService: ProductsService,
     private usersService: UsersService,
     private commentService: CommentService,
-    private watchTimesService: WatchTimeService,
+    private productWatchTimeService: ProductWatchTimeService,
   ) {}
 
   @Mutation(() => Product)
@@ -70,5 +72,14 @@ export class ProductsResolver {
   @ResolveField((returns) => [Comment])
   comments(@Parent() comment: Comment): Promise<Comment[]> {
     return this.commentService.findProductComments(comment.product_id);
+  }
+
+  @ResolveField((returns) => [ProductWatchTime])
+  async product_watch_time(
+    @Parent() productWatchTime: ProductWatchTime,
+  ): Promise<ProductWatchTime> {
+    return await this.productWatchTimeService.findByProductId(
+      productWatchTime.product_id,
+    );
   }
 }

@@ -25,14 +25,20 @@ export const createProducts = (user_id: number | string): Product[] => {
   const products = [];
 
   for (let i = 0; i < randomInt; i++) {
+    const product_id = uuid();
     const product = {
-      product_id: uuid(),
+      product_id,
       product_name: commerce.product(),
       images: MakeImagesArray(), // This is the array of random number of pics
       video: videoData[Math.floor(Math.random() * videoData.length)].link, // This should come from the video of the Youtube short
       user_id,
       sold: Math.random() < 0.5,
       tag: [commerce.product(), commerce.product(), commerce.product()],
+      product_watch_time: {
+        product_id,
+        user_watch_times: [],
+        product_watch_time_id: uuid(),
+      },
       // I will update the product Info when needed .. it will probably soon enough I guess
     };
     products.push(product);

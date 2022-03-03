@@ -39,12 +39,4 @@ export class ProductWatchTimeService {
       .where('product_id IN (:product_id)', { product_id })
       .getOne();
   }
-
-  addProductWatchTime(seconds: number, product_id: string) {
-    const product_watch_time =
-      this.productWatchTimeRepository.findOne(product_id);
-    if (!product_watch_time) {
-      throw new Error('There is no ProductWatchTime');
-    }
-  }
 }
