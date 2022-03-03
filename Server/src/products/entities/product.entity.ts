@@ -51,7 +51,7 @@ export class Product {
 
   @Column(() => ProductWatchTime)
   @Field((type) => ProductWatchTime)
-  product_watch_times: ProductWatchTime;
+  product_watch_time: ProductWatchTime;
 
   @OneToMany(() => Comment, (comment) => comment.product, {
     nullable: true,

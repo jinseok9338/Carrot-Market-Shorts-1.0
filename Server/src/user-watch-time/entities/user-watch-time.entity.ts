@@ -21,8 +21,4 @@ export class UserWatchTime {
   @Column()
   @Field(() => Int)
   watch_time_seconds: number;
-
-  @Column(() => Product)
-  @Field(() => Product)
-  product: Product;
 }

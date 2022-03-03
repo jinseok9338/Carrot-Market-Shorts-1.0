@@ -14,7 +14,7 @@ export class ProductWatchTime {
 
   @OneToMany(
     () => UserWatchTime,
-    (user_watch_time) => user_watch_time.product.product_id,
+    (user_watch_time) => user_watch_time.product_id,
     {
       nullable: true,
       cascade: true,
@@ -22,10 +22,6 @@ export class ProductWatchTime {
   )
   @Field(() => [UserWatchTime])
   user_watch_times: UserWatchTime[];
-
-  @Column(() => Product)
-  @Field(() => Product)
-  product?: Product;
 
   @Column(() => String)
   @Field(() => String)

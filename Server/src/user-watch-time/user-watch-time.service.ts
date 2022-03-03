@@ -12,7 +12,6 @@ export class UserWatchTimeService {
   constructor(
     @InjectRepository(UserWatchTime)
     private userWatchTimesRepository: Repository<UserWatchTime>,
-    private productsService: ProductsService,
   ) {}
 
   create(createUserWatchTimeInput: CreateUserWatchTimeInput) {
@@ -45,14 +44,12 @@ export class UserWatchTimeService {
     // If not found create one
     // with the product found with the associated product_id
     if (!watch_time) {
-      const product = await this.productsService.findOne(product_id);
       const new_watch_time = await this.userWatchTimesRepository.save(
         this.userWatchTimesRepository.create({
           user_id,
           watch_time_id: uuid(),
           product_id,
           watch_time_seconds: seconds,
-          product,
         }),
       );
       new_watch_time;
