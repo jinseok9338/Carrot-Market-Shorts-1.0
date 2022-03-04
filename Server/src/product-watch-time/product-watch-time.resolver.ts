@@ -43,31 +43,22 @@ export class ProductWatchTimeResolver {
 
   @Subscription((returns) => ProductWatchTime, { name: 'userWatchTimeAdded' })
   async userWatchTimeAdded() {
-    if (!(await pubSub.asyncIterator('userWatchTimeAdded').return())) {
-      throw new Error('Something Went wrong');
-    }
-    const userWatchTime = (
-      await pubSub.asyncIterator('userWatchTimeAdded').return()
-    ).value as UserWatchTime;
+    return pubSub.asyncIterator('userWatchTimeAdded');
 
-    const productWatchTime = await this.productWatchTimeService.findByProductId(
-      userWatchTime.product_id,
-    );
-
-    // Update the ProductWatchTime
-    await getConnection()
-      .createQueryBuilder()
-      .update(ProductWatchTime)
-      .set({
-        ...productWatchTime,
-        user_watch_times: [...productWatchTime.user_watch_times, userWatchTime],
-      })
-      .where('product_id = :product_id', {
-        product_id: userWatchTime.product_id,
-      })
-      .execute();
-    return this.productWatchTimeService.findByProductId(
-      userWatchTime.product_id,
-    );
+    // // Update the ProductWatchTime
+    // await getConnection()
+    //   .createQueryBuilder()
+    //   .update(ProductWatchTime)
+    //   .set({
+    //     ...productWatchTime,
+    //     user_watch_times: [...productWatchTime.user_watch_times, userWatchTime],
+    //   })
+    //   .where('product_id = :product_id', {
+    //     product_id: userWatchTime.product_id,
+    //   })
+    //   .execute();
+    // return this.productWatchTimeService.findByProductId(
+    //   userWatchTime.product_id,
+    // );
   }
 }

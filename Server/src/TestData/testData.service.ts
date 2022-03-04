@@ -47,8 +47,6 @@ export class TestDataService {
       };
     });
 
-    console.log(defaultProductWatchTimes);
-
     await getConnection()
       .createQueryBuilder()
       .insert()
@@ -57,7 +55,7 @@ export class TestDataService {
       .execute();
 
     const Product_watch_times = await this.productWatchTimeRepository.find();
-    console.log(Product_watch_times);
+
     return Product_watch_times;
   }
 
