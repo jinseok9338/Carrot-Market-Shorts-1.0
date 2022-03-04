@@ -21,6 +21,8 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
   const [loading, setLoading] = useState(false);
   const Router = useRouter();
 
+
+
   const submitForm = async () => {
     try {
       const res = await axios.post("/api/login", {
@@ -59,8 +61,8 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
           <div className="flex flex-col mb-[2.5vh] ml-[49vw] mt-[1.5vh] ">
           <span className="text-[0.78rem]  ">Forgot your password?</span>
         </div>
-          <input type="password" placeholder="************" className="w-[80vw] h-[7.5vh] mt-[2.5vh] rounded-[3vw] text-[1.3rem] pl-[4.2vw] pt-[0vh] border-[0.25vw] bg-[#FFECAA]   " />
-          <input type="text" placeholder="example@mail.com"  className="w-[80vw] h-[7.5vh] rounded-[3vw] text-[1.3rem] pl-[4.2vw] pt-[0vh] border-[0.5vw]  bg-[#FFECAA]  " />
+          <input type="password" placeholder="************" className="w-[80vw] h-[7.5vh] mt-[2.5vh] rounded-[3vw] text-[1.3rem] pl-[4.2vw] pt-[0vh] border-[0.25vw] bg-[#FFECAA]  " onChange={(e)=>setPassword(e.target.value)} />
+          <input type="text" placeholder="example@mail.com"  className="w-[80vw] h-[7.5vh] rounded-[3vw] text-[1.3rem] pl-[4.2vw] pt-[0vh] border-[0.5vw]  bg-[#FFECAA]  " onChange={(e)=>setEmail(e.target.value)} />
         </form>
         
         <button
