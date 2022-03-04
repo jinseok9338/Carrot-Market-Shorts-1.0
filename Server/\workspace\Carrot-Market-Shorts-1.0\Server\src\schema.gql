@@ -31,7 +31,6 @@ type ProductWatchTime {
   product_watch_time_id: String!
   user_watch_times: [UserWatchTime!]!
   product_id: String!
-  product: Product!
 }
 
 type Product {
@@ -43,7 +42,7 @@ type Product {
   images: [String!]
   video: String!
   tag: [String!]!
-  product_watch_time: ProductWatchTime!
+  product_watch_time: ProductWatchTime
   comments: [Comment!]
 }
 
@@ -83,7 +82,6 @@ type Query {
   product(product_id: String!): Product!
   product_pagination(paginationInput: PaginationInput!): [Product!]!
   UserProducts(user_id: String!): [Product!]!
-  productWatchTime(id: Int!): ProductWatchTime!
   comments: [Comment!]!
   comment(id: Int!): Comment!
   watchTime(id: Int!): WatchTime!
@@ -101,9 +99,6 @@ type Mutation {
   deleteUser(user_id: String!): String!
   createProduct(createProductInput: CreateProductInput!): Product!
   removeProduct(product_id: String!): String!
-  createProductWatchTime(createProductWatchTimeInput: CreateProductWatchTimeInput!): ProductWatchTime!
-  updateProductWatchTime(updateProductWatchTimeInput: UpdateProductWatchTimeInput!): ProductWatchTime!
-  removeProductWatchTime(id: Int!): ProductWatchTime!
   createUserWatchTime(createUserWatchTimeInput: CreateUserWatchTimeInput!): UserWatchTime!
   addWatchTime(product_id: String!, user_id: String!, seconds: Int!): UserWatchTime!
   createComment(createCommentInput: CreateCommentInput!): Comment!
@@ -150,17 +145,6 @@ input CreateProductInput {
   images: [String!]
   video: String!
   tag: [String!]!
-}
-
-input CreateProductWatchTimeInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateProductWatchTimeInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }
 
 input CreateUserWatchTimeInput {

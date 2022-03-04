@@ -5,10 +5,14 @@ import { User } from 'src/users/entities/user.entity';
 import { Comment } from 'src/comments/entities/comment.entity';
 import { TestDataService } from './testData.service';
 import { TestDataResolver } from './testData.resolver';
-import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+
+import { ProductWatchTimeModule } from 'src/product-watch-time/product-watch-time.module';
+import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Product, User, Comment, WatchTime])],
+  imports: [
+    TypeOrmModule.forFeature([Product, User, Comment, ProductWatchTime]),
+  ],
   providers: [TestDataResolver, TestDataService],
   exports: [],
 })

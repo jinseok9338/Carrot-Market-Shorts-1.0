@@ -34,11 +34,6 @@ export const createProducts = (user_id: number | string): Product[] => {
       user_id,
       sold: Math.random() < 0.5,
       tag: [commerce.product(), commerce.product(), commerce.product()],
-      product_watch_time: {
-        product_id,
-        user_watch_times: [],
-        product_watch_time_id: uuid(),
-      },
       // I will update the product Info when needed .. it will probably soon enough I guess
     };
     products.push(product);

@@ -29,50 +29,11 @@ export class ProductWatchTimeResolver {
     private readonly productsService: ProductsService,
   ) {}
 
-  @Mutation(() => ProductWatchTime)
-  createProductWatchTime(
-    @Args('createProductWatchTimeInput')
-    createProductWatchTimeInput: CreateProductWatchTimeInput,
-  ) {
-    return this.productWatchTimeService.create(createProductWatchTimeInput);
-  }
-
-  @Query(() => [ProductWatchTime], { name: 'productWatchTime' })
-  findAll() {
-    return this.productWatchTimeService.findAll();
-  }
-
-  @Query(() => ProductWatchTime, { name: 'productWatchTime' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.productWatchTimeService.findOne(id);
-  }
-
-  @Mutation(() => ProductWatchTime)
-  updateProductWatchTime(
-    @Args('updateProductWatchTimeInput')
-    updateProductWatchTimeInput: UpdateProductWatchTimeInput,
-  ) {
-    return this.productWatchTimeService.update(
-      updateProductWatchTimeInput.id,
-      updateProductWatchTimeInput,
-    );
-  }
-
-  @Mutation(() => ProductWatchTime)
-  removeProductWatchTime(@Args('id', { type: () => Int }) id: number) {
-    return this.productWatchTimeService.remove(id);
-  }
-
   @ResolveField((returns) => UserWatchTime)
   user_watch_times(
     @Parent() userWatchTime: UserWatchTime,
   ): Promise<UserWatchTime[]> {
     return this.userWatchTimeService.findUserWatchTimes(userWatchTime.user_id);
-  }
-
-  @ResolveField((returns) => Product)
-  product(@Parent() product: Product): Promise<Product> {
-    return this.productsService.findOne(product.product_id);
   }
 
   @Subscription((returns) => ProductWatchTime, { name: 'userWatchTimeAdded' })

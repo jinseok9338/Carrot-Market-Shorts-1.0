@@ -50,8 +50,8 @@ export class Product {
   tag: string[];
 
   @Column(() => ProductWatchTime)
-  @Field((type) => ProductWatchTime)
-  product_watch_time: ProductWatchTime;
+  @Field((type) => ProductWatchTime, { nullable: true })
+  product_watch_time?: ProductWatchTime;
 
   @OneToMany(() => Comment, (comment) => comment.product, {
     nullable: true,

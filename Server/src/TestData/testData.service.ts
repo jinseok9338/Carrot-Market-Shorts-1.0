@@ -12,6 +12,8 @@ import { getRandomInt } from 'src/utils/getRandomNumber';
 import { getRandomSample } from 'src/utils/getRandomSample';
 import { Logger } from '@nestjs/common';
 import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
+import { uuid } from 'uuidv4';
 
 @Injectable()
 export class TestDataService {
@@ -19,8 +21,8 @@ export class TestDataService {
     @InjectRepository(Comment) private commentRepository: Repository<Comment>,
     @InjectRepository(User) private usersRepository: Repository<User>,
     @InjectRepository(Product) private productsRepository: Repository<Product>,
-    @InjectRepository(WatchTime)
-    private watchTimeRepository: Repository<WatchTime>,
+    @InjectRepository(ProductWatchTime)
+    private productWatchTimeRepository: Repository<ProductWatchTime>,
   ) {}
 
   async addTestUsers(customerNumber: number): Promise<User[]> {
@@ -33,6 +35,24 @@ export class TestDataService {
       .execute();
 
     return this.usersRepository.find();
+  }
+
+  async AddTestDefaulProductWatchTime(
+    products: Product[],
+  ): Promise<ProductWatchTime[]> {
+    const defaultProductWatchTimes = products.map((product) => ({
+      product_id: product.product_id,
+      product_watch_time_id: uuid(),
+    }));
+
+    await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(ProductWatchTime)
+      .values(defaultProductWatchTimes)
+      .execute();
+
+    return await this.productWatchTimeRepository.find();
   }
 
   async addTestProducts(): Promise<Product[]> {
@@ -58,13 +78,9 @@ export class TestDataService {
       .values(AllProducts)
       .execute();
 
+    await this.AddTestDefaulProductWatchTime(AllProducts);
+
     return this.productsRepository.find();
-  }
-
-  async AddWatchTestWatchTime(): Promise<WatchTime[]> {
-    // we need to add random seconds to the watchTime.watchTIme_seconds
-
-    return await this.watchTimeRepository.find();
   }
 
   async addTestComment(): Promise<Comment[]> {

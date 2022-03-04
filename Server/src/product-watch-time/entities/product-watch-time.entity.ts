@@ -21,9 +21,9 @@ export class ProductWatchTime {
     },
   )
   @Field(() => [UserWatchTime])
-  user_watch_times: UserWatchTime[];
+  user_watch_times?: UserWatchTime[];
 
   @Column(() => String)
   @Field(() => String)
-  product_id: string;
+  product_id?: string;
 }
