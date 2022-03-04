@@ -8,6 +8,7 @@ import {
   JoinTable,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
 } from 'typeorm';
 import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
@@ -49,7 +50,7 @@ export class Product {
   @Field(() => [String])
   tag: string[];
 
-  @Column(() => ProductWatchTime)
+  @OneToOne(() => ProductWatchTime)
   @Field((type) => ProductWatchTime, { nullable: true })
   product_watch_time?: ProductWatchTime;
 

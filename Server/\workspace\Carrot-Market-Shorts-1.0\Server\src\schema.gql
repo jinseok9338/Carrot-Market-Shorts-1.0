@@ -82,6 +82,7 @@ type Query {
   product(product_id: String!): Product!
   product_pagination(paginationInput: PaginationInput!): [Product!]!
   UserProducts(user_id: String!): [Product!]!
+  productWatchTimes: [ProductWatchTime!]!
   comments: [Comment!]!
   comment(id: Int!): Comment!
   watchTime(id: Int!): WatchTime!

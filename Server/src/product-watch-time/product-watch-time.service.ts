@@ -18,7 +18,7 @@ export class ProductWatchTimeService {
   }
 
   findAll() {
-    return `This action returns all productWatchTime`;
+    return this.productWatchTimeRepository.find();
   }
 
   findOne(id: number) {

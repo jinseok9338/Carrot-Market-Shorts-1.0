@@ -29,6 +29,11 @@ export class ProductWatchTimeResolver {
     private readonly productsService: ProductsService,
   ) {}
 
+  @Query(() => [ProductWatchTime], { name: 'productWatchTimes' })
+  findAll() {
+    return this.productWatchTimeService.findAll();
+  }
+
   @ResolveField((returns) => UserWatchTime)
   user_watch_times(
     @Parent() userWatchTime: UserWatchTime,
