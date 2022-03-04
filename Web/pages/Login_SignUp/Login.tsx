@@ -47,25 +47,25 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
         className="text-[2rem] absolute top-1 right-3 text-[#EF5858] mr-1 cursor-pointer "
         onClick={() => setLogin(null)}
       />
-      <div className="h-[2.7vh] w-[27vw] ">
-          <span>username/email</span>
+      <div className="bg-[#FFECAA] w-[30vw] h-[3vh] absolute top-[14vh] left-[14vw] z-[1] flex ">
+          <span className="font-sans">username/email</span>
         </div>
       <div className="h-full w-full flex flex-col items-center justify-around ">
         <div className="flex flex-col items-center h-[12vh] ">
-          <span className="text-[1.5rem] mb-[0vh] mr-[57vw] mt-[2vh]  ">Welcome Back</span>
-          <span className="text-[2rem] mb-[0vh] mr-[73vw]">Login</span>
+          <span className="text-[1.3rem] mb-[0vh] mr-[44vw] mt-[2vh]  ">Welcome Back!!!</span>
+          <span className="text-[2rem] mb-[0vh] mr-[60vw] font-bold z-[2]">Login</span>
         </div>
         <form method="post" action="/api/login" className="flex flex-col-reverse items-center h-[23vh] justify-start ">
           <div className="flex flex-col mb-[3vh] ml-[55vw] mt-[1vh] ">
           <span className="text-[0.7rem]  ">Forgot your password?</span>
         </div>
-          <input type="password" placeholder="************" className="w-[80vw] h-[8vh] mt-[1vh] rounded-[3vw] text-[3vh] pl-[5vw] " />
-          <input type="text" placeholder="example@mail.com" className="w-[80vw] h-[8vh] rounded-[3vw] text-[3vh] pl-[5vw] " />
+          <input type="password" placeholder="************" className="w-[80vw] h-[6vh] mt-[2vh] rounded-[3vw] text-[3vh] pl-[5vw] border-[0.25vw] bg-[#FFECAA] " />
+          <input type="text" placeholder="example@mail.com" className="w-[80vw] h-[6vh] rounded-[3vw] text-[3vh] pl-[5vw] border-[0.5vw]  bg-[#FFECAA]" />
         </form>
         
         <button
           disabled={loading}
-          className="w-[80vw] h-[8vh] bg-[#050522] text-[#FFDE69] rounded-[3vw] mb-[2vh] "
+          className="w-[80vw] h-[6vh] bg-[#050522] text-[#FFDE69] rounded-[3vw] mb-[2vh] "
           onClick={async (e) => {
             setLoading(true);
             e.preventDefault();
@@ -73,7 +73,7 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
             setLoading(false);
           }}
         >
-          Login
+          <span className="text-[1.3rem]" >Login</span>
         </button>
         <div className="mb-[2vh] mt-[0vh] ">
           <span className="mr-[2vw]">Don't have an account?</span>
