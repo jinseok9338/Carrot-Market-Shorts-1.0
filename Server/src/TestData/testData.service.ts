@@ -40,10 +40,14 @@ export class TestDataService {
   async AddTestDefaulProductWatchTime(
     products: Product[],
   ): Promise<ProductWatchTime[]> {
-    const defaultProductWatchTimes = products.map((product) => ({
-      product_id: product.product_id,
-      product_watch_time_id: uuid(),
-    }));
+    const defaultProductWatchTimes = products.map((product) => {
+      return {
+        product_watch_time_id: uuid(),
+        product_id: product.product_id,
+      };
+    });
+
+    console.log(defaultProductWatchTimes);
 
     await getConnection()
       .createQueryBuilder()
@@ -52,7 +56,9 @@ export class TestDataService {
       .values(defaultProductWatchTimes)
       .execute();
 
-    return await this.productWatchTimeRepository.find();
+    const Product_watch_times = await this.productWatchTimeRepository.find();
+    console.log(Product_watch_times);
+    return Product_watch_times;
   }
 
   async addTestProducts(): Promise<Product[]> {

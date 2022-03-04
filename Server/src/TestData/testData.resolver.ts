@@ -4,6 +4,7 @@ import { User } from 'src/users/entities/user.entity';
 import { TestDataService } from './testData.service';
 import { Comment } from '../comments/entities/comment.entity';
 import { Product } from 'src/products/entities/product.entity';
+import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
 
 @Resolver(() => User)
 export class TestDataResolver {

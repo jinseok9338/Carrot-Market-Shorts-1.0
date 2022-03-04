@@ -29,8 +29,8 @@ type UserWatchTime {
 
 type ProductWatchTime {
   product_watch_time_id: String!
-  user_watch_times: [UserWatchTime!]!
   product_id: String!
+  user_watch_times: [UserWatchTime!]!
 }
 
 type Product {
