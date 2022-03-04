@@ -44,23 +44,23 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
     <>
       <FontAwesomeIcon
         icon={faTimesCircle}
-        className="text-[2rem] absolute top-1 right-3 text-[#EF5858] mr-1 cursor-pointer "
+        className="text-[1.6rem] absolute top-[5vh] right-[8.5vw] text-[#EF5858] mr-1 cursor-pointer "
         onClick={() => setLogin(null)}
       />
-      <div className="bg-[#FFECAA] w-[30vw] h-[3vh] absolute top-[14vh] left-[14vw] z-[1] flex ">
-          <span className="font-sans">username/email</span>
+      <div className="bg-[#FFECAA] w-[33vw] h-[3vh] absolute top-[14vh] left-[12vw] z-[1] flex justify-center   ">
+          <span className="font-[1rem] ">username/email</span>
         </div>
       <div className="h-full w-full flex flex-col items-center justify-around ">
-        <div className="flex flex-col items-center h-[12vh] ">
-          <span className="text-[1.3rem] mb-[0vh] mr-[44vw] mt-[2vh]  ">Welcome Back!!!</span>
-          <span className="text-[2rem] mb-[0vh] mr-[60vw] font-bold z-[2]">Login</span>
+        <div className="flex flex-col items-center h-[13.5vh] mb-[2vh] ">
+          <span className="text-[1.3rem]  mr-[44vw] mt-[3vh]  ">Welcome Back!!!</span>
+          <span className="text-[2rem]  mr-[60vw] font-bold z-[2]">Login</span>
         </div>
         <form method="post" action="/api/login" className="flex flex-col-reverse items-center h-[23vh] justify-start ">
-          <div className="flex flex-col mb-[3vh] ml-[55vw] mt-[1vh] ">
-          <span className="text-[0.7rem]  ">Forgot your password?</span>
+          <div className="flex flex-col mb-[2.5vh] ml-[49vw] mt-[1.5vh] ">
+          <span className="text-[0.78rem]  ">Forgot your password?</span>
         </div>
-          <input type="password" placeholder="************" className="w-[80vw] h-[6vh] mt-[2vh] rounded-[3vw] text-[3vh] pl-[5vw] border-[0.25vw] bg-[#FFECAA] " />
-          <input type="text" placeholder="example@mail.com" className="w-[80vw] h-[6vh] rounded-[3vw] text-[3vh] pl-[5vw] border-[0.5vw]  bg-[#FFECAA]" />
+          <input type="password" placeholder="************" className="w-[80vw] h-[7.5vh] mt-[2.5vh] rounded-[3vw] text-[1.3rem] pl-[4.2vw] pt-[0vh] border-[0.25vw] bg-[#FFECAA]   " />
+          <input type="text" placeholder="example@mail.com"  className="w-[80vw] h-[7.5vh] rounded-[3vw] text-[1.3rem] pl-[4.2vw] pt-[0vh] border-[0.5vw]  bg-[#FFECAA]  " />
         </form>
         
         <button
@@ -76,9 +76,9 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
           <span className="text-[1.3rem]" >Login</span>
         </button>
         <div className="mb-[2vh] mt-[0vh] ">
-          <span className="mr-[2vw]">Don't have an account?</span>
-          <a className="" onClick={() => setLogin("signUp")}>
-            Sign Up
+          <span className="mr-[2vw] text-[1.3rem]">Don't have an account?</span>
+          <a className="text-[red] text-[1.3rem]" onClick={() => setLogin("SignUp")}>
+            Register
           </a>
         </div>
       </div>
