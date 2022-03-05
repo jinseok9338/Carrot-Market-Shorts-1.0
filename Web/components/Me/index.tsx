@@ -4,7 +4,7 @@ interface IMeProps {}
 // we need to make profile page that's scrollable ...
 const Me: FC<IMeProps> = ({}) => {
   return (
-    <div className="w-full h-full absolute flex flex-col items-center justify-start">
+    <div className="w-full h-full  flex flex-col items-center justify-start ">
       <div className="background h-[60%]">
         <img
           src="https://picsum.photos/800/800/?blur=2"
