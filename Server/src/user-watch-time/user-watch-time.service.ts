@@ -25,10 +25,10 @@ export class UserWatchTimeService {
     return 'This action adds a new userWatchTime';
   }
 
-  async findUserWatchTimes(user_id: string): Promise<UserWatchTime[]> {
+  async findUserWatchTimes(product_id: string): Promise<UserWatchTime[]> {
     const userWatchTimes = await this.userWatchTimesRepository
       .createQueryBuilder()
-      .where('user_id IN (:user_id)', { user_id })
+      .where('product_id IN (:product_id)', { product_id })
       .getMany();
 
     return userWatchTimes;

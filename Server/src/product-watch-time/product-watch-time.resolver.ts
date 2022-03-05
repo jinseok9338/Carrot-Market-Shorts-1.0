@@ -33,11 +33,13 @@ export class ProductWatchTimeResolver {
     return this.productWatchTimeService.findAll();
   }
 
-  @ResolveField((returns) => UserWatchTime)
-  user_watch_times(
+  @ResolveField((returns) => [UserWatchTime])
+  async user_watch_times(
     @Parent() userWatchTime: UserWatchTime,
   ): Promise<UserWatchTime[]> {
-    return this.userWatchTimeService.findUserWatchTimes(userWatchTime.user_id);
+    return await this.userWatchTimeService.findUserWatchTimes(
+      userWatchTime.product_id,
+    );
   }
 
   @Mutation(() => UserWatchTime)
