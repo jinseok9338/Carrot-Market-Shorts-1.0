@@ -1,4 +1,5 @@
 {
+
   "python.linting.pylintPath": "/workspace/Carrot-Market-Shorts-1.0/recommender_server/.venv/bin/pylint",
   "editor.formatOnSave": true,
   "python.linting.pylintEnabled": true,
@@ -8,3 +9,4 @@
   "python.formatting.blackPath": "/workspace/Carrot-Market-Shorts-1.0/recommender_server/.venv/bin/black",
   "python.linting.enabled": true
 }
+
