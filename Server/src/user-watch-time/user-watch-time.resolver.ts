@@ -28,6 +28,7 @@ export class UserWatchTimeResolver {
       seconds,
       product_id,
     );
+
     pubSub.publish('userWatchTimeAdded', { userWatchTimeAdded: userWatchTime });
     return userWatchTime;
   }

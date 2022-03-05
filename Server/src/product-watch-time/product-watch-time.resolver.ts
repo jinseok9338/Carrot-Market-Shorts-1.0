@@ -43,22 +43,8 @@ export class ProductWatchTimeResolver {
 
   @Subscription((returns) => ProductWatchTime, { name: 'userWatchTimeAdded' })
   async userWatchTimeAdded() {
+    // Update the ProductWatchTime
+    // await this.productWatchTimeService.updateProductWatchTime()
     return pubSub.asyncIterator('userWatchTimeAdded');
-
-    // // Update the ProductWatchTime
-    // await getConnection()
-    //   .createQueryBuilder()
-    //   .update(ProductWatchTime)
-    //   .set({
-    //     ...productWatchTime,
-    //     user_watch_times: [...productWatchTime.user_watch_times, userWatchTime],
-    //   })
-    //   .where('product_id = :product_id', {
-    //     product_id: userWatchTime.product_id,
-    //   })
-    //   .execute();
-    // return this.productWatchTimeService.findByProductId(
-    //   userWatchTime.product_id,
-    // );
   }
 }

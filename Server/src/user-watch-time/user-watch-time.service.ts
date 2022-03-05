@@ -33,11 +33,11 @@ export class UserWatchTimeService {
     seconds: number,
     product_id: string,
   ): Promise<UserWatchTime> {
-    //Find the WatchTIme by the user_id
+    //Find the ProdcutWatchTime by the user_id
     // If the watch Time is found then add the seconds to
     let watch_time = await this.userWatchTimesRepository
       .createQueryBuilder()
-      .where('user_id IN (:user_id)', { user_id })
+      .where('user_id IN (:user_id)', { user_id }) // This is problem...
       .where('product_id IN (:product_id)', { product_id })
       .getOne();
 
