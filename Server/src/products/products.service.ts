@@ -69,7 +69,14 @@ export class ProductsService {
     return 'successfully Updated productInfo';
   }
 
-  async paginateProduct({ user_id, page, take }: PaginationInput) {
+
+
+  async paginateProduct({
+    user_id,
+    page,
+    take,
+  }: PaginationInput): Promise<string> {
+
     // Put Pagination Logic Here
     return 'successfully Updated productInfo';
   }

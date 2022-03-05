@@ -35,6 +35,12 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
+- ### Recommender Server
+  For Recommendation Algorithm - 동영상 추천 알고리즘을 위한 API
+  1. **Python** (Python has vast ecosystem for machine learning) - 파이썬이 머신 러닝을 하는데는 노드 보다 더 낫다는 판단을 하였다.
+  1. **Flask** (For spinning up the server) - 간단한 서버를 위한 프레임 워크
+  1. **Collaborative Filtering** - [artile]https://realpython.com/build-recommendation-engine-collaborative-filtering/
+
 ---
 
 ## Motivation
