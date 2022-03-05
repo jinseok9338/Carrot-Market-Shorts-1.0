@@ -60,10 +60,13 @@ export class UserWatchTimeService {
         throw new Error('There is no corresponding user or product');
       }
 
+      // If both of the ids doesn't match it will generate the watch time but if one of the ids doesn't match it will generate the error...
+      // Very confusing...
+
       let watch_time = await this.userWatchTimesRepository
-        .createQueryBuilder()
-        .where('user_id IN (:user_id)', { user_id }) // This is problem...
-        .where('product_id IN (:product_id)', { product_id })
+        .createQueryBuilder('userWatchTime')
+        .where('userWatchTime.user_id = (:user_id)', { user_id })
+        .where('userWatchTime.product_id = (:product_id)', { product_id })
         .getOne();
 
       // If not found create one
