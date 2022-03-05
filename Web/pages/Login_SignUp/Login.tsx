@@ -1,4 +1,6 @@
 import {
+  faEye,
+  faLock,
   faStopCircle,
   faTimesCircle,
   faWindowClose,
@@ -58,9 +60,19 @@ export const Login: FC<ILoginProps> = ({ setLogin }) => {
           <span className="text-[2rem]  mr-[60vw] font-bold z-[2]">Login</span>
         </div>
         <form method="post" action="/api/login" className="flex flex-col-reverse items-center h-[23vh] justify-start ">
-          <div className="flex flex-col mb-[2.5vh] ml-[49vw] mt-[1.5vh] ">
-          <span className="text-[0.78rem]  ">Forgot your password?</span>
+          <div className="flex flex-row float-left mb-[2.5vh] ml-[7vw] mt-[1.5vh] ">
+          <input type="checkbox" className="box-border h-1 w-1 p-2 border border-black rounded-[1vw] bg-[#D7D7D7] mr-[1vw] appearance-none checked:bg-[#363336] "/>
+          <span className="text-[0.7rem] mr-[20vw] ">Remember me</span>
+          <span className="text-[0.78rem]  mr-[8vw]">Forgot your password?</span>
         </div>
+        <FontAwesomeIcon
+        icon={faEye}
+        className="text-[1.5rem] absolute mb-[17.5vh] ml-[66vw] text-[#20201f]"
+        />  
+        <FontAwesomeIcon
+        icon={faLock}
+        className="text-[1.5rem] absolute mb-[8vh] ml-[66vw] text-[#A0936B]"
+        /> 
           <input type="password" placeholder="************" className="w-[80vw] h-[7.5vh] mt-[2.5vh] rounded-[3vw] text-[1.3rem] pl-[4.2vw] pt-[0vh] border-[0.25vw] bg-[#FFECAA]  " onChange={(e)=>setPassword(e.target.value)} />
           <input type="text" placeholder="example@mail.com"  className="w-[80vw] h-[7.5vh] rounded-[3vw] text-[1.3rem] pl-[4.2vw] pt-[0vh] border-[0.5vw]  bg-[#FFECAA]  " onChange={(e)=>setEmail(e.target.value)} />
         </form>
