@@ -100,8 +100,8 @@ type Mutation {
   deleteUser(user_id: String!): String!
   createProduct(createProductInput: CreateProductInput!): Product!
   removeProduct(product_id: String!): String!
-  createUserWatchTime(createUserWatchTimeInput: CreateUserWatchTimeInput!): UserWatchTime!
   addWatchTime(product_id: String!, user_id: String!, seconds: Int!): UserWatchTime!
+  createUserWatchTime(createUserWatchTimeInput: CreateUserWatchTimeInput!): UserWatchTime!
   createComment(createCommentInput: CreateCommentInput!): Comment!
   updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   removeComment(id: Int!): Comment!

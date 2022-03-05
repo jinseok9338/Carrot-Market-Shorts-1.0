@@ -1,12 +1,12 @@
 import {
   Resolver,
   Query,
-  Mutation,
-  Args,
-  Int,
   Parent,
   ResolveField,
   Subscription,
+  Args,
+  Int,
+  Mutation,
 } from '@nestjs/graphql';
 import { ProductWatchTimeService } from './product-watch-time.service';
 import { ProductWatchTime } from './entities/product-watch-time.entity';
@@ -17,7 +17,6 @@ import { UserWatchTimeService } from 'src/user-watch-time/user-watch-time.servic
 import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
 import { PubSub } from 'graphql-subscriptions';
-import { getConnection } from 'typeorm';
 
 export const pubSub = new PubSub(); // Stands for Publish and subscribe
 
@@ -41,10 +40,30 @@ export class ProductWatchTimeResolver {
     return this.userWatchTimeService.findUserWatchTimes(userWatchTime.user_id);
   }
 
+  @Mutation(() => UserWatchTime)
+  async addWatchTime(
+    @Args('seconds', { type: () => Int }) seconds: number,
+    @Args('user_id', { type: () => String }) user_id: string,
+    @Args('product_id', { type: () => String }) product_id: string,
+  ) {
+    const userWatchTime = await this.userWatchTimeService.addUserWatchTime(
+      user_id,
+      seconds,
+      product_id,
+    );
+
+    await pubSub.publish('userWatchTimeAdded', {
+      userWatchTimeAdded: userWatchTime,
+    });
+
+    return userWatchTime;
+  }
+
   @Subscription((returns) => ProductWatchTime, { name: 'userWatchTimeAdded' })
   async userWatchTimeAdded() {
     // Update the ProductWatchTime
     // await this.productWatchTimeService.updateProductWatchTime()
+
     return pubSub.asyncIterator('userWatchTimeAdded');
   }
 }

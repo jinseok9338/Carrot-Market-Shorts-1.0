@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Product } from 'src/products/entities/product.entity';
 import { ProductsService } from 'src/products/products.service';
+import { User } from 'src/users/entities/user.entity';
 import { getConnection, getRepository, Repository } from 'typeorm';
 import { uuid } from 'uuidv4';
 import { CreateUserWatchTimeInput } from './dto/create-user-watch-time.input';
@@ -12,6 +14,10 @@ export class UserWatchTimeService {
   constructor(
     @InjectRepository(UserWatchTime)
     private userWatchTimesRepository: Repository<UserWatchTime>,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+    @InjectRepository(Product)
+    private productsRepository: Repository<Product>,
   ) {}
 
   create(createUserWatchTimeInput: CreateUserWatchTimeInput) {
@@ -35,6 +41,22 @@ export class UserWatchTimeService {
   ): Promise<UserWatchTime> {
     //Find the ProdcutWatchTime by the user_id
     // If the watch Time is found then add the seconds to
+
+    // See if the product_id and user_id is valid
+    let user = await this.usersRepository
+      .createQueryBuilder()
+      .where('user_id IN (:user_id)', { user_id })
+      .getOne();
+
+    let product = await this.productsRepository
+      .createQueryBuilder()
+      .where('product_id IN (:product_id)', { product_id })
+      .getOne();
+
+    if (!user || !product) {
+      throw new Error('There is no corresponding user or product');
+    }
+
     let watch_time = await this.userWatchTimesRepository
       .createQueryBuilder()
       .where('user_id IN (:user_id)', { user_id }) // This is problem...
