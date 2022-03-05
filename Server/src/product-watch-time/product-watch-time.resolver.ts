@@ -46,17 +46,24 @@ export class ProductWatchTimeResolver {
     @Args('user_id', { type: () => String }) user_id: string,
     @Args('product_id', { type: () => String }) product_id: string,
   ) {
-    const userWatchTime = await this.userWatchTimeService.addUserWatchTime(
-      user_id,
-      seconds,
-      product_id,
-    );
+    try {
+      const userWatchTime = await this.userWatchTimeService.addUserWatchTime(
+        user_id,
+        seconds,
+        product_id,
+      );
 
-    await pubSub.publish('userWatchTimeAdded', {
-      userWatchTimeAdded: userWatchTime,
-    });
+      const product_watch_time =
+        await this.productWatchTimeService.findByProductId(product_id);
 
-    return userWatchTime;
+      await pubSub.publish('userWatchTimeAdded', {
+        userWatchTimeAdded: product_watch_time,
+      });
+
+      return userWatchTime;
+    } catch (e) {
+      throw new Error(e.message);
+    }
   }
 
   @Subscription((returns) => ProductWatchTime, { name: 'userWatchTimeAdded' })
