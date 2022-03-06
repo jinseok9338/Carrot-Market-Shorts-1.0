@@ -10,17 +10,18 @@ const Me: FC<IMeProps> = ({}) => {
     `https://picsum.photos/seed/${Math.random()}/800/800/?blur=2`,
   ];
   return (
-    <div className=" w-full h-full flex flex-col items-center justify-start ">
+    <div className=" w-full h-full flex flex-col items-center justify-start">
+      <img
+        className="absolute avatar top-[40vh] rounded-full w-32 h-32 border-4 border-[white] z-20"
+        src="https://picsum.photos/id/870/200/300?grayscale"
+      />
       <div className="background h-[60%]">
         <img
           src="https://picsum.photos/800/800/?blur=2"
           className="bg-Profile-background w-full h-full"
         />
       </div>
-      <img
-        className="absolute avatar top-[40vh] rounded-full w-32 h-32 border-4 border-[white] z-20"
-        src="https://picsum.photos/id/870/200/300?grayscale"
-      />
+
       <div className="flex flex-col justify-start items-center  w-full h-[35vh]">
         <div className=" w-[85vw] h-[28vh] mt-[6vh] rounded-[20px] z-10 bg-[white] flex flex-col items-center">
           <span className="text-[#1E414D] text-[24px] mt-[5vh] leading-[29px] font-Montserrat">
