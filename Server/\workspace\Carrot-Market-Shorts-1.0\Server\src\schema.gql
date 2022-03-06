@@ -46,13 +46,6 @@ type Product {
   comments: [Comment!]
 }
 
-type WatchTime {
-  watch_time_id: String!
-  user_id: String!
-  product_id: String!
-  watch_time_seconds: Int!
-}
-
 type User {
   user_id: String!
   user_name: String!
@@ -85,7 +78,6 @@ type Query {
   productWatchTimes: [ProductWatchTime!]!
   comments: [Comment!]!
   comment(id: Int!): Comment!
-  watchTime(id: Int!): WatchTime!
 }
 
 input PaginationInput {
@@ -105,9 +97,6 @@ type Mutation {
   createComment(createCommentInput: CreateCommentInput!): Comment!
   updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   removeComment(id: Int!): Comment!
-  createWatchTime(createWatchTimeInput: CreateWatchTimeInput!): WatchTime!
-  updateWatchTime(updateWatchTimeInput: UpdateWatchTimeInput!): WatchTime!
-  removeWatchTime(id: Int!): WatchTime!
   createTestUsers(customerNumber: Float!): [User!]!
   createTestComments: [Comment!]!
   createTestProducts: [Product!]!
@@ -164,18 +153,6 @@ input UpdateCommentInput {
   id: Int!
 }
 
-input CreateWatchTimeInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateWatchTimeInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
 type Subscription {
   userWatchTimeAdded: ProductWatchTime!
-  watchTimeAdded: WatchTime!
 }

@@ -15,8 +15,7 @@ import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { Comment } from 'src/comments/entities/comment.entity';
 import { CommentService } from 'src/comments/comments.service';
-import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
-import { WatchTimeService } from 'src/watch-time/watch-time.service';
+
 import { PaginationInput } from './dto/PaginationInput';
 import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
 import { ProductWatchTimeService } from 'src/product-watch-time/product-watch-time.service';

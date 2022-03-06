@@ -5,15 +5,13 @@ import { Comment } from 'src/comments/entities/comment.entity';
 import {
   Column,
   Entity,
-  JoinTable,
   ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryColumn,
 } from 'typeorm';
-import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+
 import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
-import { uuid } from 'uuidv4';
 
 @ObjectType()
 @Entity()

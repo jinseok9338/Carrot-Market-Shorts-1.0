@@ -7,7 +7,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
-import { WatchTimeModule } from './watch-time/watch-time.module';
 import { CommentModule } from './comments/comments.module';
 import { TestDataModule } from './TestData/testData.module';
 import { UserWatchTimeModule } from './user-watch-time/user-watch-time.module';
@@ -36,7 +35,6 @@ import { ProductWatchTimeModule } from './product-watch-time/product-watch-time.
     UsersModule,
     AuthModule,
     ProductsModule,
-    WatchTimeModule,
     CommentModule,
     TestDataModule,
     UserWatchTimeModule,

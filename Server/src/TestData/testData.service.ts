@@ -10,8 +10,7 @@ import { createProducts } from 'src/utils/fakeData/products';
 import { createComments } from 'src/utils/fakeData/comments';
 import { getRandomInt } from 'src/utils/getRandomNumber';
 import { getRandomSample } from 'src/utils/getRandomSample';
-import { Logger } from '@nestjs/common';
-import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+
 import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
 import { uuid } from 'uuidv4';
 
