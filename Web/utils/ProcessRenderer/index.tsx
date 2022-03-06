@@ -1,5 +1,6 @@
 import { FC } from "react";
 import dynamic from "next/dynamic";
+import ProductDetail from "../../components/ProductDetail";
 
 const SwiperView = dynamic(() => import("../../components/SwipeableVideo"));
 const Me = dynamic(() => import("../../components/Me"));
@@ -14,7 +15,7 @@ const ProcessRenderer: FC<IProcessRendererProps> = ({ process, products }) => {
       {process == "Home" ? (
         <SwiperView products={products} />
       ) : process == "Discover" ? (
-        <SwiperView products={products} />
+        <ProductDetail />
       ) : process == "Inbox" ? (
         <SwiperView products={products} />
       ) : (

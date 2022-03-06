@@ -29,7 +29,7 @@ const Home: NextPage<Props> = ({ products }) => {
   }, []);
 
   return (
-    <div className="home">
+    <div className="home scrollbar-hide">
       <ProcessRenderer process={process?.process} products={products} />
       <Footer setProcess={process?.setProcess} process={process?.process} />
     </div>
