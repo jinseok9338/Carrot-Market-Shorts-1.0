@@ -45,58 +45,52 @@ export class UserWatchTimeService {
     // If the watch Time is found then add the seconds to
 
     // See if the product_id and user_id is valid
-    try {
-      let user = await this.usersRepository
-        .createQueryBuilder()
-        .where('user_id IN (:user_id)', { user_id })
-        .getOne();
 
-      let product = await this.productsRepository
-        .createQueryBuilder()
-        .where('product_id IN (:product_id)', { product_id })
-        .getOne();
+    let user = await this.usersRepository
+      .createQueryBuilder()
+      .where('user_id IN (:user_id)', { user_id })
+      .getOne();
 
-      if (!user || !product) {
-        throw new Error('There is no corresponding user or product');
-      }
+    let product = await this.productsRepository
+      .createQueryBuilder()
+      .where('product_id IN (:product_id)', { product_id })
+      .getOne();
 
-      // If both of the ids doesn't match it will generate the watch time but if one of the ids doesn't match it will generate the error...
-      // Very confusing...
-
-      let watch_time = await this.userWatchTimesRepository
-        .createQueryBuilder('userWatchTime')
-        .where('userWatchTime.user_id = (:user_id)', { user_id })
-        .where('userWatchTime.product_id = (:product_id)', { product_id })
-        .getOne();
-
-      // If not found create one
-      // with the product found with the associated product_id
-      if (!watch_time) {
-        const new_watch_time = await this.userWatchTimesRepository.save(
-          this.userWatchTimesRepository.create({
-            user_id,
-            watch_time_id: uuid(),
-            product_id,
-            watch_time_seconds: seconds,
-          }),
-        );
-        new_watch_time;
-        return new_watch_time;
-      }
-      // Update the watchTime with the added time
-      await getConnection()
-        .createQueryBuilder()
-        .update(UserWatchTime)
-        .set({
-          ...watch_time,
-          watch_time_seconds: watch_time.watch_time_seconds + seconds,
-        })
-        .where('user_id IN (:user_id)', { user_id })
-        .where('product_id IN (:product_id)', { product_id })
-        .execute();
-    } catch (e) {
-      throw new Error(e.message);
+    if (!user || !product) {
+      throw new Error('There is no corresponding user or product');
     }
+
+    let watch_time = await this.userWatchTimesRepository
+      .createQueryBuilder('userWatchTime')
+      .where('userWatchTime.user_id = (:user_id)', { user_id })
+      .andWhere('userWatchTime.product_id = (:product_id)', { product_id })
+      .getOne();
+
+    // If not found create one
+    // with the product found with the associated product_id
+    if (!watch_time) {
+      const new_watch_time = await this.userWatchTimesRepository.save(
+        this.userWatchTimesRepository.create({
+          user_id,
+          watch_time_id: uuid(),
+          product_id,
+          watch_time_seconds: seconds,
+        }),
+      );
+      new_watch_time;
+      return new_watch_time;
+    }
+    // Update the watchTime with the added time
+    await getConnection()
+      .createQueryBuilder()
+      .update(UserWatchTime)
+      .set({
+        ...watch_time,
+        watch_time_seconds: watch_time.watch_time_seconds + seconds,
+      })
+      .where('user_id IN (:user_id)', { user_id })
+      .where('product_id IN (:product_id)', { product_id })
+      .execute();
 
     return this.userWatchTimesRepository.findOneOrFail({ user_id });
   }
