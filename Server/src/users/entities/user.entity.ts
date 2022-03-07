@@ -10,7 +10,8 @@ import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Product } from 'src/products/entities/product.entity';
 import { IsDate } from 'class-validator';
-import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+
+import { UserWatchTime } from 'src/user-watch-time/entities/user-watch-time.entity';
 
 // What other user Info should I do ....
 
@@ -54,12 +55,16 @@ export class User {
   @Field(() => [String], { nullable: true })
   interested?: string[];
 
-  @OneToMany(() => WatchTime, (watchTime) => watchTime.product_id, {
-    nullable: true,
-    cascade: true,
-  })
-  @Field((type) => [WatchTime], { nullable: true })
-  watch_times?: WatchTime[];
+  @OneToMany(
+    () => UserWatchTime,
+    (user_watch_Time) => user_watch_Time.watch_time_id,
+    {
+      nullable: true,
+      cascade: true,
+    },
+  )
+  @Field((type) => [UserWatchTime], { nullable: true })
+  user_watch_times?: UserWatchTime[];
 
   @OneToMany(() => Product, (product) => product.user, {
     nullable: true,

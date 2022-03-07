@@ -25,8 +25,9 @@ export const createProducts = (user_id: number | string): Product[] => {
   const products = [];
 
   for (let i = 0; i < randomInt; i++) {
+    const product_id = uuid();
     const product = {
-      product_id: uuid(),
+      product_id,
       product_name: commerce.product(),
       images: MakeImagesArray(), // This is the array of random number of pics
       video: videoData[Math.floor(Math.random() * videoData.length)].link, // This should come from the video of the Youtube short

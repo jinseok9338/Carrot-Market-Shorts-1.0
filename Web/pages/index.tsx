@@ -36,27 +36,27 @@ const Home: NextPage<Props> = ({ products }) => {
   );
 };
 
-export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
-  const apolloClient = initializeApollo();
+// export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
+//   const apolloClient = initializeApollo();
 
-  const { data, loading } = await apolloClient.query({
-    query: gql`
-      query Products {
-        products {
-          user_id
-          product_id
-          video
-        }
-      }
-    `,
-  });
+//   const { data, loading } = await apolloClient.query({
+//     query: gql`
+//       query Products {
+//         products {
+//           user_id
+//           product_id
+//           video
+//         }
+//       }
+//     `,
+//   });
 
-  console.log(data.products);
-  return {
-    props: {
-      products: data.products,
-    },
-  };
-}
+//   console.log(data.products);
+//   return {
+//     props: {
+//       products: data.products,
+//     },
+//   };
+// }
 
 export default withAuth(Home);

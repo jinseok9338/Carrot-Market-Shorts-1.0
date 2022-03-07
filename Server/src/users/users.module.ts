@@ -7,15 +7,15 @@ import { Product } from 'src/products/entities/product.entity';
 import { ProductsModule } from 'src/products/products.module';
 import { CommentModule } from 'src/comments/comments.module';
 import { Comment } from 'src/comments/entities/comment.entity';
-import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
-import { WatchTimeModule } from 'src/watch-time/watch-time.module';
+
+import { UserWatchTimeModule } from 'src/user-watch-time/user-watch-time.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, Product, Comment, WatchTime]),
+    TypeOrmModule.forFeature([User, Product, Comment]),
     forwardRef(() => ProductsModule),
     forwardRef(() => CommentModule),
-    forwardRef(() => WatchTimeModule),
+    forwardRef(() => UserWatchTimeModule),
   ],
   providers: [UsersService, UsersResolver],
   exports: [UsersService],

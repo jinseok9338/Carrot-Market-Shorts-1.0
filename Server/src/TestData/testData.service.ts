@@ -10,7 +10,9 @@ import { createProducts } from 'src/utils/fakeData/products';
 import { createComments } from 'src/utils/fakeData/comments';
 import { getRandomInt } from 'src/utils/getRandomNumber';
 import { getRandomSample } from 'src/utils/getRandomSample';
-import { Logger } from '@nestjs/common';
+
+import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
+import { uuid } from 'uuidv4';
 
 @Injectable()
 export class TestDataService {
@@ -18,6 +20,8 @@ export class TestDataService {
     @InjectRepository(Comment) private commentRepository: Repository<Comment>,
     @InjectRepository(User) private usersRepository: Repository<User>,
     @InjectRepository(Product) private productsRepository: Repository<Product>,
+    @InjectRepository(ProductWatchTime)
+    private productWatchTimeRepository: Repository<ProductWatchTime>,
   ) {}
 
   async addTestUsers(customerNumber: number): Promise<User[]> {
@@ -30,6 +34,28 @@ export class TestDataService {
       .execute();
 
     return this.usersRepository.find();
+  }
+
+  async AddTestDefaulProductWatchTime(
+    products: Product[],
+  ): Promise<ProductWatchTime[]> {
+    const defaultProductWatchTimes = products.map((product) => {
+      return {
+        product_watch_time_id: uuid(),
+        product_id: product.product_id,
+      };
+    });
+
+    await getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(ProductWatchTime)
+      .values(defaultProductWatchTimes)
+      .execute();
+
+    const Product_watch_times = await this.productWatchTimeRepository.find();
+
+    return Product_watch_times;
   }
 
   async addTestProducts(): Promise<Product[]> {
@@ -55,11 +81,11 @@ export class TestDataService {
       .values(AllProducts)
       .execute();
 
+    await this.AddTestDefaulProductWatchTime(AllProducts);
+
     return this.productsRepository.find();
   }
 
-  //Resolve Field products and Users
-  // Comment.product returns null which it shouldn't and UserField returns Products
   async addTestComment(): Promise<Comment[]> {
     const products = await this.productsRepository.find();
     const users = (await this.usersRepository.find()).map(

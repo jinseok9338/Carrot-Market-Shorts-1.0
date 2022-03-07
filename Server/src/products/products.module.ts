@@ -8,16 +8,17 @@ import { User } from 'src/users/entities/user.entity';
 import { ProductDataController } from './productData.controller';
 import { ProductsDataService } from './productData.service';
 import { Comment } from 'src/comments/entities/comment.entity';
-import { CommentService } from 'src/comments/comments.service';
+
 import { CommentModule } from 'src/comments/comments.module';
-import { WatchTimeModule } from 'src/watch-time/watch-time.module';
+
+import { ProductWatchTimeModule } from 'src/product-watch-time/product-watch-time.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Product, User, Comment]),
-    CommentModule,
+    forwardRef(() => ProductWatchTimeModule),
+    forwardRef(() => CommentModule),
     forwardRef(() => UsersModule),
-    forwardRef(() => WatchTimeModule),
   ],
   providers: [ProductsResolver, ProductsService, ProductsDataService],
   controllers: [ProductDataController],

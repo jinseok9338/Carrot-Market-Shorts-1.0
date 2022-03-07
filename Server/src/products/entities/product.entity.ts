@@ -5,12 +5,13 @@ import { Comment } from 'src/comments/entities/comment.entity';
 import {
   Column,
   Entity,
-  JoinTable,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
 } from 'typeorm';
-import { WatchTime } from 'src/watch-time/entities/watch-times.entity';
+
+import { ProductWatchTime } from 'src/product-watch-time/entities/product-watch-time.entity';
 
 @ObjectType()
 @Entity()
@@ -47,12 +48,9 @@ export class Product {
   @Field(() => [String])
   tag: string[];
 
-  @OneToMany(() => WatchTime, (watch_time) => watch_time.product_id, {
-    nullable: true,
-    cascade: true,
-  })
-  @Field((type) => [WatchTime], { nullable: true })
-  watch_times: WatchTime[];
+  @OneToOne(() => ProductWatchTime)
+  @Field((type) => ProductWatchTime, { nullable: true })
+  product_watch_time?: ProductWatchTime;
 
   @OneToMany(() => Comment, (comment) => comment.product, {
     nullable: true,

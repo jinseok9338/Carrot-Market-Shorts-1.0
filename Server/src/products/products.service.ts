@@ -20,7 +20,16 @@ export class ProductsService {
   async createProduct(
     createProductInput: CreateProductInput,
   ): Promise<Product> {
-    let product = { ...createProductInput, product_id: uuid() };
+    const product_id = uuid();
+    let product = {
+      ...createProductInput,
+      product_id,
+      product_watch_time: {
+        procut_watch_time_id: uuid(),
+        product_id,
+        user_watch_times: [],
+      },
+    };
     const newProduct = this.productRepository.create(product);
 
     return await this.productRepository.save(newProduct);
