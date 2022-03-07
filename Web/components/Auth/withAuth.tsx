@@ -15,7 +15,7 @@ const withAuth = (WrappedComponent: any) => {
       // if no accessToken was found,then we redirect to "/Login" page.
       if (!accessToken) {
         console.log("No access token found");
-        Router.replace("/Login");
+        Router.replace("/Login_SignUp");
       } else {
         const res = jwt.decode(accessToken) as unknown as UserType;
         auth?.setUser(res);

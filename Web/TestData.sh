@@ -1,4 +1,3 @@
-
 # Change the customer number to change the size of the Test Data .... but be warned that the test cases can get real big real soon
 curl 'http://127.0.0.1:3001/graphql' \
   -X POST \
