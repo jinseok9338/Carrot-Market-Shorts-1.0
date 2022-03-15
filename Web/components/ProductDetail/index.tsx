@@ -1,11 +1,12 @@
 import {
   faBars,
-  faHeart,
+  faHeartBroken,
   faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import SwiperPhotoView from "./SwiperPhotoView";
+import { faHeart, faPlayCircle } from "@fortawesome/free-regular-svg-icons";
 
 interface IProdcutDetailProps {}
 
@@ -51,7 +52,7 @@ const ProdcutDetail: FC<IProdcutDetailProps> = (props) => {
 
         <i className="fa-solid fa-thought-bubble text-[1.2rem] text-[black]/[0.7] mr-4"></i>
         <FontAwesomeIcon
-          icon={faUserFriends}
+          icon={faPlayCircle}
           className="text-[1.2rem] text-[black]/[0.7] mr-4"
         />
         <FontAwesomeIcon

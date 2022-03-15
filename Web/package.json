@@ -23,6 +23,7 @@
     "@react-spring/web": "*",
     "@use-gesture/react": "latest",
     "axios": "^0.25.0",
+    "babel-plugin-macros": "^3.1.0",
     "cookie": "^0.4.2",
     "express": "^4.17.2",
     "graphql": "^16.3.0",
