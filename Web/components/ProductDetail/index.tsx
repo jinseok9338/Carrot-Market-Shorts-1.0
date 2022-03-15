@@ -1,4 +1,11 @@
+import {
+  faBars,
+  faHeart,
+  faUserFriends,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
+import SwiperPhotoView from "./SwiperPhotoView";
 
 interface IProdcutDetailProps {}
 
@@ -19,18 +26,41 @@ const ProdcutDetail: FC<IProdcutDetailProps> = (props) => {
 
   return (
     <div className=" h-full w-full flex flex-col items-center">
-      <span className="mt-2 ">Story</span>
       <div className="storyView-container w-full flex justify-around ">
-        {images.map((image) => (
-          <div className="avatar-container">
-            <img className="w-[60px] h-[60px] rounded-full" src={image} />
-          </div>
-        ))}
+        <div className="profile-container mb-2 flex items-center w-[95%] mt-2  ">
+          <img
+            className="w-[40px] h-[40px] rounded-full mr-4"
+            src={images[0]}
+          />
+          <span className="text-[1.1rem] font-[800] tracking-tighter">
+            Jinseok9338
+          </span>
+          <FontAwesomeIcon
+            icon={faBars}
+            className="text-[1.2rem] text-[black]/[0.7] ml-[auto]"
+          />
+        </div>
       </div>
-      <div>
-        <span>SwipeerView</span>
+
+      <SwiperPhotoView photos={images} />
+      <div className="icons-container flex items-center w-[95%] h-[3rem]">
+        <FontAwesomeIcon
+          icon={faHeart}
+          className="text-[1.2rem] text-[black]/[0.7] mr-4 "
+        />
+
+        <i className="fa-solid fa-thought-bubble text-[1.2rem] text-[black]/[0.7] mr-4"></i>
+        <FontAwesomeIcon
+          icon={faUserFriends}
+          className="text-[1.2rem] text-[black]/[0.7] mr-4"
+        />
+        <FontAwesomeIcon
+          icon={faBars}
+          className="text-[1.2rem] text-[black]/[0.7] ml-[auto] "
+        />
       </div>
-      <div className="text-center">
+
+      <div className="text-center mt-2">
         <span>
           orem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -47,6 +77,9 @@ const ProdcutDetail: FC<IProdcutDetailProps> = (props) => {
         <span>Comment</span>
       </div>
       <div>
+        <span>add Comment</span>
+      </div>
+      <div className="bg-tintBlack w-full h-[10vh]">
         <span>add Comment</span>
       </div>
     </div>

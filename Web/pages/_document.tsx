@@ -11,6 +11,10 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="shortcut icon" href="/carrot_market.png" />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          />
         </Head>
 
         <body>
