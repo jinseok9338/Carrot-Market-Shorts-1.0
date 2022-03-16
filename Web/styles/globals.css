@@ -37,5 +37,64 @@
   display: flex;
   align-items: center;
   width: 100vw;
+  height: 100vh;
   justify-content: center;
+}
+
+.spinner-container {
+  background-color: #fff;
+
+  z-index: 99;
+  position: fixed;
+  width: 50vw;
+  padding: 10px;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  left: 50%;
+  margin-top: -40%;
+  margin-left: -23%;
+  border-radius: 0.5rem;
+}
+
+.spinner-container p {
+  text-align: center;
+  margin: 5px 0 0 0;
+}
+
+#inner {
+  animation: rotate linear;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  transform-box: border-box;
+}
+
+#outer {
+  animation: rotate-inverse linear;
+
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  transform-box: border-box;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-inverse {
+  0% {
+    transform: rotateZ(360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
 }
