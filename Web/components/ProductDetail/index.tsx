@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import SwiperPhotoView from "./SwiperPhotoView";
 import { faHeart, faPlayCircle } from "@fortawesome/free-regular-svg-icons";
+import { IoChatbubbleOutline, IoHeartOutline } from "react-icons/io5";
+import { FaRegBookmark, FaPaperPlane } from "react-icons/fa";
 
 interface IProdcutDetailProps {}
 
@@ -23,6 +25,12 @@ const ProdcutDetail: FC<IProdcutDetailProps> = (props) => {
     `https://picsum.photos/id/${getRandomInt(3, 400)}/200/300`,
     `https://picsum.photos/id/${getRandomInt(3, 400)}/200/300`,
     `https://picsum.photos/id/${getRandomInt(3, 400)}/200/300`,
+  ];
+
+  const comments = [
+    { username: "kindly", msg: "this is comment" },
+    { username: "kindly2", msg: "this is comment1" },
+    { username: "kindly11", msg: "this is comment2" },
   ];
 
   return (
@@ -45,44 +53,52 @@ const ProdcutDetail: FC<IProdcutDetailProps> = (props) => {
 
       <SwiperPhotoView photos={images} />
       <div className="icons-container flex items-center w-[95%] h-[3rem]">
-        <FontAwesomeIcon
-          icon={faHeart}
-          className="text-[1.2rem] text-[black]/[0.7] mr-4 "
-        />
+        <IoHeartOutline className="text-[1.5rem] text-[black]/[0.7] mr-4 " />
+        <IoChatbubbleOutline className="text-[1.4rem] text-[black]/[0.7] mr-4" />
 
-        <i className="fa-solid fa-thought-bubble text-[1.2rem] text-[black]/[0.7] mr-4"></i>
-        <FontAwesomeIcon
-          icon={faPlayCircle}
-          className="text-[1.2rem] text-[black]/[0.7] mr-4"
-        />
-        <FontAwesomeIcon
-          icon={faBars}
-          className="text-[1.2rem] text-[black]/[0.7] ml-[auto] "
-        />
+        <FaRegBookmark className="text-[1.2rem] text-[black]/[0.7] ml-[auto] " />
+      </div>
+      <div className="w-[95%]">
+        <span className="font-[600]">Interested</span>
+        <span className="ml-2 font-[600]">23</span>
       </div>
 
-      <div className="text-center mt-2">
+      <div className="text-left mt-2 w-[95%]">
+        <span className="font-[600] mr-2">Jinseok9338</span>
         <span>
           orem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
           scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
+          five centuries ....
+        </span>
+        <span className="ml-2 text-[black]/[0.7] text-[0.8rem] cursor-pointer">
+          See More
         </span>
       </div>
-      <div>
-        <span>Comment</span>
+      <div className="flex flex-col w-[95%] mb-2">
+        {comments &&
+          comments.map((comment) => (
+            <div>
+              <span className="text-[black] text-[0.8rem] cursor-pointer font-[800]">
+                {comment.username}
+              </span>
+              <span className="ml-2 text-[black] text-[0.8rem]">
+                {comment.msg}
+              </span>
+            </div>
+          ))}
       </div>
-      <div>
-        <span>add Comment</span>
+      <div className="w-full flex relative">
+        <input
+          placeholder="Write a comment"
+          className="focus:ring-[indigo] focus:border-[indigo] block w-full pl-2 h-[4vh] pr-12 sm:text-sm border-gray-300 rounded-md text-[0.9rem]"
+        />
+        <button className="absolute right-2 h-full">
+          <FaPaperPlane className="text-[1.2rem] text-[black]/[0.7]" />
+        </button>
       </div>
-      <div className="bg-tintBlack w-full h-[10vh]">
-        <span>add Comment</span>
-      </div>
+      <div className="bg-tintBlack w-full h-[10vh]" />
     </div>
   );
 };
