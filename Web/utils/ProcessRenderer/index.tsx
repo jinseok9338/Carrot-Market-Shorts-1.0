@@ -17,15 +17,7 @@ const ProcessRenderer: FC<IProcessRendererProps> = ({ process, products }) => {
       {process == "Home" ? (
         <SwiperView products={products} />
       ) : process == "Discover" ? (
-        // <ProductDetail />
-
-        <DotLoader
-          size={120}
-          color={"#36D7B7"}
-          speedMultiplier={1}
-          loading={true}
-          css=""
-        />
+        <ProductDetail />
       ) : process == "Inbox" ? (
         <SwiperView products={products} />
       ) : (
@@ -36,3 +28,13 @@ const ProcessRenderer: FC<IProcessRendererProps> = ({ process, products }) => {
 };
 
 export default ProcessRenderer;
+
+{
+  /* <DotLoader
+size={120}
+color={"#36D7B7"}
+speedMultiplier={1}
+loading={true}
+css=""
+/> */
+}
