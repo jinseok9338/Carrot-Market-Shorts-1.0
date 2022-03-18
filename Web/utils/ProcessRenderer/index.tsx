@@ -10,29 +10,27 @@ const Me = dynamic(() => import("../../components/Me"));
 interface IProcessRendererProps {
   process?: string;
   products: any;
+  loading: boolean
 }
 // Render Different component based on the process
-const ProcessRenderer: FC<IProcessRendererProps> = ({ process, products }) => {
+const ProcessRenderer: FC<IProcessRendererProps> = ({ process, products, loading }) => {
   return (
-    <>
-      {process == "Home" ? (
-        <SwiperView products={products} />
-      ) : process == "Discover" ? (
-        // <ProductDetail />
-        <div className="w-full h-full flex items-center justify-center bg-[#D5D8DC]">
-          <DotLoader
-            size={"150"}
-            color={"#C54327"}
-            loading={true}
-            css={DotLoaderCss}
-            speedMultiplier={1}
-          />
-        </div>
-      ) : process == "Inbox" ? (
-        <SwiperView products={products} />
-      ) : (
-        <Me />
-      )}
+    <>{loading ? (   <DotLoader
+      size={"150"}
+      color={"#C54327"}
+      loading={true}
+      css={DotLoaderCss}
+      speedMultiplier={1}
+    />): process == "Home" ? (
+      <SwiperView products={products} />
+    ) : process == "Discover" ? (
+      <ProductDetail />
+    )  : process == "Inbox" ? (
+      <SwiperView products={products} />
+    ) : (
+      <Me />
+    ) }
+ 
     </>
   );
 };

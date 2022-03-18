@@ -30,7 +30,11 @@ const Home: NextPage<Props> = ({ products }) => {
 
   return (
     <div className="home scrollbar-hide">
-      <ProcessRenderer process={process?.process} products={products} />
+      <ProcessRenderer
+        process={process?.process}
+        products={products}
+        loading={false}
+      />
       <Footer setProcess={process?.setProcess} process={process?.process} />
     </div>
   );

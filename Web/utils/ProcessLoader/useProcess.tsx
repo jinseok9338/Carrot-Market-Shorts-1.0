@@ -2,7 +2,9 @@ import React, { useState, useContext, createContext, ReactNode } from "react";
 
 import { ProcessContextType } from "./ProcessesType";
 
-const ProcessContext = createContext<ProcessContextType | null>(null);
+const ProcessContext = createContext<ProcessContextType>(
+  {} as ProcessContextType
+);
 
 interface ProvideProcessProps {
   children: ReactNode;
@@ -25,6 +27,7 @@ export const useProcess = () => {
 function useProvideProcess() {
   const processes = ["Home", "Discover", "Inbox", "Me"];
   const [process, setProcess] = useState<string>(processes[0]);
+  const [loading, setLoading] = useState<Boolean>(false);
 
   return {
     processes,
