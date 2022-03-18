@@ -1,6 +1,7 @@
 import { FC } from "react";
 import dynamic from "next/dynamic";
 import ProductDetail from "../../components/ProductDetail";
+import { DotLoaderCss } from "../DotLoaderCss";
 
 const DotLoader = dynamic(() => import("react-spinners/DotLoader"));
 
@@ -17,7 +18,16 @@ const ProcessRenderer: FC<IProcessRendererProps> = ({ process, products }) => {
       {process == "Home" ? (
         <SwiperView products={products} />
       ) : process == "Discover" ? (
-        <ProductDetail />
+        // <ProductDetail />
+        <div className="w-full h-full flex items-center justify-center bg-[#D5D8DC]">
+          <DotLoader
+            size={"150"}
+            color={"#C54327"}
+            loading={true}
+            css={DotLoaderCss}
+            speedMultiplier={1}
+          />
+        </div>
       ) : process == "Inbox" ? (
         <SwiperView products={products} />
       ) : (
