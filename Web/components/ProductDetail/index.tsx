@@ -52,6 +52,7 @@ const ProdcutDetail: FC<IProdcutDetailProps> = (props) => {
       </div>
 
       <SwiperPhotoView photos={images} />
+      
       <div className="icons-container flex items-center w-[95%] h-[3rem]">
         <IoHeartOutline className="text-[1.5rem] text-[black]/[0.7] mr-4 " />
         <IoChatbubbleOutline className="text-[1.4rem] text-[black]/[0.7] mr-4" />

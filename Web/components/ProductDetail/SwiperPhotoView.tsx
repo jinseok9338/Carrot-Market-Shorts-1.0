@@ -46,14 +46,19 @@ export const SwiperPhotoView: FC<ISwiperPhotoViewProps> = ({ photos }) => {
   return (
     <div className="wrapperForPhoto">
       {props.map(({ x, display, scale }, i) => (
-        <animated.div
-          className="page"
-          {...bind()}
-          key={i}
-          style={{ display, x }}
-        >
-          <img className="w-full bg-transparent h-full" src={photos[i]} />
-        </animated.div>
+        <>
+          <animated.div
+            className="page"
+            {...bind()}
+            key={i}
+            style={{ display, x }}
+          >
+            <div className="absolute right-[2vw] top-[2vh] bg-[grey] ">
+              {i + 1}/{photos.length}
+            </div>
+            <img className="w-full bg-transparent h-full" src={photos[i]} />
+          </animated.div>
+        </>
       ))}
     </div>
   );
