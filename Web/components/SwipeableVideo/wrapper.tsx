@@ -18,13 +18,15 @@ export const Wrapper: FC<IWrapperProps> = ({ children, scale }) => {
   // Need to cache the data in the redis first and read from the redis unless the data is changed??
   return (
     <animated.div style={{ scale }}>
-      <div className="absolute w-[60vw] h-[9vh] left-[2vw] bottom-[4vh] z-10 flex justify-around items-start flex-col">
+      <div className="absolute w-[8vw] h-[2.5vh] right-[1vw] top-[4vh] bg-[black]/75 rounded-[3px] flex justify-center">
+        <span className="font-[500] text-[0.8rem] text-[white]/[0.9] playtime">
+          1:22
+        </span>
+      </div>
+      <div className="absolute w-[60vw] h-[9vh] left-[2vw] bottom-[5vh] z-10 flex justify-around items-start flex-col">
         <div className="flex justify-between">
           <span className="font-bold text-[0.8rem] text-[black]  cursor-pointer userId mr-2">
             @Jinseok9338
-          </span>
-          <span className="font-[500] text-[0.8rem] text-[black]/[0.9] playtime">
-            1.22
           </span>
         </div>
         <div className="flex tag list">
@@ -40,11 +42,11 @@ export const Wrapper: FC<IWrapperProps> = ({ children, scale }) => {
           Product Title
         </span>
       </div>
-      <div className="absolute w-[14vw] h-[34vh] right-[2vw] bottom-[5vh] z-10 flex justify-around items-center flex-col">
+      <div className="absolute w-[14vw] h-[34vh] right-[0vw] bottom-[5vh] z-10 flex justify-around items-center flex-col">
         <div className="w-11 mb-3 h-11 flex justify-center items-center rounded-full bg-gray-500 text-[1rem] text-white cursor-pointer">
           <img
             src="https://source.unsplash.com/100x100/?girl"
-            className="rounded-full"
+            className="rounded-full border-2 border-[white]"
           />
         </div>
         <FontAwesomeIcon
@@ -54,17 +56,19 @@ export const Wrapper: FC<IWrapperProps> = ({ children, scale }) => {
             liked ? "text-[#f3a0a0]" : "text-[white]"
           } text-[white] cursor-pointer`}
         />
-        <span className="font-[500] text-[0.8rem] text-[white] ">112</span>
+        <span className="font-[500] text-[0.8rem] text-[white] z-20 ">112</span>
         <FontAwesomeIcon
           icon={faComment}
           className="text-[2rem] text-[white] cursor-pointer"
         />
-        <span className="font-[500] text-[0.8rem] text-[white]">122</span>
+        <span className="font-[500] text-[0.8rem] text-[white] z-20 ">122</span>
         <FontAwesomeIcon
           icon={faShare}
           className="text-[2rem] text-[white] cursor-pointer"
         />
-        <span className="font-[500] text-[0.8rem] text-[white]">share</span>
+        <span className="font-[500] text-[0.8rem] text-[white] z-20">
+          share
+        </span>
       </div>
       {children}
     </animated.div>

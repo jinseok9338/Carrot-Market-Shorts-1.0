@@ -7,7 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import SwiperPhotoView from "./SwiperPhotoView";
 import { faHeart, faPlayCircle } from "@fortawesome/free-regular-svg-icons";
-import { IoChatbubbleOutline, IoHeartOutline } from "react-icons/io5";
+import {
+  IoChatbubbleOutline,
+  IoHeartOutline,
+  IoPaperPlaneOutline,
+} from "react-icons/io5";
 import { FaRegBookmark, FaPaperPlane } from "react-icons/fa";
 
 interface IProdcutDetailProps {}
@@ -52,11 +56,11 @@ const ProdcutDetail: FC<IProdcutDetailProps> = (props) => {
       </div>
 
       <SwiperPhotoView photos={images} />
-      
+
       <div className="icons-container flex items-center w-[95%] h-[3rem]">
         <IoHeartOutline className="text-[1.5rem] text-[black]/[0.7] mr-4 " />
         <IoChatbubbleOutline className="text-[1.4rem] text-[black]/[0.7] mr-4" />
-
+        <IoPaperPlaneOutline className="text-[1.4rem] text-[black]/[0.7] mr-4" />
         <FaRegBookmark className="text-[1.2rem] text-[black]/[0.7] ml-[auto] " />
       </div>
       <div className="w-[95%]">
@@ -92,11 +96,11 @@ const ProdcutDetail: FC<IProdcutDetailProps> = (props) => {
       </div>
       <div className="w-full flex relative">
         <input
-          placeholder="Write a comment"
-          className="focus:ring-[indigo] focus:border-[indigo] block w-full pl-2 h-[4vh] pr-12 sm:text-sm border-gray-300 rounded-md text-[0.9rem]"
+          placeholder="Add a comment"
+          className="focus:ring-[indigo] focus:border-[indigo] block w-full pl-2 h-[4vh] pr-12 sm:text-sm border-gray-300 rounded-[20px] text-[0.9rem]"
         />
         <button className="absolute right-2 h-full">
-          <FaPaperPlane className="text-[1.2rem] text-[black]/[0.7]" />
+          <span className="font-bold text-[blue]"> Post</span>
         </button>
       </div>
       <div className="bg-tintBlack w-full h-[10vh]" />
