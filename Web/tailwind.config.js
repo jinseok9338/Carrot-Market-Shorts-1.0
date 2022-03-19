@@ -31,6 +31,19 @@ module.exports = {
         "Profile-background":
           "linear-gradient(180deg, #2DC9FA 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(159.93deg, #27B6E3 26.66%, rgba(116, 247, 184, 0.5) 86.62%)",
       },
+      // that is animation class
+      animation: {
+        fade: "fadeOut 2s ease-in-out",
+      },
+
+      // that is actual animation
+      keyframes: () => ({
+        fadeOut: {
+          "0%": { opacity: "100%", display: "hidden" },
+          "50%": { opacity: "70%" },
+          "100%": { opacity: "0%" },
+        },
+      }),
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],

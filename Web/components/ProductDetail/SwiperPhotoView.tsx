@@ -9,6 +9,8 @@ interface ISwiperPhotoViewProps {
 
 export const SwiperPhotoView: FC<ISwiperPhotoViewProps> = ({ photos }) => {
   const [width, setWidth] = useState(400);
+  const [visible, setVisible] = useState(false);
+  const [index, setindex] = useState(0);
 
   useLayoutEffect(() => {
     // window is accessible here.
@@ -16,7 +18,13 @@ export const SwiperPhotoView: FC<ISwiperPhotoViewProps> = ({ photos }) => {
     setWidth(width);
   }, []);
 
-  const [index, setindex] = useState(0);
+  useEffect(() => {
+    setVisible(true);
+    setTimeout(() => setVisible(false), 2000);
+  }, [index]);
+
+  //When index changes cancel the clearTime Out and set the animation to none... I guess... but hard
+
   // Set the drag hook and define component movement based on gesture data
   const [props, api] = useSprings(photos?.length, (i) => ({
     x: i * width,
@@ -53,10 +61,18 @@ export const SwiperPhotoView: FC<ISwiperPhotoViewProps> = ({ photos }) => {
             key={i}
             style={{ display, x }}
           >
-            <div className="absolute right-[2vw] top-[2vh] bg-[grey] ">
-              {i + 1}/{photos.length}
+            <div>
+              <div
+                className={`absolute right-[5vw] top-[2vh] bg-[grey] w-[4vw] h-[1.2rem] animate-fade  ${
+                  visible ? "block " : "hidden"
+                } `}
+              >
+                <span className="text-[0.7rem] font-[600]">
+                  {i + 1}/{photos.length}
+                </span>
+              </div>
+              <img className="w-full bg-white h-full" src={photos[i]} />
             </div>
-            <img className="w-full bg-transparent h-full" src={photos[i]} />
           </animated.div>
         </>
       ))}
